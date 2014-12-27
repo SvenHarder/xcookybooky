@@ -1,0 +1,167 @@
+\documentclass[%
+a4paper,
+%twoside,
+11pt
+]{article}
+
+% encoding, font, language
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[ngerman, english]{babel}
+
+\usepackage{nicefrac}
+
+\usepackage{xcookybooky}
+
+\definecolor{mygreen}{rgb}{0,.5,0}
+\DeclareRobustCommand{\textcelcius}{\ensuremath{^{\circ}\mathrm{C}}}
+
+\setRecipeColors
+{%
+    recipename = mygreen,
+    ing = blue,
+    inghead = blue,
+    prep,
+    prephead,
+    hint,
+    hinthead,
+}
+
+\setcounter{secnumdepth}{1}
+\renewcommand*{\recipesection}[2][]
+{%
+    \subsection[#1]{#2}
+}
+
+
+%%%%%%%%%%
+% hyperref
+\usepackage{hyperref}    % must be the last package
+\hypersetup{%
+    pdfauthor            = {Your name},
+    pdftitle             = {Recipes},
+    pdfsubject           = {Recipes},
+    pdfkeywords          = {recipes},
+    pdfstartview         = {FitV},             
+    pdfview              = {FitH},
+    pdfpagemode          = {UseNone}, % Options; UseNone, UseOutlines
+    bookmarksopen        = {true},
+    pdfpagetransition    = {Glitter},
+    colorlinks           = {true},
+    linkcolor            = {black}, 
+    urlcolor             = {black}
+    citecolor            = {black}, 
+    filecolor            = {black},
+}
+% hyperref
+%%%%%%%%%%
+
+
+
+\begin{document}
+
+\title{Your Recipes}
+\author{Your Name}
+\maketitle
+
+\tableofcontents
+
+\vspace{9em}
+
+\section{Recipes}
+The following recipe is an example for the usage of the \texttt{xcookybooky} package. The copyright of the pictures is owned by Roman Gaus.
+
+\newpage
+
+% background graphic
+\setBackgroundPicture[x, y=-2cm, width=\paperwidth-4cm, height, orientation = pagecenter]
+{pic/background}
+
+\begin{recipe}
+[ % 
+    preparationtime = {\unit[1]{h}},
+    bakingtime,
+    bakingtemperature,
+    portion = {\portion{5}},
+    calory,
+    source = R. Gaus
+]
+{Mousse au Chocolat}
+    
+    \graph
+    {% pictures
+        small=pic/glass,     % small picture
+        big=pic/ingredients  % big picture
+    }
+    
+    \ingredients
+    {%
+        2 Tafeln & dunkle Schokolade\\
+                 & (über \unit[70]{\%})\\
+        3        & Eier\\
+        \unit[200]{ml} & Sahne\\
+        \unit[40]{g} & Zucker\\
+        \unit[50]{g} & Butter
+    }
+    
+    \preparation
+    {%
+        \step Eier trennen, Eiweiß und Sahne separat steif schlagen. Butter und Schokolade vorsichtig im Wasserbad schmelzen.
+        \step Eigelb in einer großen Schüssel mit \unit[2]{EL} heißem Wasser cremig schlagen, den Zucker einrühren bis die Masse hell und cremig ist.
+        \step Die geschmolzene Schokolade unterheben, anschließend sofort Eischnee und Sahne unterheben (nicht mit dem Elektro-Mixer!)
+        \step Mindestens 2 Stunden im Kühlschrank kalt stellen. Aber nicht zu kalt servieren.
+    }
+    
+    \hint
+    {%
+        Der Schokoladenanteil kann auch gesenkt werden.
+    }
+
+\end{recipe}
+
+\newpage % if you separate your recipes into single files this command is not necessary
+
+
+\begin{recipe}
+[ % 
+    preparationtime = {\unit[1]{h}},
+    bakingtime={\unit[1]{h}},
+    bakingtemperature={\protect\bakingtemperature{fanoven=\unit[230]{\textcelcius}, topbottomheat=\unit[195]{°C}, topheat=\unit[195]{°C}, gasstove=Stufe 2}},
+    portion = {\portion{5-6}},
+    calory={\unit[3]{kJ}},
+    source = somebody
+]
+{Test Recipe}
+    
+    \graph
+    {% pictures
+        small=pic/glass,     % small picture
+        big=pic/ingredients  % big picture
+    }
+    
+    \ingredients
+    {%
+        2 Tafeln & dunkle Schokolade\\
+                 & (über \unit[70]{\%})\\
+        3        & Eier\\
+        \unit[200]{ml} & Sahne\\
+        \unit[40]{g} & Zucker\\
+        \unit[50]{g} & Butter
+    }
+    
+    \preparation
+    {%
+        \step This recipe is intended to show you more display options.
+        \step Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test
+        \step Another Test, Test, Test, Test. And once again Test, Test, Test, Test
+        \step You maybe don't need a hint
+    }
+    
+
+
+\end{recipe}
+
+
+
+\end{document} 

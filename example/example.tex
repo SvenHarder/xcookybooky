@@ -13,13 +13,13 @@ a4paper,
 \usepackage{nicefrac}
 
 \usepackage[
-	handwritten,
-	nowarnings,
-	%myconfig
+    handwritten,
+    nowarnings,
+    %myconfig
 ]
 {xcookybooky}
 
-\usepackage{blindtext}	% only needed for generating test text
+\usepackage{blindtext}    % only needed for generating test text
 
 \definecolor{mygreen}{rgb}{0,.5,0}
 \DeclareRobustCommand{\textcelcius}{\ensuremath{^{\circ}\mathrm{C}}}
@@ -49,8 +49,8 @@ a4paper,
 % hyperref
 \usepackage{hyperref}    % must be the last package
 \hypersetup{%
-    pdfauthor            = {Your name},
-    pdftitle             = {Recipes},
+    pdfauthor            = {Sven Harder},
+    pdftitle             = {Example Recipes},
     pdfsubject           = {Recipes},
     pdfkeywords          = {recipes},
     pdfstartview         = {FitV},             
@@ -71,9 +71,13 @@ a4paper,
 
 \begin{document}
 
-\title{Your Recipes}
-\author{Your Name}
+\title{Examples for using \textbf{xcookybooky}}
+\author{Sven Harder}
 \maketitle
+
+\begin{center}
+    The examples in this document are using the version 1.2 of \texttt{xcookxbooky}.
+\end{center}
 
 \tableofcontents
 
@@ -107,8 +111,7 @@ The following recipe is an example for the usage of the \texttt{xcookybooky} pac
     
     \ingredients
     {%
-        2 Tafeln & dunkle Schokolade\\
-                 & (über \unit[70]{\%})\\
+        2 Tafeln & dunkle Schokolade (über \unit[70]{\%})\\
         3        & Eier\\
         \unit[200]{ml} & Sahne\\
         \unit[40]{g} & Zucker\\
@@ -152,12 +155,11 @@ The following recipe is an example for the usage of the \texttt{xcookybooky} pac
     
     \ingredients
     {%
-        2 & Tafeln & dunkle Schokolade\\
-          &        & (über \unit[70]{\%})\\
-        3 &        & Eier\\
-        200 & ml & Sahne\\
-        40 & g & Zucker\\
-        50 & g & Butter
+        2 Tafeln & dunkle Schokolade (über \unit[70]{\%})\\
+        3 &  Eier\\
+        200 ml & Sahne\\
+        40 g & Zucker\\
+        50 g & Butter
     }
     
     \preparation
@@ -165,7 +167,7 @@ The following recipe is an example for the usage of the \texttt{xcookybooky} pac
         \step This recipe is intended to show you more display options.
         \step Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test
         \step Another Test, Test, Test, Test. And once again Test, Test, Test, Test
-		\step \blindtext
+        \step \blindtext
         \step You maybe don't need a hint
     }
 
@@ -195,24 +197,24 @@ The following recipe is an example for the usage of the \texttt{xcookybooky} pac
     
     \ingredients
     {%
-        2 & Tafeln & dunkle Schokolade\\
-          &        & (über \unit[70]{\%})\\
-        3 &        & Eier\\
-        200 & ml & Sahne\\
-        40 & g & Zucker\\
-        50 & g & Butter
+        2 Tafeln & dunkle Schokolade (über \unit[70]{\%})\\
+        3 & Eier\\
+        200 ml & Sahne\\
+        40 g & Zucker\\
+        50 g & Butter
     }
     
     \preparation
     {%
         \step The same recipe as before, but showing the result if you do not insert pictures.
+        \step Please note also that the overlong ingredient creates a line break.
         \step Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test
         \step Another Test, Test, Test, Test. And once again Test, Test, Test, Test
-		\step \blindtext
-        \step You maybe want this time an empty hint.
+        \step \blindtext
+        \step You maybe want this time an \textbf{empty hint}.
     }
-	
-	\hint{}
+    
+    \hint{}
 
 \end{recipe}
 
@@ -250,8 +252,8 @@ The following recipe is an example for the usage of the \texttt{xcookybooky} pac
     \preparation
     {%
         \step \blindtext
-		\step \blindtext
-		\step \blindtext
+        \step \blindtext
+        \step \blindtext
     }
     
     \hint
@@ -287,30 +289,31 @@ The following recipe is an example for the usage of the \texttt{xcookybooky} pac
         \unit[500]{ml} & milk\\
         \unit[40]{g} & butter\\
         \unit[50]{g} & sugar\\
-		\unit[50]{g} & something else\\
-		\unit[70]{g} & something else\\
-		\unit[50]{g} & something else\\
-		\unit[250]{g} & something else\\
-		\unit[50]{g} & something else\\
-		\unit[50]{kg} & something else\\
-		\unit[50]{g} & something else\\
-		\unit[50]{g} & something else\\
-		\unit[50]{g} & something else\\
-		\unit[5000]{g} & something else\\
-		\unit[50]{g} & something else\\
-		\unit[50]{g} & something else\\
-		\unit[50]{g} & something else\\
-		\unit[50]{g} & something else\\
-		\unit[50]{g} & something else\\
-		\unit[50]{g} & something else\\
-		\unit[50]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \unit[70]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \multicolumn{2}{c}{\textbf{Heading}}\\
+        \unit[50]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \unit[5000]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \\
+        \multicolumn{2}{c}{\textbf{Soße}} \\
+        \unit[100]{ml} & Sahne\\
+        \unit[50]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \unit[50]{g} & something else\\
     }
     
     \preparation
     {%
+        \step You can also use headings to structure your ingredients! And unfortunately you can see on second page of this recipe that not all packages are working with each other (see the white space that is left free). 
         \step \blindtext
         \step \blindtext
-		\step \blindtext
+        \step \blindtext
     }
     
     \hint
@@ -320,6 +323,71 @@ The following recipe is an example for the usage of the \texttt{xcookybooky} pac
 
 \end{recipe}
 
+\newpage
+
+
+\begin{recipe}
+[ % 
+    preparationtime = {\unit[1]{h}},
+    bakingtime,
+    bakingtemperature,
+    portion = {\portion{5}},
+    calory,
+    source = R. Gaus
+]
+{A really long recipe!}
+    
+    \graph
+    {% pictures
+        small=pic/glass,     % small picture
+        big=pic/ingredients  % big picture
+    }
+    
+    \ingredients
+    {%
+        \unit[500]{ml} & milk\\
+        \unit[40]{g} & butter\\
+        \unit[50]{g} & sugar\\
+        \unit[50]{g} & something else\\
+        \unit[70]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \unit[250]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \multicolumn{2}{c}{\textbf{Heading}}\\
+        \unit[50]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \unit[5000]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \unit[50]{g} & something else\\
+        \\
+        \multicolumn{2}{c}{\textbf{Soße}} \\
+        \unit[100]{ml} & Sahne\\
+        \unit[50]{g} & something else\\
+        \unit[50]{g} & something else\\
+    }
+    
+    \preparation
+    {%
+        \step You can also use headings to structure your ingredients!
+        \step \blindtext
+        \step \blindtext
+        \step \blindtext
+        \step \blindtext
+        \step \blindtext
+        \step \blindtext
+        \step \blindtext
+        \step \blindtext
+        \step \blindtext
+        \step And your recipe can of course even be longer (if your really need it). But it shows at least the principle.
+    }
+    
+    \hint
+    {%
+        Enjoy typesetting recipes with {\textbf{\Large\LaTeX}} and {\textbf{\Large xcookybooky!}}
+    }
+
+\end{recipe}
 
 
 \end{document} 

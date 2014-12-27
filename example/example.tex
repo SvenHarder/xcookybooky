@@ -12,14 +12,7 @@ a4paper,
 
 \usepackage{nicefrac}
 
-\usepackage[
-    handwritten,
-    nowarnings,
-    %myconfig
-]
-{xcookybooky}
-
-\usepackage{blindtext}    % only needed for generating test text
+\usepackage{xcookybooky}
 
 \definecolor{mygreen}{rgb}{0,.5,0}
 \DeclareRobustCommand{\textcelcius}{\ensuremath{^{\circ}\mathrm{C}}}
@@ -40,17 +33,14 @@ a4paper,
 {%
     \subsection[#1]{#2}
 }
-\renewcommand{\subsectionmark}[1]
-{% no implementation to display the section name instead
-}
 
 
 %%%%%%%%%%
 % hyperref
 \usepackage{hyperref}    % must be the last package
 \hypersetup{%
-    pdfauthor            = {Sven Harder},
-    pdftitle             = {Example Recipes},
+    pdfauthor            = {Your name},
+    pdftitle             = {Recipes},
     pdfsubject           = {Recipes},
     pdfkeywords          = {recipes},
     pdfstartview         = {FitV},             
@@ -71,13 +61,9 @@ a4paper,
 
 \begin{document}
 
-\title{Examples for using \textbf{xcookybooky}}
-\author{Sven Harder}
+\title{Your Recipes}
+\author{Your Name}
 \maketitle
-
-\begin{center}
-    The examples in this document are using the version 1.2 of \texttt{xcookxbooky}.
-\end{center}
 
 \tableofcontents
 
@@ -111,7 +97,8 @@ The following recipe is an example for the usage of the \texttt{xcookybooky} pac
     
     \ingredients
     {%
-        2 Tafeln & dunkle Schokolade (über \unit[70]{\%})\\
+        2 Tafeln & dunkle Schokolade\\
+                 & (über \unit[70]{\%})\\
         3        & Eier\\
         \unit[200]{ml} & Sahne\\
         \unit[40]{g} & Zucker\\
@@ -155,92 +142,6 @@ The following recipe is an example for the usage of the \texttt{xcookybooky} pac
     
     \ingredients
     {%
-        2 Tafeln & dunkle Schokolade (über \unit[70]{\%})\\
-        3 &  Eier\\
-        200 ml & Sahne\\
-        40 g & Zucker\\
-        50 g & Butter
-    }
-    
-    \preparation
-    {%
-        \step This recipe is intended to show you more display options.
-        \step Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test
-        \step Another Test, Test, Test, Test. And once again Test, Test, Test, Test
-        \step \blindtext
-        \step You maybe don't need a hint
-    }
-
-\end{recipe}
-
-
-
-\newpage
-
-
-\begin{recipe}
-[ % 
-    preparationtime = {\unit[1]{h}},
-    bakingtime={\unit[1]{h}},
-    bakingtemperature={\protect\bakingtemperature{fanoven=\unit[230]{\textcelcius}, topbottomheat=\unit[195]{°C}, topheat=\unit[195]{°C}, gasstove=Stufe 2}},
-    portion = {\portion{5-6}},
-    calory={\unit[3]{kJ}},
-    source = someone else
-]
-{Test Recipe Number 2}
-    
-    \graph
-    {% pictures
-        small,
-        big
-    }
-    
-    \ingredients
-    {%
-        2 Tafeln & dunkle Schokolade (über \unit[70]{\%})\\
-        3 & Eier\\
-        200 ml & Sahne\\
-        40 g & Zucker\\
-        50 g & Butter
-    }
-    
-    \preparation
-    {%
-        \step The same recipe as before, but showing the result if you do not insert pictures.
-        \step Please note also that the overlong ingredient creates a line break.
-        \step Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test
-        \step Another Test, Test, Test, Test. And once again Test, Test, Test, Test
-        \step \blindtext
-        \step You maybe want this time an \textbf{empty hint}.
-    }
-    
-    \hint{}
-
-\end{recipe}
-
-
-\newpage
-
-
-\begin{recipe}
-[ % 
-    preparationtime = {\unit[1]{h}},
-    bakingtime,
-    bakingtemperature,
-    portion = {\portion{5}},
-    calory,
-    source = R. Gaus
-]
-{Test Recipe Number 3}
-    
-    \graph
-    {% pictures
-        small=pic/glass,     % small picture
-        big=pic/ingredients  % big picture
-    }
-    
-    \ingredients
-    {%
         2 Tafeln & dunkle Schokolade\\
                  & (über \unit[70]{\%})\\
         3        & Eier\\
@@ -251,143 +152,16 @@ The following recipe is an example for the usage of the \texttt{xcookybooky} pac
     
     \preparation
     {%
-        \step \blindtext
-        \step \blindtext
-        \step \blindtext
+        \step This recipe is intended to show you more display options.
+        \step Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test, Test
+        \step Another Test, Test, Test, Test. And once again Test, Test, Test, Test
+        \step You maybe don't need a hint
     }
     
-    \hint
-    {%
-        Note that this hint is shown at the top of this (second) page. This allows you a clear view at the beautiful background image.
-    }
+
 
 \end{recipe}
 
-
-\newpage
-
-
-\begin{recipe}
-[ % 
-    preparationtime = {\unit[1]{h}},
-    bakingtime,
-    bakingtemperature,
-    portion = {\portion{5}},
-    calory,
-    source = R. Gaus
-]
-{A longer recipe to show you how it will be displayed}
-    
-    \graph
-    {% pictures
-        small=pic/glass,     % small picture
-        big=pic/ingredients  % big picture
-    }
-    
-    \ingredients
-    {%
-        \unit[500]{ml} & milk\\
-        \unit[40]{g} & butter\\
-        \unit[50]{g} & sugar\\
-        \unit[50]{g} & something else\\
-        \unit[70]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \multicolumn{2}{c}{\textbf{Heading}}\\
-        \unit[50]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \unit[5000]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \\
-        \multicolumn{2}{c}{\textbf{Soße}} \\
-        \unit[100]{ml} & Sahne\\
-        \unit[50]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \unit[50]{g} & something else\\
-    }
-    
-    \preparation
-    {%
-        \step You can also use headings to structure your ingredients! And unfortunately you can see on second page of this recipe that not all packages are working with each other (see the white space that is left free). 
-        \step \blindtext
-        \step \blindtext
-        \step \blindtext
-    }
-    
-    \hint
-    {%
-        Enjoy typesetting recipes with {\textbf{\Large\LaTeX}} and {\textbf{\Large xcookybooky!}}
-    }
-
-\end{recipe}
-
-\newpage
-
-
-\begin{recipe}
-[ % 
-    preparationtime = {\unit[1]{h}},
-    bakingtime,
-    bakingtemperature,
-    portion = {\portion{5}},
-    calory,
-    source = R. Gaus
-]
-{A really long recipe!}
-    
-    \graph
-    {% pictures
-        small=pic/glass,     % small picture
-        big=pic/ingredients  % big picture
-    }
-    
-    \ingredients
-    {%
-        \unit[500]{ml} & milk\\
-        \unit[40]{g} & butter\\
-        \unit[50]{g} & sugar\\
-        \unit[50]{g} & something else\\
-        \unit[70]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \unit[250]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \multicolumn{2}{c}{\textbf{Heading}}\\
-        \unit[50]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \unit[5000]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \unit[50]{g} & something else\\
-        \\
-        \multicolumn{2}{c}{\textbf{Soße}} \\
-        \unit[100]{ml} & Sahne\\
-        \unit[50]{g} & something else\\
-        \unit[50]{g} & something else\\
-    }
-    
-    \preparation
-    {%
-        \step You can also use headings to structure your ingredients!
-        \step \blindtext
-        \step \blindtext
-        \step \blindtext
-        \step \blindtext
-        \step \blindtext
-        \step \blindtext
-        \step \blindtext
-        \step \blindtext
-        \step \blindtext
-        \step And your recipe can of course even be longer (if your really need it). But it shows at least the principle.
-    }
-    
-    \hint
-    {%
-        Enjoy typesetting recipes with {\textbf{\Large\LaTeX}} and {\textbf{\Large xcookybooky!}}
-    }
-
-\end{recipe}
 
 
 \end{document} 

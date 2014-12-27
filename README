@@ -2,7 +2,7 @@
 and layout them in a nice way. This package is
 based on the 'cookybooky' package by Jürgen Gilg.
 Unfortunately it uses some special packages and
-fonts. Another handicap is the missing possibility to
+fonts. Another handycap is missing possibility to
 create a PDF directly. This limitations are reversed.
 
 As a result of the changes not all options known
@@ -29,7 +29,7 @@ The current distribution is zipped up as
 and includes the following files
     'xcookybooky.ins',
     'xcookybooky.dtx',
-    'xcookybooky.pdf',
+	'xcookybooky.pdf',
     'README'.
 Also there is a folder including an example, which
 helps you (hopefully) to understand the usage of this

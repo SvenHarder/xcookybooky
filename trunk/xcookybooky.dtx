@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2011 by Sven Harder
+% Copyright (C) 2012 by Sven Harder
 % -----------------------------------
 %
 % This file may be distributed and/or modified under the
@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{xcookybooky}
-%<package> [2011/12/29 v1.0 Easy typesetting (long) recipes with pictures]
+%<package> [2012/04/06 v1.1 Easy typesetting (potentially long) recipes with pictures]
 %<config>\ProvidesFile{xcookybooky.cfg}
 %<config> [2011/12/29 v1.0 'xcookybooky' configuration]
 %
@@ -36,6 +36,7 @@
 \addtolength{\textheight}{-1.5cm}
 \addtolength{\oddsidemargin}{0.5cm}
 \setcounter{IndexColumns}{2}
+\setcounter{GlossaryColumns}{2}
 \usepackage{hyperref}
 \hypersetup{%
     pdfauthor = {Sven Harder},
@@ -52,7 +53,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{623}
+% \CheckSum{664}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -72,6 +73,7 @@
 %
 %
 % \changes{v1.0}{2011/12/29}{Initial version}
+% \changes{v1.1}{2012/04/06}{Load the non-free package 'emerald' per option. Possibility to change the picture width independently from the text columns}
 %
 % \GetFileInfo{xcookybooky.sty}
 %
@@ -105,7 +107,7 @@
 % \section{Introduction}
 %
 % When I was looking for template for recipes, I found the cookybooky package by Jürgen Gilg (http://www.ctan.org/tex-archive/macros/latex/contrib/cookybooky).
-% It looks very good, but I was unable to compile it correctly (e.g. I haven't got the Lucida fonts). Also there are some packages which have to be downloaded by hand, because there are not available at CTAN. Other handycaps are the missing possibility to create a PDF-file directly and a recipe cannot be longer than a single page.
+% It looks very good, but I was unable to compile it correctly (e.g. I haven't got the Lucida fonts). Also there are some packages which have to be downloaded by hand, because there are not available at CTAN. Other handicaps are the missing possibility to create a PDF-file directly and a recipe cannot be longer than a single page.
 % So decided to take a look at the code. Step by step I replaced all critical parts. Finally it is now possible to write recipes much easier (at least in my opinion).
 % 
 % \section{Comparison between xcookybooky and cookybooky}
@@ -116,8 +118,8 @@
 % \begin{table}[htbp]
 %    \centering
 %    \begin{tabular}{rll}
-%        \textbf{Characteristic}    & \textbf{xcookybooky}    & \textbf{cookybooky}\\
-%        Maximum recipe length & unlimited    & 1 page\\
+%        \textbf{Characteristic} & \textbf{xcookybooky} & \textbf{cookybooky}\\
+%        Maximum recipe length & unlimited & 1 page\\
 %        Support missing pictures & yes & no\\
 %        Transparent background graphic & not part of package (see section \ref{sec:background}) & yes\\
 %        Main Layout & wraptable & minipages\\
@@ -150,9 +152,11 @@
 % \end{verbatim}
 %
 % \DescribeMacro{\graph}
-% It is possible to set 2 pictures by the macro \texttt{graph}. They are displayed above the other content. If no pictures are set, the space is used by the other content. The \texttt{big} picture should be bigger than the \texttt{small} picture ;)
+% It is possible to set 2 pictures by the macro \texttt{graph}. They are displayed above the other content. If no pictures are set, the space is used by the other content.
+% The \texttt{big} picture should be bigger than the \texttt{small} picture ;) but it also possible to modify this behaviour.
+% The reason for this is that the widths of the pictures are predefined by the command \texttt{setRecipeLengths}.
 %
-% Example:
+% Example (simple):
 % \begin{verbatim}
 % \graph{
 %     small = strawberry,
@@ -160,10 +164,24 @@
 % }
 % \end{verbatim}
 %
-% \DescribeMacro{\ingredients}
-% Here the ingredients of your recipe are set. They should be entered by number (unit) \& ingredient. If the unit is a SI-Unit, it looks better if you use the \texttt{units} package instead of a blank. 
+% Another possibility is shown in the following example. It is recommended if you only want to change the widths of the pictures for one recipe.
+% \textbf{Note:} These values are one only used for one recipe.
 %
-% Example:
+% Example (extended):
+% \begin{verbatim}
+% \graph{
+%     small = strawberry,
+%     smallpicturewidth = 0.3\textwidth,
+%     big = strawberrycake,
+%     bigpicturewidth = 0.6\textwidth,
+% }
+% \end{verbatim}
+%
+% \DescribeMacro{\ingredients}
+% Here the ingredients of your recipe are set. They should be entered by number (unit) \& ingredient. If the unit is a SI-Unit, it looks better if you use the \texttt{units} package instead of a blank.
+% In general there are two possible ways to insert ingredients, which are shown in the following examples.
+%
+% Example (first method, my personal choice):
 % \begin{verbatim}
 % \ingredients{
 %     2 Tafeln & dunkle Schokolade\\
@@ -172,6 +190,20 @@
 %     \unit[200]{ml} & Sahne\\
 %     \unit[40]{g} & Zucker\\
 %     \unit[50]{g} & Butter
+% }
+% \end{verbatim}
+%
+% The difference is that the first way uses two columns. The second method uses three coumns. It is up to you to choose which one you prefer. 
+%
+% Example (the alternative):
+% \begin{verbatim}
+% \ingredients{
+%     2 & Tafeln & dunkle Schokolade\\
+%       &        & (über \unit[70]{\%})\\
+%     3 &        & Eier\\
+%     200 & ml & Sahne\\
+%     40 & g & Zucker\\
+%     50 & g & Butter
 % }
 % \end{verbatim}
 % 
@@ -211,20 +243,20 @@
 % If you want to change the default colors, you can use \texttt{setRecipeColors}. The colors are set by <key~=~value> as known by the \texttt{xkeyval} package. The names of colors can be found in table \ref{tbl:colormanagement}. New colors can be easiliy defined by the \texttt{xcolor} package as shown the example below.
 % \begin{table}[htbp]
 %     \centering
-%    \begin{tabular}{rcl}
-%        \textbf{key}& \textbf{default value} & \textbf{description}\\
-%        recipename & green & recipe name\\
-%        ing    & gray    & ingredients (text)\\
-%        inghead & gray & headline of the ingredients\\
-%        prep    & black    & preparation (text)\\
-%        prephead & black & headline of the preparation\\
-%        hint    & red    & hint (text)\\
-%        hinthead & red    & headline of the hint\\
-%        hintline & red & lines leftside the hint text (cross)\\
-%        numeration & red & numeration of the preparation steps\\ 
-%    \end{tabular}
+%     \begin{tabular}{rcl}
+%         \textbf{key}& \textbf{default value} & \textbf{description}\\
+%         recipename & green & recipe name\\
+%         ing    & gray    & ingredients (text)\\
+%         inghead & gray & headline of the ingredients\\
+%         prep    & black    & preparation (text)\\
+%         prephead & black & headline of the preparation\\
+%         hint    & red    & hint (text)\\
+%         hinthead & red    & headline of the hint\\
+%         hintline & red & lines leftside the hint text (cross)\\
+%         numeration & red & numeration of the preparation steps\\ 
+%     \end{tabular}
 %     \caption{Color Management}
-%      \label{tbl:colormanagement}
+%     \label{tbl:colormanagement}
 % \end{table}
 % 
 % \begin{samepage}
@@ -240,13 +272,28 @@
 % \end{verbatim}
 % \end{samepage}
 %
+% \DescribeMacro{\setRecipeLengths}
+% By using the command \texttt{setRecipeLengths} it is possible to change the (default) values for the picture widths and the text column width.
+% 
+% Example:
+% \begin{verbatim}
+% \setRecipeLengths{
+%     preparationwidth = 0.60\textwidth,
+%     ingredientswidth = 0.35\textwidth,
+%     pictureheight = 6cm,
+%     bigpicturewidth = 0.6\textwidth,
+%     smallpicturewidth = 0.35\textwidth
+% }
+% \end{verbatim}
+%
 % \DescribeMacro{\setRecipeSizes}
 % The macro \texttt{setRecipeSizes} enables you to modify the fontsize of many parts of the recipe. The sizes are inserted by <key~=~value> (\texttt{xkeyval}).
 %
 % Example (these are the default values):
+% \begin{samepage}
 % \begin{verbatim}
 % \setRecipeSizes{
-%     recipename = \fontsize{24pt}{30pt},
+%     recipename = \fontsize{25pt}{30pt},
 %     ing = \normalsize,
 %     inghead = \normalsize,
 %     prep = \normalsize,
@@ -255,17 +302,19 @@
 %     hinthead = \Large
 % }
 % \end{verbatim}
+% \end{samepage}
 %
 % \DescribeMacro{\setRecipenameFont}
 % The name of recipe is displayed with a handwritten font by default. In my opinion it looks much better than a standard font. But if you want to change it you can use this macro. A well-arranged list of fonts can be found at \texttt{http://www.tug.dk/FontCatalogue/}. The other parameters are fontencoding, fontseries and fontshape. The size is changed by \texttt{setRecipeSizes}.
 %
-% Example (some fonts you could try out):
+% Example (some fonts you could try out, requires option \texttt{handwritten}):
 % \begin{verbatim}
 % \setRecipenameFont{
 %     % pbsi
 %     % fau
 %     % fwb
-%     fjd     % default
+%     % fjd    % default when using the option handwritten
+%     cmr      % default
 % }{T1}{m}{n}
 % \end{verbatim}
 %
@@ -286,6 +335,17 @@
 % }
 % \end{verbatim}
 %
+%
+% \subsection{Options}
+% \label{sec:options}
+% This package provides three options which are explained in the following.
+% \begin{samepage}
+% \begin{itemize}
+%     \item \textbf{handwritten} This option requires the non-free package \texttt{emerald} and can only be used if your are not using TeX Live.
+%     \item \textbf{nowarnings} This options tries to eliminate all nasty warnings. Only important and interesting warnings are logged. This is in my opinion a good choice because the package \texttt{wrapfigure} generates a lot of warnings, see section \ref{sec:knownissues}.
+%     \item \textbf{myconfig} If you are using this package often or want to keep your main file 'clean' you can define your modfications in the configuration file. If you submit this option the file will be loaded otherwise \textbf{not}.
+% \end{itemize}
+% \end{samepage}
 %
 % \subsection{Background graphic}
 % \label{sec:background}
@@ -319,10 +379,15 @@
 % \subsection{MiKTeX}
 % If you have problems with the used fonts (e.g. \texttt{cookingsymbols}) it might be necessary to refresh the database of MiKTeX.
 %
+% \subsection{TeX Live}
+% If you are using this distribution you may should not use the option \texttt{handwritten}, because this option load the font package \texttt{emerald}.
+% This package is non-free and therefore not available in TeX Live.
+%
 % \section{Bugs}
 % If you found a bug, which is not described in the following section, feel free to write me an email. It can be found at the titlepage.
 %
 % \subsection{Known issues}
+% \label{sec:knownissues}
 % The \texttt{wrapfig} package has some problems with enumerations and the \texttt{lettrine} package. This is the reason, why some warnings are generated by compiling (the example). But nevertheless the results looks quite well, so I decided to ignore this issue.
 % By using \texttt{wrapfig} it is not possible to switch ingredients and preparation (the result looks really ugly). This is the reason, why the layout is not changed when setting the \texttt{twoside} option in the document class. I also tried \texttt{parcolumns} and \texttt{parallel}, but the results were disappointing. If you want to use this feature, you have to use \texttt{cookybooky}.
 %
@@ -336,6 +401,23 @@
 % You can use the option \texttt{myconfig} to load your personal configuration (file). See section \ref{sec:configuration}
 %    \begin{macrocode}
 %<*package>
+\newif\ifHandwrittenFont@required
+\HandwrittenFont@requiredfalse
+\DeclareOption{handwritten}
+{% displays the recipename in a handwitten font
+    \HandwrittenFont@requiredtrue           
+    \AtEndOfPackage{
+        \setRecipeSizes{recipename = \fontsize{25pt}{30pt}}
+        \setRecipenameFont{fjd}{T1}{m}{n}
+    }
+}
+\DeclareOption{nowarnings}
+{% tries to eliminate nasty warnings
+    \AtEndOfPackage{
+        \def\WF@conflict{}
+        %\def\@fancywarning#1{}
+    }
+}
 \DeclareOption{myconfig}
 {% load personal configuration
     \AtEndOfPackage{
@@ -354,9 +436,11 @@
 \RequirePackage{tikz}                        % for creating the lines for the hint
 \RequirePackage{graphicx}
 \RequirePackage{xcolor}
-\RequirePackage{emerald}                     % Handwritten Fonts
 \RequirePackage[clock, misc, weather]{ifsym} % Symbolpackage e.g. \Interval, \Wecker etc
 \RequirePackage{cookingsymbols}              % Cookings symbols e.g. \Oven, \Dish etc
+\ifHandwrittenFont@required
+    \RequirePackage{emerald}                 % Handwritten Fonts
+\fi
 \RequirePackage{wrapfig}                     % To wrap the tabular with the ingredients
 
 \RequirePackage{ifthen}
@@ -380,7 +464,7 @@
 \setlength{\textwidth}{15.5cm}
 \setlength{\textheight}{24.0cm}
 \setlength{\topmargin}{-0.8cm}
-\setlength{\headheight}{12pt} %0cm
+\setlength{\headheight}{14pt} %0cm
 \setlength{\headsep}{1cm}
 \setlength{\topskip}{0cm}
 \setlength{\footskip}{1.4cm}
@@ -462,7 +546,7 @@
 % \subsection{Size Management}
 % Below the (default) sizes are definded.
 %    \begin{macrocode}
-\define@key{sizeManagement}{recipename}[\fontsize{24pt}{30pt}]{\def\xcb@fontsize@recipename{#1}}
+\define@key{sizeManagement}{recipename}[\fontsize{25pt}{30pt}]{\def\xcb@fontsize@recipename{#1}}
 \define@key{sizeManagement}{ing}[\normalsize]{\def\xcb@fontsize@ing{#1}}
 \define@key{sizeManagement}{inghead}[\normalsize]{\def\xcb@fontsize@inghead{#1}}
 \define@key{sizeManagement}{prep}[\normalsize]{\def\xcb@fontsize@prep{#1}}
@@ -527,9 +611,9 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% This is the initialisation of the font for the recipename.
+% This is the initialisation of the font for the recipename. The default is Computer Modern, because it is available on every \LaTeX{} distribution.
 %    \begin{macrocode}
-\setRecipenameFont{fjd}{T1}{m}{n}
+\setRecipenameFont{cmr}{T1}{b}{n}
 
 %    \end{macrocode}
 %
@@ -633,15 +717,21 @@
 }
 
 %    \end{macrocode}
+% The values xcb@bigpicturewidth and xcb@smallpicturewidth are the default values.
+% They can be changed with the \texttt{graph} command.
 %    \begin{macrocode}
 \define@key{recipelengths}{preparationwidth}[0.60\textwidth]{\def\xcb@preparationwidth{#1}}
 \define@key{recipelengths}{ingredientswidth}[0.35\textwidth]{\def\xcb@ingredientswidth{#1}}
 \define@key{recipelengths}{pictureheight}[6cm]{\def\xcb@pictureheight{#1}}
+\define@key{recipelengths}{bigpicturewidth}[0.60\textwidth]{\def\xcb@bigpicturewidth{#1}}
+\define@key{recipelengths}{smallpicturewidth}[0.35\textwidth]{\def\xcb@smallpicturewidth{#1}}
 \savekeys{recipelengths}
 {
     preparationwidth,
     ingredientswidth,
-    pictureheight
+    pictureheight,
+    bigpicturewidth,
+    smallpicturewidth
 }
 
 %    \end{macrocode}
@@ -661,29 +751,33 @@
 {% initialisation
     preparationwidth,
     ingredientswidth,
-    pictureheight
+    pictureheight,
+    bigpicturewidth,
+    smallpicturewidth
 }
 
 %    \end{macrocode}
 %    \begin{macrocode}
-\define@key{graph}{small}[]{
-    \def\xcb@sgraph{
+\define@key{picture}{small}[]{
+    \def\xcb@picture@small{
         \ifthenelse{\equal{#1}{}}
         {% not set => not shown
         }
         {
-            \vspace{-0.5cm}
+            \vspace{-0.6cm}
             \includegraphics[width=\linewidth, height = \xcb@pictureheight, keepaspectratio]{#1}
         }
     }
 }
-\define@key{graph}{big}[]{
-    \def\xcb@bgraph{
+\define@key{picture}{smallpicturewidth}[]{\def\xcb@picture@smallwidth{#1}}
+\define@key{picture}{bigpicturewidth}[]{\def\xcb@picture@bigwidth{#1}}
+\define@key{picture}{big}[]{
+    \def\xcb@picture@big{
         \ifthenelse{\equal{#1}{}}
         {% not set => not shown
         }
         {
-            \vspace{-0.5cm}
+            \vspace{-0.6cm}
             \includegraphics[width=\linewidth, height = \xcb@pictureheight, keepaspectratio]{#1}
         }
     }
@@ -766,7 +860,7 @@
     %% macros
     \newcommand*{\graph}[1]
     {%
-        \setkeys{graph}{##1}
+        \setkeys{picture}{##1}
     }
 
     \newcommand*{\ingredients}[1]
@@ -880,7 +974,7 @@
     
     % initialisation
     \setkeys{recipe}{preparationtime, bakingtime, bakingtemperature, portion, calory, source}
-    \setkeys{graph}{small, big}
+    \setkeys{picture}{small, big, smallpicturewidth=\xcb@smallpicturewidth, bigpicturewidth=\xcb@bigpicturewidth} % load the default values
     \ingredients{}
     \preparation{}
     \def\xcb@hint{}
@@ -895,29 +989,29 @@
 %% FIRST BLOCK
     \if@twoside
         \ifodd\arabic{page}
-            \begin{minipage}[T]{\xcb@preparationwidth}
-                \xcb@bgraph
+            \begin{minipage}[T]{\xcb@picture@bigwidth}
+                \xcb@picture@big
             \end{minipage}
             \hfill
-            \begin{minipage}[T]{\xcb@ingredientswidth}
-                \xcb@sgraph
+            \begin{minipage}[T]{\xcb@picture@smallwidth}
+                \xcb@picture@small
             \end{minipage}
         \else
-            \begin{minipage}[T]{\xcb@ingredientswidth}
-                \xcb@sgraph
+            \begin{minipage}[T]{\xcb@picture@smallwidth}
+                \xcb@picture@small
             \end{minipage}
             \hfill
-            \begin{minipage}[T]{\xcb@preparationwidth}
-                \xcb@bgraph
+            \begin{minipage}[T]{\xcb@picture@bigwidth}
+                \xcb@picture@big
             \end{minipage}
         \fi
     \else
-        \begin{minipage}[T]{\xcb@preparationwidth}
-            \xcb@bgraph
+        \begin{minipage}[T]{\xcb@picture@bigwidth}
+            \xcb@picture@big
         \end{minipage}
         \hfill
-        \begin{minipage}[T]{\xcb@ingredientswidth}
-            \xcb@sgraph
+        \begin{minipage}[T]{\xcb@picture@smallwidth}
+            \xcb@picture@small
         \end{minipage}
     \fi
 
@@ -956,8 +1050,13 @@
     0.5pt
 }
 \fancyhf{}
-\fancyfoot[LE,RO]{\textbf{\thepage}}
-\fancyhead[LE,RO]{\rightmark}
+\if@twoside
+    \fancyfoot[LE,RO]{\textbf{\thepage}}
+    \fancyhead[LE,RO]{\rightmark}
+\else
+    \fancyfoot[R]{\textbf{\thepage}}
+    \fancyhead[R]{\rightmark}
+\fi
 \fancyhead[C]{\@newpagehint{head}}
 \fancyfoot[C]{\@newpagehint{foot}}
 

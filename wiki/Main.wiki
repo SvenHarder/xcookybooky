@@ -1,12 +1,18 @@
 #summary A collection of information and tools for developing this package
+#labels Featured
 
 = Introduction =
 
 This page collects information which are useful for developing this package. Currently it does not contain any user specific data.
 
+See also for ReleaseChecklist
 
 = Generating the documentation =
 
-`makeindex -s gglo.ist -o xcookybooky.gls xcookybooky.glo`
+{{{
+makeindex -s gglo.ist -o xcookybooky.gls xcookybooky.glo
+}}}
 
-`makeindex -s gind.ist -o xcookybooky.ind xcookybooky.idx`
+{{{
+makeindex -s gind.ist -o xcookybooky.ind xcookybooky.idx
+}}}

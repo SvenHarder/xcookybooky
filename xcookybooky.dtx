@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{xcookybooky}
-%<package> [2013/03/10 v1.2 Easy typesetting (potentially long) recipes with pictures]
+%<package> [2013/06/04 v1.3 Easy typesetting (potentially long) recipes with pictures]
 %<config>\ProvidesFile{xcookybooky.cfg}
 %<config> [2011/12/29 v1.0 'xcookybooky' configuration]
 %
@@ -53,7 +53,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{666}
+% \CheckSum{668}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -75,6 +75,7 @@
 % \changes{v1.0}{2011/12/29}{Initial version}
 % \changes{v1.1}{2012/04/06}{Load the non-free package 'emerald' per option. Possibility to change the picture width independently from the text columns}
 % \changes{v1.2}{2013/03/10}{Better way for displaying the ingredients (tabularx). Thanks to Bartosz Dziubaczyk for developing.}
+% \changes{v1.3}{2013/06/04}{Fixed a problem with the default recipe name font. Thanks to Václav Zeman for reporting. New environment for the ingredients. Thanks to Andreas Pöge for this suggestion.}
 %
 % \GetFileInfo{xcookybooky.sty}
 %
@@ -302,12 +303,12 @@
 %
 % Example (some fonts you could try out, requires option \texttt{handwritten}):
 % \begin{verbatim}
-% \setRecipenameFont{
-%     % pbsi
-%     % fau
-%     % fwb
-%     % fjd    % default when using the option handwritten
-%     cmr      % default
+% \setRecipenameFont{%
+%     % pbsi%
+%     % fau%
+%     % fwb%
+%     % fjd%    % default when using the option handwritten
+%     cmr%      % probably the default setting, depends on your configuration and loaded packages.
 % }{T1}{m}{n}
 % \end{verbatim}
 %
@@ -443,7 +444,7 @@
 \RequirePackage{units}
 \RequirePackage{eso-pic}                     % for background pictures
 \RequirePackage{picture}                     % for modfifying the position of the bg pictures
-\RequirePackage{tabularx}                    % line breaks in tabular
+\RequirePackage{tabulary}                    % line breaks in tabular
 
 %    \end{macrocode}
 %
@@ -605,9 +606,10 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% This is the initialisation of the font for the recipename. The default is Computer Modern, because it is available on every \LaTeX{} distribution.
+% This is the initialisation of the font for the recipename. The default is set to the system default settings to support as many \LaTeX{} distributions as possible.
+% Before version 1.3 a certain font was chosen per default. But this choice created an error if one uses UTF-8 input encoding.
 %    \begin{macrocode}
-\setRecipenameFont{cmr}{T1}{b}{n}
+\setRecipenameFont{\familydefault}{\encodingdefault}{b}{n}
 
 %    \end{macrocode}
 %
@@ -684,7 +686,7 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\setHeadlines}
-% This allows you to modify the headlines for the recipe parts. This also needed for translations (The default values are german, sorry). The parameter are set in the form "key~=~value" as known by the \texttt{xkeyval} package.
+% This allows you to modify the headlines for the recipe parts. This also needed for translations (The default values are in German, sorry). The parameter are set in the form "key~=~value" as known by the \texttt{xkeyval} package.
 %    \begin{macrocode}
 \newcommand*{\setHeadlines}[1]
 {%
@@ -866,9 +868,9 @@
             %\\[4pt]
             \\[1em]
             \xcb@fontsize@ing\color{\xcb@color@ing}
-            \begin{tabularx}{\xcb@ingredientswidth}{rX}
+            \begin{tabulary}{\xcb@ingredientswidth}{rL}
                 ##1
-            \end{tabularx}
+            \end{tabulary}
         }
     }
     

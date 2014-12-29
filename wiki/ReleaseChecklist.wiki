@@ -1,0 +1,15 @@
+#summary Check list for releasing a new version on CTAN
+
+
+== Check list for CTAN releases ==
+
+Changes in the file *`xcookybooky.dtx`*
+  * Update the copyright year (line 3)
+  * Update the version number and date at `<package>` (line 21)
+  * Add a change block with the new version number and a corresponding explanation (approx. line 78)
+  * Update the checksum (if necessary) (line 56)
+
+Changes in the file *`xcookybooky.ins`*
+  * Update the file date (line 4)
+  * Update the copyright year (line 30)
+  

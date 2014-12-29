@@ -1,4 +1,5 @@
 #summary Check list for releasing a new version on CTAN
+#labels Featured,Phase-Implementation
 
 
 == Check list for CTAN releases ==

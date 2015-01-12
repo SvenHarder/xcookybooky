@@ -1,0 +1,62 @@
+% Test of recipe lengths
+
+\setRecipeLengths
+{%
+    pictureheight = 4.5cm,
+    bigpicturewidth = 0.49 \textwidth,
+    smallpicturewidth = 0.49 \textwidth,
+    introductionwidth = 0.8 \textwidth,
+    preparationwidth = 0.5 \textwidth,
+    ingredientswidth = 0.5 \textwidth
+}
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion=\portion{4},
+	source={http://www.ctan.org/pkg/xcookybooky}
+]{Length Test}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+		\introduction{This test is used to verify the correct setting of length, which control the whole recipe layout.	The two pictures have the same width. The introduction should take \unit[80]{\%} of the text width. And last but not least the ingredient and preparation part should take the half of the text width. The introduction width is not adjusted and therefore an \index{Error!Introduction} \textbf{error}.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \blindtext
+	    \step \blindtext
+	}
+	
+	\hint
+	{%
+	    \blindtext
+	}
+
+\end{recipe}
+
+
+\setRecipeLengths
+{% Reset to default values
+    pictureheight,
+    bigpicturewidth,
+    smallpicturewidth,
+    introductionwidth,
+    preparationwidth,
+    ingredientswidth
+}

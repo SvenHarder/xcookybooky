@@ -1,0 +1,29 @@
+% Test of recipe title
+
+\begin{recipe}[
+	preparationtime={\unit[\nicefrac{1}{2}]{Stunde}},
+	portion = \portion{10},
+	source = \url{https://code.google.com/p/xcookybooky/}
+]{Recipe Title Test which has a long name for a simple test}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is intended to verify that the recipe title can be longer than one line.}
+
+	\ingredients
+	{%
+		750	g  & Something \\
+		180 g  & a bit of that
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	    \step \lipsum[4]
+	}
+	
+\end{recipe}

@@ -1,0 +1,101 @@
+% Test of ingredients
+
+\begin{recipe}[
+	preparationtime={\unit[\nicefrac{1}{2}]{Stunde}},
+	bakingtime={\unit[1]{Stunde}},
+	bakingtemperature={\protect\bakingtemperature{fanoven=\unit[225]{°C}, topbottomheat=\unit[190]{°C}, topheat=\unit[200]{°C}}},
+	source = \url{https://code.google.com/p/xcookybooky/}
+]{Ingredients Test 1}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture
+	}
+	
+	\introduction{This test should verify that a long ingredient has an automatic line break.}
+
+	\ingredients
+	{%
+	    \multicolumn{2}{c}{\textbf{Teig}}\\
+		750	g  & Mehl\\
+		180 g  & Zucker\\
+		1 Pckg. & Vanillezuckerhonigsirup\\	
+		1 \nicefrac{1}{2} Stück & Butter\\
+		3 & Eier\\
+		\\
+		\multicolumn{2}{c}{\textbf{Füllung}}\\
+		\unit[2]{kg}   & Äpfel\\
+		\unit[800]{ml} & Apfelsaft\\
+		\unit[125]{g}  & Zucker\\
+		\unit[150]{g}  & gehackte Mandeln noch was anderes\\
+		\unit[30]{g}   & Stärke\\
+		\\
+		\multicolumn{2}{c}{\textbf{Guß}}\\
+		\unit[250]{g}  & Puderzucker\\
+		\nicefrac{1}{2} Tasse & Apfelsaft\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	    \step \lipsum[4]
+	}
+	
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\begin{recipe}[
+	preparationtime={\unit[\nicefrac{1}{2}]{Stunde}},
+	bakingtime={\unit[1]{Stunde}},
+	bakingtemperature={\protect\bakingtemperature{fanoven=\unit[225]{°C}, topbottomheat=\unit[190]{°C}, topheat=\unit[200]{°C}}},
+	source = \url{https://code.google.com/p/xcookybooky/}
+]{Ingredients Test 2}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture
+	}
+	
+	\introduction{This test should verify that a long list of ingredients is continued on the next page. This is currently not the case and therefore an \index{Error!Ingredients} \textbf{error}.}
+
+	\ingredients
+	{%
+	    \multicolumn{2}{c}{\textbf{Teig}}\\
+		750	g  & Mehl\\
+		180 g  & Zucker\\
+		1 Pckg. & Vanillezuckerhonigsirup\\	
+		1 \nicefrac{1}{2} Stück & Butter\\
+		3 & Eier\\
+		\\
+		\multicolumn{2}{c}{\textbf{Füllung}}\\
+		\unit[2]{kg}   & Äpfel\\
+		\unit[800]{ml} & Apfelsaft\\
+		\unit[125]{g}  & Zucker\\
+		\unit[150]{g}  & gehackte Mandeln noch was anderes\\
+		\unit[30]{g}   & Stärke\\
+		\\
+		\multicolumn{2}{c}{\textbf{Guß}}\\
+		\unit[250]{g}  & Puderzucker\\
+		\nicefrac{1}{2} Tasse & Apfelsaft\\
+		\\
+		\multicolumn{2}{c}{\textbf{Nachtisch}}\\
+		\unit[250]{g}  & Puderzucker\\
+		\nicefrac{1}{2} Tasse & Apfelsaft\\
+		\unit[250]{g}  & Puderzucker\\
+		\nicefrac{1}{2} Tasse & Apfelsaft\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	    \step \lipsum[4]
+	}
+	
+\end{recipe}

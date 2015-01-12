@@ -1,0 +1,74 @@
+% Test of introduction
+
+\begin{recipe}[
+	preparationtime={\unit[\nicefrac{1}{2}]{hour}},
+	bakingtime={\unit[1]{hour}},
+	source = http://www.ctan.org/pkg/xcookybooky
+]{Introduction Test 1}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture
+	}
+	
+	\introduction{This test checks the behaviour if the introduction is very long.
+	
+	\blindtext
+	
+	\blindtext
+	
+	\blindtext
+	
+	\blindtext
+	}
+
+	\ingredients
+	{%
+	    \multicolumn{2}{c}{\textbf{Something}}\\
+		180  & Whatever
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	    \step \lipsum[4]
+	}
+	
+	\hint
+	{%
+		\blindtext
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\begin{recipe}[
+	preparationtime={\unit[\nicefrac{1}{2}]{hour}},
+	bakingtime={\unit[1]{hour}},
+	source = http://www.ctan.org/pkg/cookingsymbols
+]{Introduction Test 2}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture
+	}
+
+	\ingredients
+	{%
+	    \multicolumn{2}{c}{\textbf{Something}}\\
+		180  & Whatever
+	}
+	
+	\preparation
+	{%
+	    \step This test is used to check the introduction. In this test case \textbf{no} introduction is set.
+	}
+	
+\end{recipe}

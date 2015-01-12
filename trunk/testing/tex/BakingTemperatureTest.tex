@@ -1,0 +1,103 @@
+% Test for baking temperature
+
+\begin{recipe}[
+	preparationtime={\unit[\nicefrac{1}{2}]{hour}},
+	bakingtime={\unit[1]{hour}},
+	bakingtemperature={\protect\bakingtemperature{fanoven=\unit[225]{\textcelcius}}},
+	portion = \portion{10},
+	source = Mister Nobody
+]{Baking Temperature Test 1}
+	\graph
+	{%
+		small=pic/SmallTestPicture,
+		big=pic/BigTestPicture
+	}
+	
+	\introduction{This test should verify the baking temperature command, especially the comma}
+	
+	\ingredients
+	{%
+		\multicolumn{2}{c}{\textbf{Headline}}\\
+		\unit[2]{kg}   & Something \\
+		\unit[15]{g}   & Anything \\
+		\unit[\nicefrac{1}{2}]{l}   & Everything
+	}
+	
+	\preparation
+	{%
+		\step \blindtext
+	}
+	
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\begin{recipe}[
+	preparationtime={\unit[\nicefrac{1}{2}]{hour}},
+	bakingtime={\unit[1]{hour}},
+	bakingtemperature={\protect\bakingtemperature{topbottomheat=\unit[190]{°C}, gasstove=Stufe 2}},
+	portion = \portion{10},
+	source = Mister Nobody
+]{Baking Temperature Test 2}
+	\graph
+	{%
+		small=pic/SmallTestPicture,
+		big=pic/BigTestPicture
+	}
+	
+	\introduction{This test should verify the baking temperature command, especially the comma}
+	
+	\ingredients
+	{%
+		\multicolumn{2}{c}{\textbf{Headline}}\\
+		\unit[2]{kg}   & Something \\
+		\unit[15]{g}   & Anything \\
+		\unit[\nicefrac{1}{2}]{l}   & Everything
+	}
+	
+	\preparation
+	{%
+		\step \blindtext
+	}
+	
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\begin{recipe}[
+	preparationtime={\unit[\nicefrac{1}{2}]{hour}},
+	bakingtime={\unit[1]{hour}},
+	bakingtemperature={\protect\bakingtemperature{fanoven=\unit[225]{\textcelcius}, topbottomheat=\unit[190]{°C}, topheat=\unit[200]{°C}, bottomheat=\unit[300]{°C}, gasstove=Stufe 3}},
+	portion = \portion{10},
+	source = Mister Nobody
+]{Baking Temperature Test 3}
+	\graph
+	{%
+		small=pic/SmallTestPicture,
+		big=pic/BigTestPicture
+	}
+	
+	\introduction{This test should verify the baking temperature command, especially the comma}
+	
+	\ingredients
+	{%
+		\multicolumn{2}{c}{\textbf{Headline}}\\
+		\unit[2]{kg}   & Something \\
+		\unit[15]{g}   & Anything \\
+		\unit[\nicefrac{1}{2}]{l}   & Everything
+	}
+	
+	\preparation
+	{%
+		\step \blindtext
+	}
+	
+\end{recipe}

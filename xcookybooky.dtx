@@ -1,6 +1,6 @@
 % \iffalse meta-comment
 %
-% Copyright (C) 2013 by Sven Harder
+% Copyright (C) 2015 by Sven Harder
 % -----------------------------------
 %
 % This file may be distributed and/or modified under the
@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{xcookybooky}
-%<package> [2013/06/04 v1.3 Easy typesetting (potentially long) recipes with pictures]
+%<package> [2015/01/20 v1.4 Easy typesetting (potentially long) recipes with pictures]
 %<config>\ProvidesFile{xcookybooky.cfg}
 %<config> [2011/12/29 v1.0 'xcookybooky' configuration]
 %
@@ -53,7 +53,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{668}
+% \CheckSum{792}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -76,6 +76,7 @@
 % \changes{v1.1}{2012/04/06}{Load the non-free package 'emerald' per option. Possibility to change the picture width independently from the text columns}
 % \changes{v1.2}{2013/03/10}{Better way for displaying the ingredients (tabularx). Thanks to Bartosz Dziubaczyk for developing.}
 % \changes{v1.3}{2013/06/04}{Fixed a problem with the default recipe name font. Thanks to Václav Zeman for reporting. New environment for the ingredients. Thanks to Andreas Pöge for this suggestion.}
+% \changes{v1.4}{2014/12/30}{Added several hooks in order to insert user-defined text blocks at different places in the recipe. Thanks to Heikki Lehvaslaiho for designing the graphical separator and sending suggestions. Added translations for German, English, French and Spanish.}
 %
 % \GetFileInfo{xcookybooky.sty}
 %
@@ -90,12 +91,12 @@
 % \title{The \textsf{xcookybooky} package\thanks{This document
 % corresponds to \textsf{xcookybooky}~\fileversion,
 % dated \filedate.}}
-% \author{Sven Harder \\ \texttt{sven\_one1@gmx.de}}
+% \author{Sven Harder \\ \texttt{sven\_one1@gmx.de} \\ \url{https://code.google.com/p/xcookybooky/}}
 %
 % \maketitle
 %
 % \begin{abstract}
-% This package is made for typesetting recipes. You simply enter ingredients, preparation steps and get a beautiful recipe page. It is also possible to enter 2 pictures, which are displayes above the name of the recipe. Another option is to write a hint, which is displayed at the bottom.
+% This package is made for typesetting recipes. You simply enter ingredients, preparation steps and get a beautiful recipe page. It is also possible to enter two pictures, which are displayed above the name of the recipe. Another option is to write a hint, which is displayed at the bottom of the page.
 % \end{abstract}
 %
 % \vspace{3em}
@@ -108,13 +109,13 @@
 %
 % \section{Introduction}
 %
-% When I was looking for template for recipes, I found the cookybooky package by Jürgen Gilg (http://www.ctan.org/tex-archive/macros/latex/contrib/cookybooky).
+% When I was looking for template for recipes, I found the \texttt{cookybooky} package by Jürgen Gilg (\url{http://www.ctan.org/pkg/cookybooky}).
 % It looks very good, but I was unable to compile it correctly (e.g. I haven't got the Lucida fonts). Also there are some packages which have to be downloaded by hand, because there are not available at CTAN. Other handicaps are the missing possibility to create a PDF-file directly and a recipe cannot be longer than a single page.
-% So decided to take a look at the code. Step by step I replaced all critical parts. Finally it is now possible to write recipes much easier (at least in my opinion).
+% So decided to take a look at the code. Step by step I replaced all critical parts. Finally the code is nearly complete different from the original and now it is possible to create beautiful designed recipes much easier (at least in my opinion).
 % 
 % \section{Comparison between xcookybooky and cookybooky}
 % 
-% There is no compatibility between xcookybooky and cookybooky, even the name is associating it. The reason for the naming is nearly similar design.
+% There is no compatibility between xcookybooky and cookybooky, even the name is associating it. I chose the name, because I was was inspired by the layout.
 %
 % A comparison between \texttt{xcookybooky} and \texttt{cookybooky} is shown in table \ref{tbl:comparison}.
 % \begin{table}[htbp]
@@ -197,7 +198,7 @@
 % In the versions up to 1.1 there was also a method to enter ingredients with three columns. Due to the substitution of \texttt{tabular} with \texttt{tabularx} I decided that the three columns method is no longer supported, because it would mean a lot of work. This method has also the drawback it needs more space and in my opinion it also looks ugly.
 % If you are using the three columns solution there are two options:
 % \begin{enumerate}
-%   \item Use the version 1.1 of thsi package
+%   \item Use the version 1.1 of this package, which can be found at \url{https://code.google.com/p/xcookybooky/}
 %   \item Redefine the concerning command in your latex file or in the configuration file 
 % \end{enumerate}
 % 
@@ -314,10 +315,10 @@
 %
 % \subsection{Translation}
 % \DescribeMacro{\setHeadlines}
-% \texttt{setHeadlines} allows to modify the default headlines. This is also needed for translations (The default values are german, sorry).
+% \texttt{setHeadlines} allows to modify the (translated) headlines. This is also needed for translations, if the used language is not supported yet. If you have improvements for a translation or created a new one, feel free to send me a e-mail. 
 % The headlines are also inserted in <key~=~value> form.
 %
-% Example (a possible english translation):
+% Example
 % \begin{verbatim}
 % \setHeadlines{
 %     inghead = Ingredients,
@@ -378,9 +379,9 @@
 % This package is non-free and therefore not available in TeX Live.
 %
 % \section{Bugs}
-% If you found a bug, which is not described in the following section, feel free to write me an email. It can be found at the titlepage.
+% If you found a bug, which is not described in the following section, feel free to write me an email. It can be found at the titlepage. Alternatively you can visit \url{https://code.google.com/p/xcookybooky/} and report the issue there.
 %
-% \subsection{Known issues}
+% \subsection{Known Issues}
 % \label{sec:knownissues}
 % The \texttt{wrapfig} package has some problems with enumerations and the \texttt{lettrine} package. This is the reason, why some warnings are generated by compiling (the example), if do not use the package option \textbf{nowarnings}. But nevertheless the results look quite well, so I decided to ignore this issue.
 % By using \texttt{wrapfig} it is not possible to switch ingredients and preparation (the result looks really ugly). This is the reason, why the layout is not changed when setting the \texttt{twoside} option in the document class. I also tried \texttt{parcolumns} and \texttt{parallel}, but the results were disappointing. If you want to use this feature, you have to use \texttt{cookybooky}.
@@ -430,13 +431,14 @@
 \RequirePackage{tikz}                        % for creating the lines for the hint
 \RequirePackage{graphicx}
 \RequirePackage{xcolor}
-\RequirePackage[clock, misc, weather]{ifsym} % Symbolpackage e.g. \Interval, \Wecker etc
+\RequirePackage[clock, misc, weather]{ifsym} % Symbol package e.g. \Interval, \Wecker etc
 \RequirePackage{cookingsymbols}              % Cookings symbols e.g. \Oven, \Dish etc
 \ifHandwrittenFont@required
     \RequirePackage{emerald}                 % Handwritten Fonts
 \fi
 \RequirePackage{wrapfig}                     % To wrap the tabular with the ingredients
 
+\RequirePackage{iflang}                      % detecting the language
 \RequirePackage{ifthen}
 \RequirePackage{xkeyval}
 \RequirePackage{lettrine}                    % numbering the preparation steps
@@ -445,6 +447,7 @@
 \RequirePackage{eso-pic}                     % for background pictures
 \RequirePackage{picture}                     % for modfifying the position of the bg pictures
 \RequirePackage{tabulary}                    % line breaks in tabular
+\RequirePackage{framed}                      % frame for the introduction
 
 %    \end{macrocode}
 %
@@ -485,28 +488,43 @@
 % \end{macro}
 %
 % \subsection{Color Management}
+% At first the used non-standard colors must be defined.
+%    \begin{macrocode}
+\providecolor{DarkGreen}{rgb}{0,.5,0}
+\providecolor{DarkBlue}{rgb}{0, 0, 0.7}
+\providecolor{DarkGray}{rgb}{0.23, 0.23, 0.23}
+
+%    \end{macrocode}
 % Below the (default) colors are defined using the \texttt{xkeyval} package.
 %    \begin{macrocode}
-\define@key{colorManagement}{recipename}[green]{\def\xcb@color@recipename{#1}}
-\define@key{colorManagement}{ing}[gray]{\def\xcb@color@ing{#1}}
-\define@key{colorManagement}{inghead}[gray]{\def\xcb@color@inghead{#1}}
+\define@key{colorManagement}{recipename}[DarkGreen]{\def\xcb@color@recipename{#1}}
+\define@key{colorManagement}{intro}[black]{\def\xcb@color@intro{#1}}
+\define@key{colorManagement}{ing}[DarkGray]{\def\xcb@color@ing{#1}}
+\define@key{colorManagement}{inghead}[DarkGray]{\def\xcb@color@inghead{#1}}
 \define@key{colorManagement}{prep}[black]{\def\xcb@color@prep{#1}}
 \define@key{colorManagement}{prephead}[black]{\def\xcb@color@prephead{#1}}
+\define@key{colorManagement}{suggestion}[black]{\def\xcb@color@suggestion{#1}}
+\define@key{colorManagement}{suggestionhead}[black]{\def\xcb@color@suggestionhead{#1}}
+\define@key{colorManagement}{separationgraph}[black]{\def\xcb@color@separationgraph{#1}}
 \define@key{colorManagement}{hint}[black]{\def\xcb@color@hint{#1}}
 \define@key{colorManagement}{hinthead}[red]{\def\xcb@color@hinthead{#1}}
 \define@key{colorManagement}{hintline}[red]{\def\xcb@color@hintline{#1}}
 \define@key{colorManagement}{numeration}[red]{\def\xcb@color@numeration{#1}}
 \savekeys{colorManagement}
 {%
-    recipename,   % color of recipename
-    ing,          % color of ingredients (text)
-    inghead,      % color of headline of ingredients
-    prep,         % color of preparation (text)
-    prephead,     % color of headline of preparation
-    hint,         % color of hint (text)
-    hinthead,     % color of headline of hint
-    hintline,     % color of lines of hint
-    numeration    % color of numeration (preparation)
+    recipename,      % color of recipename
+    intro,           % color of introduction (text)
+    ing,             % color of ingredients (text)
+    inghead,         % color of headline of ingredients
+    prep,            % color of preparation (text)
+    prephead,        % color of headline of preparation
+    suggestion,      % color of suggestions (text)
+	suggestionhead,  % color of headline of suggestion
+	separationgraph, % color of graphical separator
+    hint,            % color of hint (text)
+    hinthead,        % color of headline of hint
+    hintline,        % color of lines of hint
+    numeration       % color of numeration (preparation)
 }
 
 %    \end{macrocode}
@@ -527,10 +545,14 @@
 \setRecipeColors
 {% initialisation
     recipename,
+    intro,
     ing,
     inghead,
     prep,
     prephead,
+    suggestion,
+	suggestionhead,
+	separationgraph,
     hint,
     hinthead,
     hintline,
@@ -542,21 +564,25 @@
 % Below the (default) sizes are definded.
 %    \begin{macrocode}
 \define@key{sizeManagement}{recipename}[\fontsize{25pt}{30pt}]{\def\xcb@fontsize@recipename{#1}}
+\define@key{sizeManagement}{intro}[\normalsize]{\def\xcb@fontsize@intro{#1}}
 \define@key{sizeManagement}{ing}[\normalsize]{\def\xcb@fontsize@ing{#1}}
 \define@key{sizeManagement}{inghead}[\normalsize]{\def\xcb@fontsize@inghead{#1}}
 \define@key{sizeManagement}{prep}[\normalsize]{\def\xcb@fontsize@prep{#1}}
 \define@key{sizeManagement}{prephead}[\normalsize]{\def\xcb@fontsize@prephead{#1}}
+\define@key{sizeManagement}{suggestion}[\normalsize]{\def\xcb@fontsize@suggestion{#1}}
 \define@key{sizeManagement}{hint}[\normalsize]{\def\xcb@fontsize@hint{#1}}
 \define@key{sizeManagement}{hinthead}[\Large]{\def\xcb@fontsize@hinthead{#1}}
 \savekeys{sizeManagement}
 {
-    recipename,
-    ing,
-    inghead,
-    prep,
-    prephead,
-    hint,
-    hinthead
+    recipename,    % font size of recipe name
+    intro,         % font size of introduction (text)
+    ing,           % font size of ingredients (text)
+    inghead,       % font size of headline of ingredients
+    prep,          % font size of preparation (text)
+    prephead,      % font size of headline of preparation
+    suggestion,    % font size of suggestion (text)
+    hint,          % font size of hint (text)
+    hinthead       % font size of headline of hint
 }
 
 %    \end{macrocode}
@@ -565,7 +591,7 @@
 % The parameter are set in the form "key~=~value" as known by the \texttt{xkeyval} package.
 %    \begin{macrocode}
 \newcommand*{\setRecipeSizes}[1]
-{
+{%
     \setkeys{sizeManagement}{#1}
 }
 
@@ -576,10 +602,12 @@
 \setRecipeSizes
 {% initialisation
     recipename,
+    intro,
     ing,
     inghead,
     prep,
     prephead,
+    suggestion,
     hint,
     hinthead
 }
@@ -606,7 +634,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% This is the initialisation of the font for the recipename. The default is set to the system default settings to support as many \LaTeX{} distributions as possible.
+% This is the initialisation of the font of the recipename. The default is set to the system default settings to support as many \LaTeX{} distributions as possible.
 % Before version 1.3 a certain font was chosen per default. But this choice created an error if one uses UTF-8 input encoding.
 %    \begin{macrocode}
 \setRecipenameFont{\familydefault}{\encodingdefault}{b}{n}
@@ -628,45 +656,24 @@
 
 %    \end{macrocode} 
 %
-%
-% \begin{macro}{\step}
-% The command is used for numbering the steps of preparation. Take a look at the \texttt{lettrine} package for details.
 %    \begin{macrocode}
-\newcommand{\step}
-{%
-    \lettrine
-    [%
-        lines=2,
-        lhang=0,          % space into margin, value between 0 and 1
-        loversize=0.15,   % enlarges the height of the capital
-        slope=0em,
-        findent=1em,      % gap between capital and intended text
-        nindent=0em       % shifts all intended lines, begining with the second line
-    ]{\stepcounter{step}\thestep}{}%
-}
-
-%    \end{macrocode}
-% \end{macro}
-%
-%
-%    \begin{macrocode}
-\define@key{headlines}{inghead}[Zutaten]{
+\define@key{headlines}{inghead}[Ingredients]{
     \def\xcb@name@inghead{\textcolor{\xcb@color@inghead}{\textbf{\xcb@fontsize@inghead{#1}}\ }}
 }
-\define@key{headlines}{prephead}[Zubereitung]{
+\define@key{headlines}{prephead}[Preparation]{
     \def\xcb@name@prephead{\textcolor{\xcb@color@prephead}{\textbf{\xcb@fontsize@prephead{#1}}\ }}
 }
-\define@key{headlines}{hinthead}[Tipp:]{
+\define@key{headlines}{hinthead}[Hint]{
     \def\xcb@name@hinthead{\textcolor{\xcb@color@hinthead}{\xcb@fontsize@hinthead{#1}}}
 }
-\define@key{headlines}{continuationhead}[Fortsetzung]{\def\xcb@name@continuationhead{#1}}
-\define@key{headlines}{continuationfoot}[Fortsetzung auf n\"achster Seite]{\def\xcb@name@continuationfoot{#1}}
+\define@key{headlines}{continuationhead}[Continuation]{\def\xcb@name@continuationhead{#1}}
+\define@key{headlines}{continuationfoot}[Continuation on next page]{\def\xcb@name@continuationfoot{#1}}
 \define@key{headlines}{preparationtime}[\fontsize{14.5pt}{10pt}\Gloves]{\def\xcb@name@preparationtime{#1}}
 \define@key{headlines}{bakingtime}[\fontsize{14.5pt}{10pt}\Oven]{\def\xcb@name@bakingtime{#1}}
 \define@key{headlines}{bakingtemperature}[\Thermo{4}]{\def\xcb@name@bakingtemperature{#1}}
 \define@key{headlines}{portion}[\fontsize{14.5pt}{10pt}\Dish]{\def\xcb@name@portion{#1}}
-\define@key{headlines}{portionvalue}[Personen]{\def\xcb@name@portionvalue{#1}}
-\define@key{headlines}{calory}[Brennwert]{\def\xcb@name@calory{#1}}
+\define@key{headlines}{portionvalue}[Portions]{\def\xcb@name@portionvalue{#1}}
+\define@key{headlines}{calory}[Calorific value]{\def\xcb@name@calory{#1}}
 \define@key{headlines}{source}[\PaperPortrait]{\def\xcb@name@source{#1}}
 \savekeys{headlines}
 {
@@ -713,21 +720,84 @@
 }
 
 %    \end{macrocode}
+%
+% After the initialization the supported languages are used for translation.
+%    \begin{macrocode}
+\IfLanguagePatterns{german}
+{% German
+    \setHeadlines
+    {% translation
+        inghead = Zutaten,
+        prephead = Zubereitung,
+        hinthead = Tipp,
+        continuationhead = Fortsetzung,
+        continuationfoot = Fortsetzung auf n\"achster Seite,
+        portionvalue = Personen,
+        calory = Brennwert
+    }
+}{}
+
+\IfLanguagePatterns{english}
+{% English
+    \setHeadlines
+    {% translation
+        inghead = Ingredients,
+        prephead = Preparation,
+        hinthead = Hint,
+        continuationhead = Continuation,
+        continuationfoot = Continuation on next page,
+        portionvalue = Portions,
+        calory = Calorific value
+    }
+}{}
+
+\IfLanguagePatterns{french}
+{% French
+    \setHeadlines
+    {% translation
+        inghead = Ingrédients,
+        prephead = Préparation,
+        hinthead = Tuyau,
+        continuationhead = Suite,
+        continuationfoot = Suite page suivante,
+        portionvalue = Portions,
+        calory = Valeur calorifique
+    }
+}{}
+
+\IfLanguagePatterns{spanish}
+{% Spanish
+    \setHeadlines
+    {% translation
+        inghead = Ingredientes,
+        prephead = Preparación,
+        hinthead = Soplo,
+        continuationhead = Continuación,
+        continuationfoot = Continúa en la página siguiente,
+        portionvalue = Porción,
+        calory = Poder calorífico
+    }
+}{}
+
+%    \end{macrocode}
+%
 % The values xcb@bigpicturewidth and xcb@smallpicturewidth are the default values.
 % They can be changed with the \texttt{graph} command.
 %    \begin{macrocode}
-\define@key{recipelengths}{preparationwidth}[0.60\textwidth]{\def\xcb@preparationwidth{#1}}
-\define@key{recipelengths}{ingredientswidth}[0.35\textwidth]{\def\xcb@ingredientswidth{#1}}
 \define@key{recipelengths}{pictureheight}[6cm]{\def\xcb@pictureheight{#1}}
 \define@key{recipelengths}{bigpicturewidth}[0.60\textwidth]{\def\xcb@bigpicturewidth{#1}}
 \define@key{recipelengths}{smallpicturewidth}[0.35\textwidth]{\def\xcb@smallpicturewidth{#1}}
+\define@key{recipelengths}{introductionwidth}[\textwidth]{\def\xcb@introductionwidth{#1}}
+\define@key{recipelengths}{preparationwidth}[0.60\textwidth]{\def\xcb@preparationwidth{#1}}
+\define@key{recipelengths}{ingredientswidth}[0.35\textwidth]{\def\xcb@ingredientswidth{#1}}
 \savekeys{recipelengths}
 {
-    preparationwidth,
-    ingredientswidth,
-    pictureheight,
-    bigpicturewidth,
-    smallpicturewidth
+    pictureheight,      % height of both pictures
+    bigpicturewidth,    % width of the bigger picture
+    smallpicturewidth,  % width of the smaller picture
+    introductionwidth,  % width of introduction
+    preparationwidth,   % width of preparation
+    ingredientswidth    % width of ingredients
 }
 
 %    \end{macrocode}
@@ -745,53 +815,169 @@
 %    \begin{macrocode}
 \setRecipeLengths
 {% initialisation
-    preparationwidth,
-    ingredientswidth,
     pictureheight,
     bigpicturewidth,
-    smallpicturewidth
+    smallpicturewidth,
+    introductionwidth,
+    preparationwidth,
+    ingredientswidth
 }
 
 %    \end{macrocode}
+%
+% \subsection{Recipe Commands}
+% The following commands are implemented for inserting the recipe content.
+%
+% \subsubsection{Main Commands}
+% These commands provide the main functionality for inserting a recipe.
+%
+% \begin{macro}{\introduction}
 %    \begin{macrocode}
-\define@key{picture}{small}[]{
-    \def\xcb@picture@small{
-        \ifthenelse{\equal{#1}{}}
-        {% not set => not shown
-        }
-        {
-            \vspace{-0.6cm}
-            \includegraphics[width=\linewidth, height = \xcb@pictureheight, keepaspectratio]{#1}
-        }
+%% MAIN COMMANDS
+\newcommand{\introduction}[1]
+{% Introduction before the preparation and ingredients
+    \def\xcb@introduction
+    {%
+        \color{\xcb@color@intro}
+        \begin{framed}
+            \xcb@fontsize@intro#1
+        \end{framed}
     }
 }
-\define@key{picture}{smallpicturewidth}[]{\def\xcb@picture@smallwidth{#1}}
-\define@key{picture}{bigpicturewidth}[]{\def\xcb@picture@bigwidth{#1}}
-\define@key{picture}{big}[]{
-    \def\xcb@picture@big{
-        \ifthenelse{\equal{#1}{}}
-        {% not set => not shown
-        }
-        {
-            \vspace{-0.6cm}
-            \includegraphics[width=\linewidth, height = \xcb@pictureheight, keepaspectratio]{#1}
-        }
-    }
-}
-
-\define@key{recipe}{preparationtime}[]{\def\xcb@preparationtime{#1}}
-\define@key{recipe}{bakingtime}[]{\def\xcb@bakingtime{#1}}
-\define@key{recipe}{bakingtemperature}[]{\def\xcb@bakingtemperature{#1}}
-\define@key{recipe}{portion}[]{\def\xcb@portion{#1}}
-\define@key{recipe}{calory}[]{\def\xcb@calory{#1}}
-\define@key{recipe}{source}[]{\def\xcb@source{#1}}
 
 %    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\graph}
+% This command is used for entering the filename of the pictures. If a picture is not set, it is not shown.
+%    \begin{macrocode}
+\newcommand*{\graph}[1]
+{%
+    \setkeys{picture}{#1}
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\ingredients}
+% The command is used to insert the ingredients, which are displayed as a table.
+%    \begin{macrocode}
+\newcommand*{\ingredients}[1]
+{%
+    \def\xcb@ingredients
+    {%
+        \xcb@name@inghead
+        \\[1em]
+        {\xcb@fontsize@ing\color{\xcb@color@ing}
+        \begin{tabulary}{\xcb@ingredientswidth}{rL}
+            #1
+        \end{tabulary}}
+    }
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\preparation}
+% This command enables the user to insert the preparation steps.
+%    \begin{macrocode}
+\newcommand{\preparation}[1]
+{%
+    \def\xcb@preparation
+    {%
+        \xcb@name@prephead
+        %\\[4pt]
+        \xcb@fontsize@prep\color{\xcb@color@prep}#1
+    }
+    \setcounter{step}{0}
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\suggestion}
+% The command is intended to insert some suggestions after the preparation and ingredients part.
+%    \begin{macrocode}
+\newcommand{\suggestion}[2][]
+{%
+    \g@addto@macro\xcb@suggestion
+	{%
+		\xcb@separationgraph{\xcb@color@separationgraph}
+		\ifthenelse{\equal{#1}{}}
+		{%
+			{\color{\xcb@color@suggestion}#2}
+		}
+		{%
+			\textbf{{\color{\xcb@color@suggestionhead}#1}}
+			
+			{\color{\xcb@color@suggestion}#2}
+		}
+	}
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\hint}
+% This command allows the user to insert an optional hint at the bottom of the recipe.
+%    \begin{macrocode}
+\newcommand{\hint}[1]
+{%
+    \def\xcb@hint
+    {%
+        \pagebreak[1]    % begin here a new page, if the space is small
+        \begin{tikzpicture}[line width = 1.5pt, \xcb@color@hintline]
+            \useasboundingbox (0,0) -- ++(right:3.5cm) -- ++(up:3mm) -- ++(left:3.5cm) -- cycle;
+            \draw (-3mm, 0mm) -- ++(right:3.5cm);
+            \draw (0, 3mm) -- ++(down:2.4cm);
+        \end{tikzpicture}
+
+        \nopagebreak
+
+        \begingroup      % a group for the hint
+            \leftskip1em
+            \xcb@name@hinthead
+            \nopagebreak
+
+            \itshape{\color{\xcb@color@hint}\xcb@fontsize@hint{#1}}
+            \par
+        \endgroup
+    }
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Supporting Commands}
+% The following commands are intended to simplify inserting some parts of the recipe like backing temperatures.
+%
+% \begin{macro}{\step}
+% The command is used for numbering the steps of preparation. Take a look at the \texttt{lettrine} package for details.
+%    \begin{macrocode}
+%% SUPPORTING COMMANDS
+\newcommand{\step}
+{%
+    \lettrine
+    [%
+        lines=2,
+        lhang=0,          % space into margin, value between 0 and 1
+        loversize=0.15,   % enlarges the height of the capital
+        slope=0em,
+        findent=1em,      % gap between capital and intended text
+        nindent=0em       % shifts all intended lines, begining with the second line
+    ]{\stepcounter{step}\thestep}{}%
+}
+
+%    \end{macrocode}
+% \end{macro}
 %
 % \begin{macro}{\portion}
 % This macro is for inserting the portions correctly. By renewing this command you can easiliy define your own design for the portions.
 %    \begin{macrocode}
-\newcommand*{\portion}[2][\xcb@name@portionvalue]{\unit[#2]{#1}}
+\newcommand*{\portion}[2][\xcb@name@portionvalue]
+{%
+    \unit[#2]{#1}
+}
 
 %    \end{macrocode}
 % \end{macro}
@@ -843,136 +1029,257 @@
         \xcb@bakingtemperature@gasstove \ {\fontsize{14.5pt}{10pt}\Gasstove}%
     }%
 }
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsubsection{Internal Commands}
+% \begin{macro}{\xcb@cmd@recipeoverview}
+%    \begin{macrocode}
+%% INTERNAL COMMANDS
+\newcommand{\xcb@cmd@recipeoverview}
+{
+    \begin{tabular}{rl}
+        \ifthenelse{\equal{\xcb@preparationtime}{}}
+        {% not set => not shown
+        }
+        {
+            \xcb@name@preparationtime & \xcb@preparationtime\\
+        }
+        \ifthenelse{\equal{\xcb@bakingtime}{}}
+        {% not set => not shown
+        }
+        {
+            \xcb@name@bakingtime & \xcb@bakingtime\ifthenelse{\equal{\xcb@bakingtemperature}{}}
+            {
+                \\
+            }
+            {,\hspace{1em} \xcb@name@bakingtemperature \hspace{1ex} \xcb@bakingtemperature\\
+            }
+        }
+        \ifthenelse{\equal{\xcb@portion}{}}
+        {% not set => not shown
+        }
+        {
+            \xcb@name@portion & \xcb@portion\\
+        }
+        \ifthenelse{\equal{\xcb@calory}{}}
+        {% not set => not shown
+        }
+        {
+            \xcb@name@calory & \xcb@calory\\
+        }
+        \ifthenelse{\equal{\xcb@source}{}}
+        {% not set => not shown
+        }
+        {
+            \xcb@name@source & \xcb@source
+        }
+    \end{tabular}
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}
+% The following command is needed, if more ingredients than preparation (steps) are inserted. In this case the \texttt{wrapfigure} package behaves in a strange way. The result is that the hint is also floating around the ingredients, although the "box" is already closed. This command repairs this effect.
+% It is taken from \url{http://mizine.de/latex/wrapfigure-austricksen/}.
+%    \begin{macrocode}    
+\newcommand\xcb@cmd@wrapfill
+{% Bug fix for wrapfigure package
+    \par
+    \ifx\parshape\WF@fudgeparshape
+    \nobreak
+    \vskip-\baselineskip
+    \vskip\c@WF@wrappedlines\baselineskip
+    \allowbreak
+    \WFclear
+    \fi
+}
+
+%    \end{macrocode}
+% \end{macro}
+% The following code lines define the behaviour of the two pictures
+%    \begin{macrocode}
+\define@key{picture}{small}[]{
+    \def\xcb@picture@small{
+        \ifthenelse{\equal{#1}{}}
+        {% not set => not shown
+        }
+        {
+            \vspace{-0.6cm}
+            \includegraphics[width=\linewidth, height = \xcb@pictureheight, keepaspectratio]{#1}
+        }
+    }
+}
+\define@key{picture}{smallpicturewidth}[]{\def\xcb@picture@smallwidth{#1}}
+\define@key{picture}{bigpicturewidth}[]{\def\xcb@picture@bigwidth{#1}}
+\define@key{picture}{big}[]{
+    \def\xcb@picture@big{
+        \ifthenelse{\equal{#1}{}}
+        {% not set => not shown
+        }
+        {
+            \vspace{-0.6cm}
+            \includegraphics[width=\linewidth, height = \xcb@pictureheight, keepaspectratio]{#1}
+        }
+    }
+}
+
+%    \end{macrocode}
+%
+% The definition of the recipe properties.
+%    \begin{macrocode}
+\define@key{recipe}{preparationtime}[]{\def\xcb@preparationtime{#1}}
+\define@key{recipe}{bakingtime}[]{\def\xcb@bakingtime{#1}}
+\define@key{recipe}{bakingtemperature}[]{\def\xcb@bakingtemperature{#1}}
+\define@key{recipe}{portion}[]{\def\xcb@portion{#1}}
+\define@key{recipe}{calory}[]{\def\xcb@calory{#1}}
+\define@key{recipe}{source}[]{\def\xcb@source{#1}}
+
+%    \end{macrocode}
+%
+% This command provides an graphical separator. It is intended to separate the preparation and ingredients part from the optional suggestions. The required parameter must be a color and the optional argument is used to scale the graphic.
+% \begin{macro}{\xcb@separationgraph}
+%    \begin{macrocode}
+\newcommand*{\xcb@separationgraph}[2][1.5]
+{% Graphical separator
+    \begin{center}
+        \begin{tikzpicture}[scale=#1]
+            \fill[color=#2] (0,0) -- (-0.2, 0.1) -- (-4, 0) -- (-0.2, -0.1) -- cycle;
+            \fill[color=#2] (0,0) -- (0.2, 0.1) -- (4, 0) -- (0.2, -0.1) -- cycle;
+            \fill[color=#2] (0,0) circle (0.1);
+        \end{tikzpicture}
+    \end{center}
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \subsection{Hooks}
+% The following hooks allow the user to insert data many different places in the recipe in order to customize the recipe.
+%
+% \begin{macro}
+% The content of this hook command is inserted before the (two) pictures. Therefore it is the first page content (aside from the page headline etc).
+%    \begin{macrocode}
+%% HOOKS
+\newcommand*{\pregraph}[1]
+{% Hook: entered before the pictures
+    \def\xcb@hook@pregraph
+    {%
+        \begin{minipage}[T]{\textwidth}
+            #1
+            \vspace{0.6cm}
+        \end{minipage}
+    } 
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}
+% This command is inserted before the title of the recipe. That means it is displayed after the pictures.
+%    \begin{macrocode}
+\newcommand*{\pretitle}[1]
+{% Hook: entered before the recipe title
+    \def\xcb@hook@pretitle
+    {%
+        #1
+    } 
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}
+% The next macro is integrated before the overview of the recipe and therefore after the recipe title.
+%    \begin{macrocode}
+\newcommand*{\prerecipeoverview}[1]
+{% Hook: entered before the recipe overview
+    \def\xcb@hook@prerecipeoverview
+    {%
+        #1
+    }
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}
+% This command is inserted before the preparation headline and steps, i.e. it is beside the ingredients.
+%    \begin{macrocode}
+\newcommand*{\prepreparation}[1]
+{% Hook: entered before the preparation (steps)
+    \def\xcb@hook@prepreparation
+    {%
+        #1
+    }
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}
+% This command is inserted after the preparation headline and steps, i.e. it is beside the ingredients.
+%    \begin{macrocode}
+\newcommand*{\postpreparation}[1]
+{% Hook: entered after the preparation (steps)
+    \def\xcb@hook@postpreparation
+    {%
+        #1
+    }
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}
+% The following hook command is integrated before the ingredients. That means it parallel to the preparation.
+%    \begin{macrocode}
+\newcommand*{\preingredients}[1]
+{% Hook: entered before the ingredients
+    \def\xcb@hook@preingredients
+    {%
+        #1
+    }
+}
+
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}
+% The following hook command is integrated after the ingredients. That means it parallel to the preparation.
+%    \begin{macrocode}
+\newcommand*{\postingredients}[1]
+{% Hook: entered after the ingredients
+    \def\xcb@hook@postingredients
+    {%
+        #1
+    }
+}
+
 %    \end{macrocode}
 % \end{macro}
 %
 % \subsection{Recipe Environment}
 % \begin{environment}{recipe}
-% This the environment for inserting recipes. Inside you define your ingredients, preparation, pictures (graph) and maybe a hint.
+% This the environment for inserting recipes. Inside you define your ingredients, preparation, pictures (graph) and maybe suggestions and/or a hint.
 % The commands \texttt{xcb@cmd@myrecipeoverview} and \texttt{xcb@cmd@wrapfill} are intended for internal use only.
 %    \begin{macrocode}
 \newenvironment{recipe}[2][]
-{
-    %% macros
-    \newcommand*{\graph}[1]
-    {%
-        \setkeys{picture}{##1}
-    }
-
-    \newcommand*{\ingredients}[1]
-    {%
-        \def\xcb@ingredients
-        {%
-            \vspace{-1em}    % same height of ingredients and preparation
-            \xcb@name@inghead
-            %\\[4pt]
-            \\[1em]
-            \xcb@fontsize@ing\color{\xcb@color@ing}
-            \begin{tabulary}{\xcb@ingredientswidth}{rL}
-                ##1
-            \end{tabulary}
-        }
-    }
-    
-    \newcommand*{\preparation}[1]
-    {%
-        \def\xcb@preparation
-        {%
-            \xcb@name@prephead
-            %\\[4pt]
-            \xcb@fontsize@prep\color{\xcb@color@prep}##1
-        }
-        \setcounter{step}{0}
-    }
-    
-    \newcommand*{\hint}[1]
-    {%
-        \def\xcb@hint
-        {%
-            \pagebreak[1]    % begin here a new page, if the space is small
-            \begin{tikzpicture}[line width = 1.5pt, \xcb@color@hintline]
-                \useasboundingbox (0,0) -- ++(right:3.5cm) -- ++(up:3mm) -- ++(left:3.5cm) -- cycle;
-                \draw (-3mm, 0mm) -- ++(right:3.5cm);
-                \draw (0, 3mm) -- ++(down:2.4cm);
-            \end{tikzpicture}
-            
-            \nopagebreak
-
-            \begingroup      % a group for the hint
-                \leftskip1em
-                \xcb@name@hinthead
-                \nopagebreak
-    
-                \itshape\textcolor{\xcb@color@hint}{\xcb@fontsize@hint{##1}}
-                \par
-            \endgroup
-        }
-    }
-    
-    \newcommand{\xcb@cmd@recipeoverview}
-    {
-        \begin{tabular}{rl}
-            \ifthenelse{\equal{\xcb@preparationtime}{}}
-            {% not set => not shown
-            }
-            {
-                \xcb@name@preparationtime & \xcb@preparationtime\\
-            }
-            \ifthenelse{\equal{\xcb@bakingtime}{}}
-            {% not set => not shown
-            }
-            {
-                \xcb@name@bakingtime & \xcb@bakingtime\ifthenelse{\equal{\xcb@bakingtemperature}{}}
-                {
-                    \\
-                }
-                {,\hspace{1em} \xcb@name@bakingtemperature \hspace{1ex} \xcb@bakingtemperature\\
-                }
-            }
-            \ifthenelse{\equal{\xcb@portion}{}}
-            {% not set => not shown
-            }
-            {
-                \xcb@name@portion & \xcb@portion\\
-            }
-            \ifthenelse{\equal{\xcb@calory}{}}
-            {% not set => not shown
-            }
-            {
-                \xcb@name@calory & \xcb@calory\\
-            }
-            \ifthenelse{\equal{\xcb@source}{}}
-            {% not set => not shown
-            }
-            {
-                \xcb@name@source & \xcb@source
-            }
-        \end{tabular}
-    }
-
-%    \end{macrocode}
-% The following command is needed, if more ingredients than preparation (steps) are inserted. In this case the \texttt{wrapfigure} package behaves in a strange way. The result is that the hint is also floating around the ingredients, although the "box" is already closed. This command repairs this effect.
-% It is taken from http://mizine.de/latex/wrapfigure-austricksen/
-%    \begin{macrocode}    
-    \newcommand\xcb@cmd@wrapfill
-    {%
-        \par
-        \ifx\parshape\WF@fudgeparshape
-        \nobreak
-        \vskip-\baselineskip
-        \vskip\c@WF@wrappedlines\baselineskip
-        \allowbreak
-        \WFclear
-        \fi
-    }
-    %% end of macros
-    
-    
-    % initialisation
+{% initialisation
     \setkeys{recipe}{preparationtime, bakingtime, bakingtemperature, portion, calory, source}
     \setkeys{picture}{small, big, smallpicturewidth=\xcb@smallpicturewidth, bigpicturewidth=\xcb@bigpicturewidth} % load the default values
-    \ingredients{}
+    \def\xcb@hook@pregraph{}
+    \def\xcb@hook@pretitle{}
+    \def\xcb@introduction{}
+    \def\xcb@hook@prepreparation{}
     \preparation{}
+    \def\xcb@hook@postpreparation{}
+    \def\xcb@hook@preingredients{}
+    \ingredients{}
+    \def\xcb@hook@postingredients{}
+    \def\xcb@suggestion{}
     \def\xcb@hint{}
     
     \def\xcb@recipename{#2}
@@ -983,6 +1290,7 @@
 }
 {% this part is executed at \end{recipe}
 %% FIRST BLOCK
+    \xcb@hook@pregraph
     \if@twoside
         \ifodd\arabic{page}
             \begin{minipage}[T]{\xcb@picture@bigwidth}
@@ -1012,18 +1320,32 @@
     \fi
 
 %% SECOND BLOCK
+    \xcb@hook@pretitle
     \recipesection[\normalsize\xcb@recipename]%
     {\hspace{-1em}\textcolor{\xcb@color@recipename}{\xcb@font@recipename\xcb@recipename}}
     \xcb@cmd@recipeoverview
+    
+    \xcb@introduction
 
 %% THIRD BLOCK
     \begin{wraptable}{r}{\xcb@ingredientswidth}
     {
+        \vspace{-1em}    % same height of ingredients and preparation
+        \xcb@hook@preingredients
+        
         \xcb@ingredients
+        
+        \xcb@hook@postingredients
     }
     \end{wraptable}
+    \xcb@hook@prepreparation
+    
     \xcb@preparation
+    
+    \xcb@hook@postpreparation
 
+	\xcb@suggestion
+	
     \vfill
 
     \xcb@cmd@wrapfill

@@ -102,6 +102,14 @@ a4paper,
     \columnsep 35\p@
     \let\item\@idxitem}
 {}
+
+\newcommand{\SeparationGraph}[2][]
+{%
+	\makeatletter
+	\xcb@separationgraph[#1]{#2}
+	\makeatother
+}
+
 \makeatother
 
 \makeindex
@@ -139,6 +147,8 @@ This section contains tests for the elementary layout commands. The example reci
 
 \include{tex/IngredientsTest}
 
+\include{tex/SuggestionTest}
+
 \include{tex/HintTest}
 
 
@@ -163,6 +173,7 @@ These commands are useful to insert optional information for the recipe.
 
 \include{tex/PortionTest}
 
+\include{tex/SeparationGraphTest}
 
 
 \section{Layout Tests}

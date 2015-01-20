@@ -8,7 +8,9 @@
     inghead = DeepPink1,
     prep = Chartreuse1,
     prephead = Coral4,
-    suggestion,
+    suggestion = Red1,
+    suggestionhead = LightCyan4,
+    separationgraph = Blue4,
     hint = Goldenrod1,
     hinthead = DarkOrchid1,
     hintline = Cyan1,
@@ -28,7 +30,7 @@
 	    big=pic/BigTestPicture,
 	}
 	
-	\introduction{This test is used to verify the setting of the recipe colors. In this test case the following colors are set. Note that the introduction has changed its color, that is an \index{Error!Introduction} \textbf{error}. 
+	\introduction{This test is used to verify the setting of the recipe colors. In this test case the following colors are set. Note that the introduction frame has changed its color, that is an \index{Error!Introduction} \textbf{error}. 
 		\begin{center}
 			\begin{tabular}{lrl}
 				\textbf{Component} & \textbf{Color} \\
@@ -39,7 +41,9 @@
 				Ingredients (headline) & pink & \rect{DeepPink1} \\
 				Preparation (text) & light green & \rect{Chartreuse1} \\
 				Preparation (headline) & brown & \rect{Coral4} \\
-				Suggestion & & \\
+				Suggestion (text) & red & \rect{Red1} \\
+				Suggestion (headline) & gray & \rect{LightCyan4} \\
+				Separation Graphic & dark blue & \rect{Blue4} \\
 				Hint (text) & dark yellow & \rect{Goldenrod1} \\
 				Hint (headline) & purple & \rect{DarkOrchid1} \\
 				Hint (line) & cyan & \rect{Cyan1} \\
@@ -57,14 +61,17 @@
 	    \nicefrac{1}{2} l & Fruit juice\\
 	    \unit[100]{g}  & Strawberry\\
 	    \unit[50]{g}  & Raspberry\\
-	    1      & Orange\\
-	    \unit[100]{g}  & Grapes\\
 	}
 	
 	\preparation
 	{%
 	    \step \lipsum[4]
 	    \step \lipsum[32]
+	}
+	
+	\suggestion[Comment]
+	{%
+		\blindtext
 	}
 	
 	\hint

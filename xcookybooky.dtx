@@ -30,6 +30,20 @@
 \usepackage{xcookybooky}
 \usepackage{units}
 \usepackage{pdfpages}
+\usepackage{listings}
+\renewcommand{\lstlistingname}{Example}
+\renewcommand{\lstlistlistingname}{List of \lstlistingname s}
+\lstset
+{%
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\ttfamily,
+    stringstyle=\ttfamily,
+    language=[LaTeX]{TeX},
+    breaklines=true,
+    captionpos=b,
+    gobble=2,
+    %morekeywords={unit, bakingtemperature, portion},
+}
 \EnableCrossrefs
 \CodelineIndex
 \RecordChanges
@@ -109,93 +123,71 @@
 %
 % \section{Introduction}
 %
-% When I was looking for template for recipes, I found the \texttt{cookybooky} package by Jürgen Gilg (\url{http://www.ctan.org/pkg/cookybooky}).
-% It looks very good, but I was unable to compile it correctly (e.g. I haven't got the Lucida fonts). Also there are some packages which have to be downloaded by hand, because there are not available at CTAN. Other handicaps are the missing possibility to create a PDF-file directly and a recipe cannot be longer than a single page.
-% So decided to take a look at the code. Step by step I replaced all critical parts. Finally the code is nearly complete different from the original and now it is possible to create beautiful designed recipes much easier (at least in my opinion).
+% It all begin in 2011 when I wanted to make a cookbook with \LaTeX. Thus I was looking for recipe templates and found the \texttt{cookybooky} package by Jürgen Gilg (\url{http://www.ctan.org/pkg/cookybooky}). It looks very good, but I was unable to compile it (e.g. I haven't got the Lucida fonts). Also there are some packages which have to be downloaded by hand, because there are not available at CTAN. Other handicaps are the missing possibility to create a PDF-file directly and a recipe cannot be longer than a single page. So decided to take a look at the code. Step by step I replaced all critical parts. Finally the code is nearly complete different from the original and now it is possible to create beautiful designed recipes much easier (at least in my opinion).
 % 
-% \section{Comparison between xcookybooky and cookybooky}
-% 
-% There is no compatibility between xcookybooky and cookybooky, even the name is associating it. I chose the name, because I was was inspired by the layout.
+% Please note that there is no compatibility between xcookybooky and cookybooky, even the name is associating it. I chose the name, because I was was inspired by the layout.
 %
-% A comparison between \texttt{xcookybooky} and \texttt{cookybooky} is shown in table \ref{tbl:comparison}.
-% \begin{table}[htbp]
-%    \centering
-%    \begin{tabular}{rll}
-%        \textbf{Characteristic} & \textbf{xcookybooky} & \textbf{cookybooky}\\
-%        Maximum recipe length & unlimited & 1 page\\
-%        Support missing pictures & yes & no\\
-%        Transparent background graphic & not part of package (see section \ref{sec:background}) & yes\\
-%        Main Layout & wraptable & minipages\\
-%        Support twoside option & only changing pictures above & full\\
-%        Generate recipe & environment & macro\\
-%    \end{tabular}
-%     \caption{Comparison between xcookybooky and cookybooky}
-%     \label{tbl:comparison}
-% \end{table}
-% \newpage
 %
 % \section{Usage}
-% First I want to explain the most important macros. After this you should be able to insert recipes. Afterwards some macros are shown, which allows you to modify the design (e.g. colors, headlines).
+% In this section the most important macros are explained. After this you should be able to insert recipes. For more details take a look at the implementation in section~\ref{sec:implementation}. Afterwards some macros are shown, which allows you to modify the design (e.g. colors, headlines).
+%
+% \subsection{Main}
+% This commands are commonly used for typesetting recipes. For more details take a look at the implementation in section~\ref{sec:implementation}. You can also investigate the examples and the configuration file.
 %
 % \DescribeEnv{recipe}
-% This the environment to insert recipes. Each recipe is included in a single enviroment. It is necessary to enter the name of the recipe. It is possible to insert also the recipetime, the portions, the calory content and the source (where you get this recipe).
+% The \texttt{recipe} environment is used to insert recipes. Each recipe is included in a single enviroment. It is necessary to enter the name of the recipe. Besides it is possible to insert also the recipetime, the portions, the calory content and the source (where you get this recipe).
 % 
-% Example:
-% \begin{verbatim}
-% \begin{recipe}[
-%     preparationtime = 30 min,
-%     bakingtime = 1 hour,
-%     bakingtemperature = \unit[225]{°C},
-%     portion = 4 portions,
-%     calory = 4 kj,
-%     source = My neighbour Sarah
-% ]{Currywurst}
+% \begin{lstlisting}[caption={Recipe Environment}]
+% \begin{recipe}
+% [% 
+%     preparationtime = {\unit[1]{h}},
+%     bakingtime={\unit[1]{h}},
+%     bakingtemperature={\protect\bakingtemperature{fanoven=\unit[230]{°C}}},
+%     portion = {\portion{5-6}},
+%     calory={\unit[3]{kJ}},
+%     source = {Somebody you used know}
+% ]
+% {Test Recipe}
 % ...
 % \end{recipe}
-% \end{verbatim}
+% \end{lstlisting}
 %
 % \DescribeMacro{\graph}
-% It is possible to set 2 pictures by the macro \texttt{graph}. They are displayed above the other content. If no pictures are set, the space is used by the other content.
-% The \texttt{big} picture should be bigger than the \texttt{small} picture ;) but it also possible to modify this behaviour.
-% The reason for this is that the widths of the pictures are predefined by the command \texttt{setRecipeLengths}.
+% It is possible to set two pictures by using the macro \texttt{graph}. They are displayed at the top of the page and therefore above all other content. If no pictures are set, the space is used by the other content. The \texttt{big} picture should be larger than the \texttt{small} picture of course. The width of both graphics can be adapt to your needs by applying the command \texttt{setRecipeLengths}.
 %
-% Example (simple):
-% \begin{verbatim}
+% \begin{lstlisting}[caption={Graph Command (simple)}]
 % \graph{
 %     small = strawberry,
 %     big = strawberrycake
 % }
-% \end{verbatim}
+% \end{lstlisting}
 %
-% Another possibility is shown in the following example. It is recommended if you only want to change the widths of the pictures for one recipe.
-% \textbf{Note:} These values are one only used for one recipe.
+% Another possibility is shown in the following example. It is recommended if you only want to change the widths of the pictures for one recipe, because these values are one only used for one recipe. If you want to changed it for all recipes use \texttt{setRecipeLengths}.
 %
-% Example (extended):
-% \begin{verbatim}
+% \begin{lstlisting}[caption={Graph Command (extended)}]
 % \graph{
 %     small = strawberry,
 %     smallpicturewidth = 0.3\textwidth,
 %     big = strawberrycake,
 %     bigpicturewidth = 0.6\textwidth,
 % }
-% \end{verbatim}
+% \end{lstlisting}
 %
 % \DescribeMacro{\ingredients}
 % Here the ingredients of your recipe are set. They should be entered by number (unit) \& ingredient. If the unit is a SI-Unit, it looks better if you use the \texttt{units} package instead of a blank.
 % Since the version 1.2 there is only one possibility to enter ingredients, which is shown in the example. Note that a overlong ingredient will automatically create a line break.
 %
-% Example:
-% \begin{verbatim}
+% \begin{lstlisting}[caption={Ingredients Command}]
 % \ingredients{
-%     2 Tafeln & dunkle Schokolade (über \unit[70]{\%})\\
-%     3        & Eier\\
-%     \unit[200]{ml} & Sahne\\
-%     \unit[40]{g} & Zucker\\
+%     2 bar & Dark Chocolate (above \unit[70]{\%})\\
+%     3 & Eggs\\
+%     \unit[200]{ml} & Cream\\
+%     \unit[40]{g} & Sugar\\
 %     \unit[50]{g} & Butter
 % }
-% \end{verbatim}
+% \end{lstlisting}
 %
-% In the versions up to 1.1 there was also a method to enter ingredients with three columns. Due to the substitution of \texttt{tabular} with \texttt{tabularx} I decided that the three columns method is no longer supported, because it would mean a lot of work. This method has also the drawback it needs more space and in my opinion it also looks ugly.
+% In the versions up to 1.1 there was also a method to enter ingredients with three columns. Due to the substitution of \texttt{tabular} with \texttt{tabulary} I decided that the three columns method is no longer supported, because it would mean a lot of work. This method has also the drawback it needs more space and in my opinion it also looks ugly.
 % If you are using the three columns solution there are two options:
 % \begin{enumerate}
 %   \item Use the version 1.1 of this package, which can be found at \url{https://code.google.com/p/xcookybooky/}
@@ -203,35 +195,78 @@
 % \end{enumerate}
 % 
 % \DescribeMacro{\preparation}
-% The preparation steps are inserted by this macro. Every step is written after \texttt{step} command. This is necessarry for the numeration.
+% The preparation steps are inserted by this macro. Every step is written after \texttt{step} command. This is necessarry for the numeration. Since version 1.4 it is allowed to use blank lines to create passages. 
 %
-% Example:
-% \begin{verbatim}
+% \begin{lstlisting}[caption={Preparation Command}]
 % \preparation{
 %     \step This is the first step for cooking a brilliant meal.
 %     \step The second step follows...
 %     \step and so on
 %     \step Enjoy your meal! 
 % }
-% \end{verbatim}
+% \end{lstlisting}
 %
+% If you don't like the step number, you can either redefine it or simply use an enumeration as demonstrated in the next example.
+% \begin{lstlisting}[caption={Preparation Command with Enumeration}]
+% \preparation{
+%     \begin{enumerate}
+%         \item This is the first step for cooking a brilliant meal.
+%         \item The second step follows...
+%         \item and so on
+%         \item Enjoy your meal! 
+%     \end{enumerate}
+% }
+% \end{lstlisting}
+%
+%
+% \subsection{Advanced}
+% 
+% \DescribeMacro{\introduction}
+% The \texttt{introduction} macro can be used for inserting an introduction before the preparation and ingredients part. It has a frame and the text can contain blank lines to create passages.
+%
+% \begin{lstlisting}[caption={Introduction Command}]
+% \introduction{%
+%     This text block can contain an introduction to the recipe.
+% }
+% \end{lstlisting}
+% 
+% \DescribeMacro{\suggestion}
+% This command is displayed after the ingredients and preparation part of the recipe. It is expandable so that you can insert multiple suggestions. The optional parameter can be used to set a headline.
+% \begin{lstlisting}[caption={Suggestion Command}]
+% \suggestion{%
+%     Another possibility to insert additional information to the recipe.
+% }
+% % \suggestion[Headline]{%
+%     Another possibility to insert additional information to the recipe.
+% }
+% \end{lstlisting}
+%
+% \subsection{Support Commands}
 % \DescribeMacro{\portion}
 % This macro is intented as an interface for an equal formating of portions entries. For this it can be easily modified. You just have to renew this command.
+% \begin{lstlisting}[caption={Portion Command}]
+% \portion{5}
+% \portion[People]{5}
+% \end{lstlisting}
 %
 % \DescribeMacro{\bakingtemperature}
 % This macro allows you to enter some bakingtemperatures. If you do not like the order of the temperatures you can change them by redefining the command. The temperatures are inserted as key/value pairs as known from the \texttt{xkeyval} package.
 %
-% Example (an entry in options of an recipe):
-% \begin{verbatim}
+% \begin{lstlisting}[caption={Baking Temperature Command}]
 % \begin{recipe}
 % [
-%     bakingtemperature={\protect\bakingtemperature{fanoven=\unit[230]{°C},
-%         topbottomheat=\unit[195]{°C}, topheat=\unit[195]{°C}, bottomheat, gasstove=Stufe 2}}
-% ]{Currywurst}
+%     bakingtemperature={\protect\bakingtemperature{
+%         fanoven=\unit[230]{°C},
+%         topbottomheat=\unit[195]{°C},
+%         topheat=\unit[195]{°C},
+%         bottomheat, gasstove=Level 2}
+%     }
+% ]{Test Recipe}
 % \end{recipe}
-% \end{verbatim}
+% \end{lstlisting}
 %
-% \subsection{Modify design}
+%
+% \subsection{Modify Design}
 % The following macros can be used outside the recipe environment to choose your personal color etc.
 %
 % \DescribeMacro{\setRecipeColors}
@@ -254,9 +289,7 @@
 %     \label{tbl:colormanagement}
 % \end{table}
 % 
-% \begin{samepage}
-% Example:
-% \begin{verbatim}
+% \begin{lstlisting}[caption={Setting Recipe Colors Command}]
 % \definecolor{webgreen}{rgb}{0,.5,0}
 %
 % \setRecipeColors{
@@ -264,14 +297,12 @@
 %     ing = blue,
 %     numeration = black,    
 % }
-% \end{verbatim}
-% \end{samepage}
+% \end{lstlisting}
 %
 % \DescribeMacro{\setRecipeLengths}
 % By using the command \texttt{setRecipeLengths} it is possible to change the (default) values for the picture widths and the text column width.
 % 
-% Example:
-% \begin{verbatim}
+% \begin{lstlisting}[caption={Setting Recipe Lengths Command}]
 % \setRecipeLengths{
 %     preparationwidth = 0.60\textwidth,
 %     ingredientswidth = 0.35\textwidth,
@@ -279,14 +310,12 @@
 %     bigpicturewidth = 0.6\textwidth,
 %     smallpicturewidth = 0.35\textwidth
 % }
-% \end{verbatim}
+% \end{lstlisting}
 %
 % \DescribeMacro{\setRecipeSizes}
 % The macro \texttt{setRecipeSizes} enables you to modify the fontsize of many parts of the recipe. The sizes are inserted by <key~=~value> (\texttt{xkeyval}).
 %
-% Example (these are the default values):
-% \begin{samepage}
-% \begin{verbatim}
+% \begin{lstlisting}[caption={Setting Recipe Sizes Command}]
 % \setRecipeSizes{
 %     recipename = \fontsize{25pt}{30pt},
 %     ing = \normalsize,
@@ -296,14 +325,14 @@
 %     hint = \normalsize,
 %     hinthead = \Large
 % }
-% \end{verbatim}
-% \end{samepage}
+% \end{lstlisting}
 %
 % \DescribeMacro{\setRecipenameFont}
-% The name of recipe is displayed with a handwritten font by default. In my opinion it looks much better than a standard font. But if you want to change it you can use this macro. A well-arranged list of fonts can be found at \texttt{http://www.tug.dk/FontCatalogue/}. The other parameters are fontencoding, fontseries and fontshape. The size is changed by \texttt{setRecipeSizes}.
+% The name of recipe is displayed with a handwritten font by default. In my opinion it looks much better than a standard font. But if you want to change it you can use this macro. A well-arranged list of fonts can be found at \texttt{http://www.tug.dk/FontCatalogue/}. The other parameters are font encoding, font series and font shape. The size is changed by \texttt{setRecipeSizes}.
 %
+% \textcolor{red}{TODO}
 % Example (some fonts you could try out, requires option \texttt{handwritten}):
-% \begin{verbatim}
+% \begin{lstlisting}[caption={Setting Recipename Font Command}]
 % \setRecipenameFont{%
 %     % pbsi%
 %     % fau%
@@ -311,15 +340,15 @@
 %     % fjd%    % default when using the option handwritten
 %     cmr%      % probably the default setting, depends on your configuration and loaded packages.
 % }{T1}{m}{n}
-% \end{verbatim}
+% \end{lstlisting}
+%
 %
 % \subsection{Translation}
 % \DescribeMacro{\setHeadlines}
-% \texttt{setHeadlines} allows to modify the (translated) headlines. This is also needed for translations, if the used language is not supported yet. If you have improvements for a translation or created a new one, feel free to send me a e-mail. 
+% The command \texttt{setHeadlines} allows to modify the (translated) headlines. This is also needed for translations, if the used language is not supported yet. If you have improvements for a translation or created a new one, feel free to send me a e-mail. 
 % The headlines are also inserted in <key~=~value> form.
 %
-% Example
-% \begin{verbatim}
+% \begin{lstlisting}[caption={Setting Headlines Command}]
 % \setHeadlines{
 %     inghead = Ingredients,
 %     prephead = Preparation,
@@ -328,7 +357,7 @@
 %     continuationhead = Continuation,
 %     continuationfoot = Continuation on next page
 % }
-% \end{verbatim}
+% \end{lstlisting}
 %
 %
 % \subsection{Options}
@@ -344,12 +373,17 @@
 %
 % \subsection{Background graphic}
 % \label{sec:background}
-% Inside this package there is only the option to set a background picture using the \texttt{setBackgroundPicture} macro. 
-% For creating transparent backgrounds I recommand \textbf{Inkscape}\footnote{http://inkscape.org/}. You just have to import a picture and reduce the opacity of the picture (I prefer \unit[22]{\%}).
-% The possible options for the orientation are: default, pagecenter, textcenter or stockcenter. To modify these orientations you have the possibility to change it manually by setting the \texttt{x} and \texttt{y} option (as shown below).
+% Inside this package there is only the option to set a background picture using the \texttt{setBackgroundPicture} macro. For creating transparent backgrounds I recommand \textbf{Inkscape}\footnote{http://inkscape.org/}. You just have to import a picture and reduce the opacity of the picture (I prefer \unit[22]{\%}). The possible options for the orientation are: 
+% \vspace{-1em}
+% \begin{itemize}
+%     \item default
+%     \item pagecenter
+%     \item textcenter
+%     \item stockcenter
+% \end{itemize}
+% These orientations can be modified by using the \texttt{x} and \texttt{y} option. This is demonstrated in the following example.
 %
-% Example:
-% \begin{verbatim}
+% \begin{lstlisting}[caption={Background Picture Command}]
 % \setBackgroundPicture
 % [%
 %     x = 2cm,
@@ -358,7 +392,7 @@
 %     height,
 %     orientation=pagecenter
 % ]{pic/bg_transparent} % filepath
-% \end{verbatim} 
+% \end{lstlisting} 
 %
 % \newpage
 % \IfFileExists{example/example.pdf}
@@ -379,7 +413,7 @@
 % This package is non-free and therefore not available in TeX Live.
 %
 % \section{Bugs}
-% If you found a bug, which is not described in the following section, feel free to write me an email. It can be found at the titlepage. Alternatively you can visit \url{https://code.google.com/p/xcookybooky/} and report the issue there.
+% If you found a bug, which is not described in the following section, feel free to write me an email. It can be found at the titlepage. Alternatively you can visit \url{https://code.google.com/p/xcookybooky/} and report the issue. All reported problems are registered there.
 %
 % \subsection{Known Issues}
 % \label{sec:knownissues}
@@ -389,11 +423,15 @@
 % Another limitation is the length of the ingredients. The maximum length is one page, because the \texttt{wrapfigure} package does not work with \texttt{longtable}. As a result no pagebreak in the ingredients is possible.
 % \StopEventually{\PrintIndex}
 %
+%
+% \newpage
+%
 % \section{Implementation}
+% \label{sec:implementation}
 % Let's have a look at the implementation.
 %
 % \subsection{Options}
-% You can use the option \texttt{myconfig} to load your personal configuration (file). See section \ref{sec:configuration}
+% \texttt{xcookybooky} provides three options as explained in section~\ref{sec:options}. You can use the option \texttt{myconfig} to load your personal configuration (file). See section \ref{sec:configuration} for details.
 %    \begin{macrocode}
 %<*package>
 \newif\ifHandwrittenFont@required
@@ -452,7 +490,7 @@
 %    \end{macrocode}
 %
 % \subsection{Page Layout}
-% This will set up the page. It is optimized for the documentclass \texttt{article}. If you use a other package you probably have to modify this.
+% This will set up the page. It is optimized for the document class \texttt{article}. If you use an other class you probably have to modify this.
 %
 % \textbf{Note:} I tried to use the KOMA class \texttt{scrartcl}, but unfortunately some strange effects occured.
 %    \begin{macrocode}
@@ -477,6 +515,7 @@
 %
 % \begin{macro}{\recipesection}
 % The macro \texttt{recipesection} allows to modify the entry in the table of contents.
+%
 % \textbf{Note:} If you modify the macro you may change the two upper lines as well.
 %    \begin{macrocode}
 \newcommand*{\recipesection}[2][]
@@ -519,8 +558,8 @@
     prep,            % color of preparation (text)
     prephead,        % color of headline of preparation
     suggestion,      % color of suggestions (text)
-	suggestionhead,  % color of headline of suggestion
-	separationgraph, % color of graphical separator
+    suggestionhead,  % color of headline of suggestion
+    separationgraph, % color of graphical separator
     hint,            % color of hint (text)
     hinthead,        % color of headline of hint
     hintline,        % color of lines of hint
@@ -551,8 +590,8 @@
     prep,
     prephead,
     suggestion,
-	suggestionhead,
-	separationgraph,
+    suggestionhead,
+    separationgraph,
     hint,
     hinthead,
     hintline,
@@ -561,7 +600,7 @@
 
 %    \end{macrocode}
 % \subsection{Size Management}
-% Below the (default) sizes are definded.
+% Below the (default) font sizes of the recipe are defined.
 %    \begin{macrocode}
 \define@key{sizeManagement}{recipename}[\fontsize{25pt}{30pt}]{\def\xcb@fontsize@recipename{#1}}
 \define@key{sizeManagement}{intro}[\normalsize]{\def\xcb@fontsize@intro{#1}}
@@ -615,7 +654,7 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\setRecipenameFont}
-% This macro sets the font for the name of the recipe. You have to insert the fontfamily, fontencoding, fontseries and fontshape. The size is set by the \texttt{sizeManagement}
+% This macro sets the font for the name of the recipe. You have to insert the font family, font encoding, font series and font shape. The size is set by the command \texttt{sizeManagement}.
 %    \begin{macrocode}
 %% Handwritten fonts: hlce, pbsi, hlcw, fjd, fau
 %% Other fonts: fwb
@@ -656,6 +695,7 @@
 
 %    \end{macrocode} 
 %
+% The following section defines the default English headlines of the recipe. They are only used if no supported language is detected.
 %    \begin{macrocode}
 \define@key{headlines}{inghead}[Ingredients]{
     \def\xcb@name@inghead{\textcolor{\xcb@color@inghead}{\textbf{\xcb@fontsize@inghead{#1}}\ }}
@@ -693,7 +733,7 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\setHeadlines}
-% This allows you to modify the headlines for the recipe parts. This also needed for translations (The default values are in German, sorry). The parameter are set in the form "key~=~value" as known by the \texttt{xkeyval} package.
+% This allows you to modify the headlines for the recipe parts. This also needed for translations. If you are going to define a language which is not supported by \texttt{xcookybooky} yet, please send me an email and I will integrate it in the next version! The parameter are set in the form "key~=~value" as known by the \texttt{xkeyval} package.
 %    \begin{macrocode}
 \newcommand*{\setHeadlines}[1]
 {%
@@ -721,7 +761,7 @@
 
 %    \end{macrocode}
 %
-% After the initialization the supported languages are used for translation.
+% After the initialization the supported languages are used as default values.
 %    \begin{macrocode}
 \IfLanguagePatterns{german}
 {% German
@@ -782,7 +822,7 @@
 %    \end{macrocode}
 %
 % The values xcb@bigpicturewidth and xcb@smallpicturewidth are the default values.
-% They can be changed with the \texttt{graph} command.
+% They can be changed with the \texttt{graph} command. \textcolor{red}{TODO}
 %    \begin{macrocode}
 \define@key{recipelengths}{pictureheight}[6cm]{\def\xcb@pictureheight{#1}}
 \define@key{recipelengths}{bigpicturewidth}[0.60\textwidth]{\def\xcb@bigpicturewidth{#1}}
@@ -803,7 +843,7 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\setRecipeLengths}
-% This command allows to modify most sizes of the recipe. The \texttt{pictureheight} is the height of the two pictures above the text.
+% This command allows to modify most sizes of the recipe.
 %    \begin{macrocode}
 \newcommand*{\setRecipeLengths}[1]
 {%
@@ -896,23 +936,23 @@
 % \end{macro}
 %
 % \begin{macro}{\suggestion}
-% The command is intended to insert some suggestions after the preparation and ingredients part.
+% The command is intended to insert some suggestions after the preparation and ingredients part. It is expandable in order to create more than one suggestion in one recipe.
 %    \begin{macrocode}
 \newcommand{\suggestion}[2][]
 {%
     \g@addto@macro\xcb@suggestion
-	{%
-		\xcb@separationgraph{\xcb@color@separationgraph}
-		\ifthenelse{\equal{#1}{}}
-		{%
-			{\color{\xcb@color@suggestion}#2}
-		}
-		{%
-			\textbf{{\color{\xcb@color@suggestionhead}#1}}
-			
-			{\color{\xcb@color@suggestion}#2}
-		}
-	}
+    {%
+        \xcb@separationgraph{\xcb@color@separationgraph}
+        \ifthenelse{\equal{#1}{}}
+        {%
+            {\color{\xcb@color@suggestion}#2}
+        }
+        {%
+            \textbf{{\color{\xcb@color@suggestionhead}#1}}
+            
+            {\color{\xcb@color@suggestion}#2}
+        }
+    }
 }
 
 %    \end{macrocode}
@@ -1344,8 +1384,8 @@
     
     \xcb@hook@postpreparation
 
-	\xcb@suggestion
-	
+    \xcb@suggestion
+    
     \vfill
 
     \xcb@cmd@wrapfill

@@ -20,7 +20,7 @@
 %<package>\ProvidesPackage{xcookybooky}
 %<package> [2015/01/20 v1.4 Easy typesetting (potentially long) recipes with pictures]
 %<config>\ProvidesFile{xcookybooky.cfg}
-%<config> [2011/12/29 v1.0 'xcookybooky' configuration]
+%<config> [2015/02/02 v1.1 'xcookybooky' configuration file]
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -28,6 +28,7 @@
 \usepackage[latin1]{inputenc} 
 \usepackage{lmodern}
 \usepackage{xcookybooky}
+\usepackage{booktabs}
 \usepackage{units}
 \usepackage{pdfpages}
 \usepackage{listings}
@@ -270,24 +271,30 @@
 % The following macros can be used outside the recipe environment to choose your personal color etc.
 %
 % \DescribeMacro{\setRecipeColors}
-% If you want to change the default colors, you can use \texttt{setRecipeColors}. The colors are set by <key~=~value> as known by the \texttt{xkeyval} package. The names of colors can be found in table \ref{tbl:colormanagement}. New colors can be easiliy defined by the \texttt{xcolor} package as shown the example below.
+% If you want to change the default colors, you can use \texttt{setRecipeColors}. The colors are set by <key~=~value> as known by the \texttt{xkeyval} package. The names of colors can be found in table \ref{tbl:colormanagement}. 
 % \begin{table}[htbp]
 %     \centering
 %     \begin{tabular}{rcl}
-%         \textbf{key}& \textbf{default value} & \textbf{description}\\
-%         recipename & green & recipe name\\
-%         ing    & gray    & ingredients (text)\\
-%         inghead & gray & headline of the ingredients\\
-%         prep    & black    & preparation (text)\\
-%         prephead & black & headline of the preparation\\
-%         hint    & red    & hint (text)\\
-%         hinthead & red    & headline of the hint\\
-%         hintline & red & lines leftside the hint text (cross)\\
-%         numeration & red & numeration of the preparation steps\\ 
+%         \textbf{Key}    & \textbf{Default Value} & \textbf{Description} \\
+%         \toprule
+%         recipename      & DarkGreen & recipe name \\
+%         intro           & black     & introduction \\
+%         ing             & DarkGray  & ingredients (text) \\
+%         inghead         & DarkGray  & headline of the ingredients \\
+%         prep            & black     & preparation (text) \\
+%         prephead        & black     & headline of the preparation \\
+%         suggestion      & black     & suggestions (text) \\
+%         suggestionhead  & black     & headline of suggestions\\
+%         separationgraph & black     & graphical separator \\
+%         hint            & red       & hint (text) \\
+%         hinthead        & red       & headline of the hint \\
+%         hintline        & red       & lines leftside the hint text (cross) \\
+%         numeration      & red       & numeration of the preparation steps \\ 
 %     \end{tabular}
 %     \caption{Color Management}
 %     \label{tbl:colormanagement}
 % \end{table}
+% New colors can be easiliy defined by the \texttt{xcolor} package as shown the example below.
 % 
 % \begin{lstlisting}[caption={Setting Recipe Colors Command}]
 % \definecolor{webgreen}{rgb}{0,.5,0}
@@ -300,62 +307,105 @@
 % \end{lstlisting}
 %
 % \DescribeMacro{\setRecipeLengths}
-% By using the command \texttt{setRecipeLengths} it is possible to change the (default) values for the picture widths and the text column width.
+% By using the command \texttt{setRecipeLengths} it is possible to change the (default) values for the picture widths and the text column widths. In the table~\ref{tbl:recipelengths} all implemented keys are listed.
+% \begin{table}[htbp]
+%     \centering
+%     \begin{tabular}{rl}
+%         \textbf{Key}    & \textbf{Description} \\
+%         \toprule
+%         pictureheight      & height of both pictures \\
+%         bigpicturewidth    & width of the bigger picture \\
+%         smallpicturewidth  & width of the smaller picture \\
+%         introductionwidth  & width of introduction \\
+%         preparationwidth   & width of preparation \\
+%         ingredientswidth   & width of ingredients
+%     \end{tabular}
+%     \caption{Recipe Lengths}
+%     \label{tbl:recipelengths}
+% \end{table}
 % 
 % \begin{lstlisting}[caption={Setting Recipe Lengths Command}]
 % \setRecipeLengths{
-%     preparationwidth = 0.60\textwidth,
-%     ingredientswidth = 0.35\textwidth,
-%     pictureheight = 6cm,
-%     bigpicturewidth = 0.6\textwidth,
-%     smallpicturewidth = 0.35\textwidth
+%     preparationwidth = 0.5\textwidth,
+%     ingredientswidth = 0.4\textwidth,
 % }
 % \end{lstlisting}
 %
 % \DescribeMacro{\setRecipeSizes}
-% The macro \texttt{setRecipeSizes} enables you to modify the fontsize of many parts of the recipe. The sizes are inserted by <key~=~value> (\texttt{xkeyval}).
+% The macro \texttt{setRecipeSizes} enables you to modify the font size of many parts of the recipe. The sizes are inserted by <key~=~value> (\texttt{xkeyval}). All supported keys can be found in the following table~\ref{tbl:sizemanagement}.
+% \begin{table}[htbp]
+%     \centering
+%     \begin{tabular}{rl}
+%         \textbf{Key}    & \textbf{Description} \\
+%         \toprule
+%         recipename    & font size of recipe name \\
+%         intro         & font size of introduction (text) \\
+%         ing           & font size of ingredients (text) \\
+%         inghead       & font size of headline of ingredients \\
+%         prephead      & font size of headline of preparation \\
+%         suggestion    & font size of suggestion (text) \\
+%         hint          & font size of hint (text) \\
+%         hinthead      & font size of headline of hint
+%     \end{tabular}
+%     \caption{Font Size Management}
+%     \label{tbl:sizemanagement}
+% \end{table}
 %
 % \begin{lstlisting}[caption={Setting Recipe Sizes Command}]
 % \setRecipeSizes{
 %     recipename = \fontsize{25pt}{30pt},
 %     ing = \normalsize,
-%     inghead = \normalsize,
-%     prep = \normalsize,
-%     prephead = \normalsize,
-%     hint = \normalsize,
 %     hinthead = \Large
 % }
 % \end{lstlisting}
 %
 % \DescribeMacro{\setRecipenameFont}
-% The name of recipe is displayed with a handwritten font by default. In my opinion it looks much better than a standard font. But if you want to change it you can use this macro. A well-arranged list of fonts can be found at \texttt{http://www.tug.dk/FontCatalogue/}. The other parameters are font encoding, font series and font shape. The size is changed by \texttt{setRecipeSizes}.
+% The name of recipe is only displayed with a handwritten font, if the corresponding option is selected. See section~\ref{sec:options} for details. In my opinion it looks much better than a standard font. But if you want to change it you can use this macro. A well-arranged list of fonts can be found at \url{http://www.tug.dk/FontCatalogue/}. The four parameters are font name,font encoding, font series and font shape. The size is changed by \texttt{setRecipeSizes}. The following example shows a bunch of interesting fonts, which you should try out.
 %
-% \textcolor{red}{TODO}
-% Example (some fonts you could try out, requires option \texttt{handwritten}):
-% \begin{lstlisting}[caption={Setting Recipename Font Command}]
-% \setRecipenameFont{%
-%     % pbsi%
-%     % fau%
-%     % fwb%
-%     % fjd%    % default when using the option handwritten
-%     cmr%      % probably the default setting, depends on your configuration and loaded packages.
-% }{T1}{m}{n}
+% \begin{lstlisting}[caption={Setting Recipename Font Command (package \texttt{pbsi})}]
+% \setRecipenameFont{cmr}{T1}{m}{n} % probably the default setting
+% \usepackage{pbsi}
+% \setRecipenameFont{pbsi}{T1}{xl}{n}
+% \end{lstlisting}
+% \begin{lstlisting}[caption={Setting Recipename Font Command (package \texttt{emerald})}]
+% \usepackage{emerald}
+% \setRecipenameFont{fau}{T1}{m}{n}
+% \setRecipenameFont{fwb}{T1}{m}{n}
+% \setRecipenameFont{fjd}{T1}{m}{n} % default by option handwritten
 % \end{lstlisting}
 %
 %
 % \subsection{Translation}
 % \DescribeMacro{\setHeadlines}
 % The command \texttt{setHeadlines} allows to modify the (translated) headlines. This is also needed for translations, if the used language is not supported yet. If you have improvements for a translation or created a new one, feel free to send me a e-mail. 
-% The headlines are also inserted in <key~=~value> form.
+% The headlines are also inserted in <key~=~value> form. All possible key are described in table~\ref{tbl:headlines}.
+% \begin{table}[htbp]
+%     \centering
+%     \begin{tabulary}{0.75\textwidth}{rcL}
+%         \textbf{Key} & \textbf{Graphic} & \textbf{Description} \\
+%         \toprule
+%             inghead           & no  & Headline of ingredients \\
+%             prephead          & no  & Headline of preparation \\
+%             hinthead          & no  & Headline of hint \\
+%             continuationhead  & no  & Text at the top of the second page of a recipe \\
+%             continuationfoot  & no  & Text at the bottom of the first page, if the recipe is longer than one page \\
+%             preparationtime   & yes & \\
+%             bakingtime        & yes & \\
+%             bakingtemperature & yes & \\
+%             portion           & yes & \\
+%             portionvalue      & no  & Unit for the portions \\
+%             calory            & no  & Text for the calorific value \\
+%             source            & yes & \\
+%     \end{tabulary}
+%     \caption{Recipe Headlines}
+%     \label{tbl:headlines}
+% \end{table}
 %
 % \begin{lstlisting}[caption={Setting Headlines Command}]
 % \setHeadlines{
 %     inghead = Ingredients,
-%     prephead = Preparation,
-%     hinthead = Hint,
-%     calory = energy content,
-%     continuationhead = Continuation,
-%     continuationfoot = Continuation on next page
+%     hinthead = Straight Tip,
+%     continuationhead = Continuation \dots,
 % }
 % \end{lstlisting}
 %
@@ -1546,10 +1596,14 @@
 \setRecipeColors
 {%
     recipename,
+    intro,
     ing,
     inghead,
     prep,
     prephead,
+    suggestion,
+    suggestionhead,
+    separationgraph,
     hint,
     hinthead,
     hintline,
@@ -1559,25 +1613,28 @@
 \setRecipeSizes
 {%
     recipename,
+    intro,
     ing,
     inghead,
     prep,
     prephead,
+    suggestion,
     hint,
     hinthead
 }
 
 \setRecipeLengths
 {%
+    pictureheight,
+    bigpicturewidth,
+    smallpicturewidth,
+    introductionwidth,
     preparationwidth,
-    ingredientswidth,
-    pictureheight
+    ingredientswidth
 }
 
-\setRecipenameFont{fjd}{T1}{m}{n}
+\setRecipenameFont{cmr}{T1}{m}{n}
 
-
-%% Translation
 \setHeadlines
 {%
     inghead,
@@ -1593,6 +1650,7 @@
     calory,
     source
 }
+
 %</config>
 %    \end{macrocode}
 %

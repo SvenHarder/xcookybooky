@@ -106,7 +106,12 @@ a4paper,
 \newcommand{\SeparationGraph}[2][]
 {%
 	\makeatletter
-	\xcb@separationgraph[#1]{#2}
+	\ifthenelse{\equal{#1}{}}
+	{% No optional argument given
+		\xcb@separationgraph{#2}
+	}{% 
+		\xcb@separationgraph[#1]{#2}
+	}
 	\makeatother
 }
 

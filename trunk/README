@@ -1,9 +1,13 @@
 'xcookybooky' is a package for entering recipes
-and layout them in a nice way. This package is
-based on the 'cookybooky' package by Jürgen Gilg.
-Unfortunately it uses some special packages and
-fonts. Another handicap is the missing possibility to
-create a PDF directly. This limitations are reversed.
+and layout them in a nice way. It has the possibility
+to insert two pictures above the other recipe content.
+Besides it is possible to add several recipe properties
+as well as an introduction, suggestions and a hint.
+
+This package is inspired by the 'cookybooky' package
+by Jürgen Gilg, which requires some special packages
+and fonts and cannot create a PDF file directly. This
+limitations are reversed.
 
 As a result of the changes not all options known
 from 'cookybooky' are implemented in this package.
@@ -16,10 +20,20 @@ Usage
 ----------------------------------
 The recipes are inserted in a environment. There is
 the possibility to enter ingredients, preparation (steps),
-(two) pictures and a hint. Also there is an option
-to insert the recipetime, bakingtime, portions, calory
-content and source of the recipe (internet, friends,
-neighbours etc.).
+(two) pictures, an introduction, suggestions and a hint.
+Also there is an option to insert the recipetime,
+bakingtime, portions, calory content and source of the
+recipe (internet, friends, neighbours etc.). A lot of
+hooks allows the user to insert content at different
+locations in the recipe.
+
+
+Project Homepage
+----------------------------------
+If you have found a bug or have suggestions visit my
+project page at
+
+https://code.google.com/p/xcookybooky/
 
 
 Package contents

@@ -18,9 +18,9 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{xcookybooky}
-%<package> [2015/01/20 v1.4 Easy typesetting (potentially long) recipes with pictures]
+%<package> [2015/02/03 v1.4 Easy typesetting (potentially long) recipes with pictures]
 %<config>\ProvidesFile{xcookybooky.cfg}
-%<config> [2015/02/02 v1.1 'xcookybooky' configuration file]
+%<config> [2015/02/03 v1.1 'xcookybooky' configuration file]
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -91,7 +91,7 @@
 % \changes{v1.1}{2012/04/06}{Load the non-free package 'emerald' per option. Possibility to change the picture width independently from the text columns}
 % \changes{v1.2}{2013/03/10}{Better way for displaying the ingredients (tabularx). Thanks to Bartosz Dziubaczyk for developing.}
 % \changes{v1.3}{2013/06/04}{Fixed a problem with the default recipe name font. Thanks to Václav Zeman for reporting. New environment for the ingredients. Thanks to Andreas Pöge for this suggestion.}
-% \changes{v1.4}{2014/12/30}{Added several hooks in order to insert user-defined text blocks at different places in the recipe. Thanks to Heikki Lehvaslaiho for designing the graphical separator and sending suggestions. Added translations for German, English, French and Spanish.}
+% \changes{v1.4}{2015/02/03}{Added two commands for a introduction and recipe suggestions. Additional several hooks are implement in order to insert user-defined text blocks at different places in the recipe. Thanks to Heikki Lehvaslaiho for designing the graphical separator and sending suggestions. Added translations for German, English, French and Spanish.}
 %
 % \GetFileInfo{xcookybooky.sty}
 %
@@ -111,7 +111,7 @@
 % \maketitle
 %
 % \begin{abstract}
-% This package is made for typesetting recipes. You simply enter ingredients, preparation steps and get a beautiful recipe page. It is also possible to enter two pictures, which are displayed above the name of the recipe. Another option is to write a hint, which is displayed at the bottom of the page.
+% This package is made for typesetting recipes. You simply enter ingredients, preparation steps and get a beautiful recipe page. It is also possible to enter two pictures, which are displayed above the name of the recipe. Another option is to write a introduction, several suggestions and s hint, which is displayed at the bottom of the page.
 % \end{abstract}
 %
 % \vspace{3em}
@@ -703,6 +703,8 @@
 
 %    \end{macrocode}
 %
+% \subsection{Recipe Font}
+%
 % \begin{macro}{\setRecipenameFont}
 % This macro sets the font for the name of the recipe. You have to insert the font family, font encoding, font series and font shape. The size is set by the command \texttt{sizeManagement}.
 %    \begin{macrocode}
@@ -745,6 +747,7 @@
 
 %    \end{macrocode} 
 %
+% \subsection{Headlines and Translations}
 % The following section defines the default English headlines of the recipe. They are only used if no supported language is detected.
 %    \begin{macrocode}
 \define@key{headlines}{inghead}[Ingredients]{
@@ -871,8 +874,10 @@
 
 %    \end{macrocode}
 %
-% The values xcb@bigpicturewidth and xcb@smallpicturewidth are the default values.
-% They can be changed with the \texttt{graph} command. \textcolor{red}{TODO}
+% \subsection{Recipe Lengths}
+%
+% The values \texttt{xcb@bigpicturewidth} and \texttt{xcb@smallpicturewidth} are the default values.
+% They can be temporarily changed with the \texttt{graph} command, i.e for a single recipe.
 %    \begin{macrocode}
 \define@key{recipelengths}{pictureheight}[6cm]{\def\xcb@pictureheight{#1}}
 \define@key{recipelengths}{bigpicturewidth}[0.60\textwidth]{\def\xcb@bigpicturewidth{#1}}

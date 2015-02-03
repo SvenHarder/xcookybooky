@@ -1,0 +1,31 @@
+% Test of separation graph
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion=\portion{4},
+	source={http://www.ctan.org/pkg/xcookybooky}
+]{Separation Graph Test}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to verify the graphical separator. The parameters change the color and the scaling.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	}
+	
+	\preparation
+	{%
+		\lipsum[4]
+		\SeparationGraph{Red1}
+		\lipsum[4]
+		\SeparationGraph[1]{Blue2}
+		\lipsum[4]
+	}
+	
+\end{recipe}

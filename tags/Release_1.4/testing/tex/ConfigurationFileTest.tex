@@ -1,0 +1,36 @@
+% Test of configuration file
+
+\input{xcookybooky.cfg}
+
+\begin{recipe}[
+	bakingtime={\unit[1]{hour}},
+	portion = \portion{10},
+	source = \url{https://code.google.com/p/xcookybooky/}
+]{Configuration File Test}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is intended to check the configuration file. Note that only the file is tested, \textbf{not} the option \texttt{myconfig}.}
+
+	\ingredients
+	{%
+		1 & Unicorn \\
+		\unit[2]{l} & Milk
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	}
+	
+	\hint
+	{%
+	    \lipsum[4]
+	}
+
+\end{recipe}
+

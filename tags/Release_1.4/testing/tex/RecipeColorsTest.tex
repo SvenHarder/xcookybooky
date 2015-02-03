@@ -1,0 +1,99 @@
+% Test of recipe color management
+
+\setRecipeColors
+{% Colors from xcolor using the option x11names 
+    recipename = DodgerBlue2,
+    intro = Blue1,
+    ing = Bisque4,
+    inghead = DeepPink1,
+    prep = Chartreuse1,
+    prephead = Coral4,
+    suggestion = Red1,
+    suggestionhead = LightCyan4,
+    separationgraph = Blue4,
+    hint = Goldenrod1,
+    hinthead = DarkOrchid1,
+    hintline = Cyan1,
+    numeration = Salmon1
+}
+
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion=\portion{4},
+	source={http://www.ctan.org/pkg/xcookybooky}
+]{Color Test}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to verify the setting of the recipe colors. In this test case the following colors are set. Note that the introduction frame has changed its color, that is an \index{Error!Introduction} \textbf{error}. 
+		\begin{center}
+			\begin{tabular}{lrl}
+				\textbf{Component} & \textbf{Color} \\
+				\toprule
+				Recipe Name & light blue & \rect{DodgerBlue2} \\
+				Introduction & blue & \rect{Blue1} \\
+				Ingredients (text) & gray & \rect{Bisque4} \\
+				Ingredients (headline) & pink & \rect{DeepPink1} \\
+				Preparation (text) & light green & \rect{Chartreuse1} \\
+				Preparation (headline) & brown & \rect{Coral4} \\
+				Suggestion (text) & red & \rect{Red1} \\
+				Suggestion (headline) & gray & \rect{LightCyan4} \\
+				Separation Graphic & dark blue & \rect{Blue4} \\
+				Hint (text) & dark yellow & \rect{Goldenrod1} \\
+				Hint (headline) & purple & \rect{DarkOrchid1} \\
+				Hint (line) & cyan & \rect{Cyan1} \\
+				Step (numeration) & light red & \rect{Salmon1}
+			\end{tabular}
+		\end{center}
+	}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[4]
+	    \step \lipsum[32]
+	}
+	
+	\suggestion[Comment]
+	{%
+		\blindtext
+	}
+	
+	\hint
+	{%
+	    \blindtext
+	}
+
+\end{recipe}
+
+
+
+\setRecipeColors
+{% Reset to default color values
+    recipename,
+    intro,
+    ing,
+    inghead,
+    prep,
+    prephead,
+    suggestion,
+    hint,
+    hinthead,
+    hintline,
+    numeration
+}

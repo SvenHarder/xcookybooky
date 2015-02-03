@@ -1,0 +1,188 @@
+% Test of recipe font management
+
+\setRecipenameFont{pbsi}{T1}{xl}{n}
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion=\portion{4},
+	source={http://www.ctan.org/pkg/xcookybooky}
+]{Font Test 1}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to check the correct setting of the recipe name font. In this test case the font \textbf{pbsi} from the package \texttt{pbsi} is used.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[4]
+	}
+	
+	\hint
+	{%
+	    \lipsum[6]
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\setRecipenameFont{fau}{T1}{m}{n} % emerald package
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion=\portion{4},
+	source={http://www.ctan.org/pkg/xcookybooky}
+]{Font Test 2}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to check the correct setting of the recipe name font. In this test case the font \textbf{fau} from the package \texttt{emerald} is used.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[4]
+	}
+	
+	\hint
+	{%
+	    \lipsum[6]
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\setRecipenameFont{fwb}{T1}{m}{n} % emerald package
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion=\portion{4},
+	source={http://www.ctan.org/pkg/xcookybooky}
+]{Font Test 3}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to check the correct setting of the recipe name font. In this test case the font \textbf{fwb} from the package \texttt{emerald} is used.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[4]
+	}
+	
+	\hint
+	{%
+	    \lipsum[6]
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\setRecipenameFont{fjd}{T1}{m}{n} % emerald package
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion=\portion{4},
+	source={http://www.ctan.org/pkg/xcookybooky}
+]{Font Test 4}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to check the correct setting of the recipe name font. In this test case the font \textbf{fjd} from the package \texttt{emerald} is used.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[4]
+	}
+	
+	\hint
+	{%
+	    \lipsum[6]
+	}
+
+\end{recipe}
+
+
+
+% Reset to the default
+\setRecipenameFont{\familydefault}{\encodingdefault}{b}{n}

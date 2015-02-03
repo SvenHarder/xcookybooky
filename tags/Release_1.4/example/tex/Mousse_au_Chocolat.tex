@@ -1,0 +1,53 @@
+%% Mousse au Chocolat Example
+
+\begin{otherlanguage}{ngerman}
+
+\setHeadlines
+{% translation
+    inghead = Zutaten,
+    prephead = Zubereitung,
+    hinthead = Tipp,
+    continuationhead = Fortsetzung,
+    continuationfoot = Fortsetzung auf n\"achster Seite,
+    portionvalue = Personen,
+}
+
+\begin{recipe}
+[ % Optionale Eingaben
+    preparationtime = {\unit[1]{h}},
+    portion = \portion{5},
+    source = R. Gaus
+]
+{Mousse au Chocolat}
+    
+    \graph
+    {% Bilder
+        small=pic/glass,    % kleines Bild
+        big=pic/ingredients % großes (längeres) Bild
+    }
+    
+    \ingredients
+    {% Zutaten
+        2 Tafeln & dunkle Schokolade (über \unit[70]{\%})\\
+        3 & Eier\\
+        \unit[200]{ml} & Sahne\\
+        \unit[40]{g} & Zucker\\
+        \unit[50]{g} & Butter
+    }
+    
+    \preparation
+    { % Zubereitung
+        \step Eier trennen, Eiweiß und Sahne separat steif schlagen. Butter und Schokolade vorsichtig im Wasserbad schmelzen.
+        \step Eigelb in einer großen Schüssel mit \unit[2]{EL} heißem Wasser cremig schlagen, den Zucker einrühren bis die Masse hell und cremig ist.
+        \step Die geschmolzene Schokolade unterheben, anschließend sofort Eischnee und Sahne unterheben (nicht mit dem Elektro-Mixer!)
+        \step Mindestens 2 Stunden im Kühlschrank kalt stellen. Aber nicht zu kalt servieren.
+    }
+    
+    \hint
+    {% Tipp
+        Der Schokoladenanteil kann auch gesenkt werden.
+    }
+
+\end{recipe}
+
+\end{otherlanguage}

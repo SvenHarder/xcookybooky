@@ -1,0 +1,54 @@
+% Complete recipe example
+\begin{recipe}
+[% 
+    preparationtime = {\unit[1]{h}},
+    bakingtime={\unit[1]{h}},
+    bakingtemperature={\protect\bakingtemperature{
+        fanoven=\unit[230]{\textcelcius},
+        topbottomheat=\unit[195]{°C},
+        topheat=\unit[195]{°C},
+        gasstove=Level 2}},
+    portion = {\portion{5-6}},
+    calory={\unit[3]{kJ}},
+    source = {Somebody you used know}
+]
+{Test Recipe}
+    
+    \graph
+    {% pictures
+        small=pic/glass,     % small picture
+        big=pic/ingredients  % big picture
+    }
+    
+    \introduction{%
+        \blindtext
+    }
+    
+    \ingredients{%
+        2 bar & Dark Chocolate (above \unit[70]{\%})\\
+        3 & Eggs\\
+        \unit[200]{ml} & Cream\\
+        40 g & Sugar\\
+        50 g & Butter
+    }
+    
+    \preparation{%
+        \step \blindtext
+        \step \blindtext
+        \step \blindtext
+    }
+    
+    \suggestion[Headline]
+    {%
+        \blindtext
+    }
+    
+    \suggestion{%
+        \blindtext
+    }
+    
+    \hint{%
+        Enjoy typesetting recipes with {\textbf{\Large\LaTeX}} and {\textbf{\Large xcookybooky!}}
+    }
+    
+\end{recipe}

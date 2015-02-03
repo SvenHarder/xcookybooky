@@ -1,0 +1,52 @@
+%% Hook test
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion=\portion{4},
+	source={https://code.google.com/p/xcookybooky/}
+]{Hook Test Recipe}
+
+	\pregraph{\textbf{\textcolor{red}{PRE GRAPH}} Hook: It must be the first block in the recipe.}
+	
+	\pretitle{\textbf{\textcolor{red}{PRE TITLE}} Hook: It must be between the pictures and the title.}
+	
+	\prepreparation{\textbf{\textcolor{red}{PRE PREPARATION}} Hook: It must be inside the preparation block and \textbf{before} the preparation steps.}
+	\postpreparation{\textbf{\textcolor{red}{POST PREPARATION}} Hook: It must be inside the preparation block and \textbf{after} the preparation steps.}
+	
+	\preingredients{\textbf{\textcolor{red}{PRE INGREDIENTS}} Hook: It must be inside the ingredients part and \textbf{before} the ingredients.}
+	\postingredients{\textbf{\textcolor{red}{POST INGREDIENTS}} Hook: It must be inside the ingredients block and \textbf{after} the ingredients.}
+	
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}%
+	
+	\introduction{This should test the introduction. \blindtext}
+
+	\ingredients % Zutaten
+	{%
+	    \nicefrac{1}{2} l & Wasser\\
+	    4 TL & Hagebuttentee\\
+	    2 EL & Honig\\
+	    1    & Zitrone\\
+	    \nicefrac{1}{2} l & Fruchtsaft\\
+	    100 g  & Erdbeeren\\
+	    50  g  & Himbeeren\\
+	    1      & Orange\\
+	    100 g  & Weintrauben\\
+	}
+	
+	\preparation % Zubereitung
+	{%
+	    \step \blindtext
+	    \step \blindtext
+	    \step \blindtext
+	}
+	
+	\hint
+	{%
+	    \blindtext
+	}
+
+\end{recipe}

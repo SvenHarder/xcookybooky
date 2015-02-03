@@ -1,0 +1,129 @@
+% Test of recipe overview
+
+\begin{recipe}[
+	preparationtime={\unit[\nicefrac{1}{2}]{hour}},
+	bakingtime={\unit[1]{hour}},
+	bakingtemperature={\protect\bakingtemperature{fanoven=\unit[225]{°C}, topbottomheat=\unit[190]{°C}, topheat=\unit[200]{°C}}},
+	portion = \portion{10},
+	calory= {\unit[100]{kJ}},
+	source = \url{https://code.google.com/p/xcookybooky/}
+]{Recipe Overview Test 1}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to check different configurations of the recipe overview. In this test all possible entries are set.}
+
+	\ingredients
+	{%
+		\unit[1]{bottle} & Rum
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	    \step \lipsum[4]
+	}
+	
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\begin{recipe}[
+	bakingtime={\unit[1]{hour}},
+	calory= {\unit[100]{kJ}},
+	source = \url{https://code.google.com/p/xcookybooky/}
+]{Recipe Overview Test 2}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to check different configurations of the recipe overview. In this test the \textbf{baking time} is set without the \textbf{baking temperature} among other things.}
+
+	\ingredients
+	{%
+		\unit[1]{bottle} & Rum
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	    \step \lipsum[4]
+	}
+	
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\begin{recipe}[
+	bakingtemperature={\protect\bakingtemperature{fanoven=\unit[225]{°C}, topbottomheat=\unit[190]{°C}, topheat=\unit[200]{°C}}},
+	portion = \portion{10},
+	source = \url{https://code.google.com/p/xcookybooky/}
+]{Recipe Overview Test 3}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to check different configurations of the recipe overview. In this test the \textbf{baking temperature} is set without the \textbf{baking time} among other things.}
+
+	\ingredients
+	{%
+		\unit[1]{bottle} & Rum
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	    \step \lipsum[4]
+	}
+	
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\begin{recipe}[
+	preparationtime={\unit[\nicefrac{1}{2}]{hour}},
+	portion = \portion{10}
+]{Recipe Overview Test 4}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to check different configurations of the recipe overview. This test shows the \index{Error!Recipe Overview} \textbf{error}, that the gap to the introduction frame is larger if the source is \textbf{not} set.}
+
+	\ingredients
+	{%
+		\unit[1]{bottle} & Rum
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	    \step \lipsum[4]
+	}
+	
+\end{recipe}

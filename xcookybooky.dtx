@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{xcookybooky}
-%<package> [2015/02/03 v1.4 Easy typesetting (potentially long) recipes with pictures]
+%<package> [2015/02/10 v1.5 Easy typesetting (potentially long) recipes with pictures]
 %<config>\ProvidesFile{xcookybooky.cfg}
 %<config> [2015/02/03 v1.1 'xcookybooky' configuration file]
 %
@@ -68,7 +68,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{792}
+% \CheckSum{814}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -92,6 +92,7 @@
 % \changes{v1.2}{2013/03/10}{Better way for displaying the ingredients (tabularx). Thanks to Bartosz Dziubaczyk for developing.}
 % \changes{v1.3}{2013/06/04}{Fixed a problem with the default recipe name font. Thanks to Václav Zeman for reporting. New environment for the ingredients. Thanks to Andreas Pöge for this suggestion.}
 % \changes{v1.4}{2015/02/03}{Added two commands for a introduction and recipe suggestions. Additional several hooks are implement in order to insert user-defined text blocks at different places in the recipe. Thanks to Heikki Lehvaslaiho for designing the graphical separator and sending suggestions. Added translations for German, English, French and Spanish.}
+% \changes{v1.5}{2015/02/10}{Adding translations for Portuguese and Brazilian. Thanks to Thiago de Melo for submitting.}
 %
 % \GetFileInfo{xcookybooky.sty}
 %
@@ -869,6 +870,34 @@
         continuationfoot = Continúa en la página siguiente,
         portionvalue = Porción,
         calory = Poder calorífico
+    }
+}{}
+
+\IfLanguagePatterns{portuguese}
+{% Portuguese
+    \setHeadlines
+    {% translation
+        inghead = Ingredientes,
+        prephead = Prepara\c{c}\~{a}o,
+        hinthead = Dica,
+        continuationhead = Continua\c{c}\~{a}o,
+        continuationfoot = Continua na pr\'{o}xima p\'{a}gina,
+        portionvalue = Por\c{c}\~{o}es,
+        calory = Valor Cal\'{o}rico
+    }
+}{}
+
+\IfLanguagePatterns{brazil}
+{% Portuguese PT-BR
+    \setHeadlines
+    {% translation
+        inghead = Ingredientes,
+        prephead = Prepara\c{c}\~{a}o,
+        hinthead = Dica,
+        continuationhead = Continua\c{c}\~{a}o,
+        continuationfoot = Continua na pr\'{o}xima p\'{a}gina,
+        portionvalue = Por\c{c}\~{o}es,
+        calory = Valor Cal\'{o}rico
     }
 }{}
 

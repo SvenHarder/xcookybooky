@@ -180,6 +180,127 @@
 \end{recipe}
 
 
+
+\newpage
+
+\selectlanguage{portuguese}
+
+\IfLanguagePatterns{portuguese}
+{% Portuguese
+	\setHeadlines
+	{% translation
+		inghead = Ingredientes,
+		prephead = Prepara\c{c}\~{a}o,
+		hinthead = Dica,
+		continuationhead = Continua\c{c}\~{a}o,
+		continuationfoot = Continua na pr\'{o}xima p\'{a}gina,
+		portionvalue = Por\c{c}\~{o}es,
+		calory = Valor Cal\'{o}rico
+	}
+}{}
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion = \portion{5},
+	calory = {\unit[153]{kJ}},
+	source={http://www.ctan.org/pkg/xcookybooky
+}]{Headline Test: Portuguese}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to verify the setting of the headlines of the recipe. This test case uses the Portuguese translation. Unfortunately the package \texttt{blindtext} does not support Portuguese.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[5] % blindtext does not support Portuguese
+	}
+	
+	\hint
+	{%
+	    \lipsum[5] % blindtext does not support Portuguese
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+\selectlanguage{brazil}
+
+\IfLanguagePatterns{brazil}
+{% Portuguese PT-BR
+	\setHeadlines
+	{% translation
+		inghead = Ingredientes,
+		prephead = Prepara\c{c}\~{a}o,
+		hinthead = Dica,
+		continuationhead = Continua\c{c}\~{a}o,
+		continuationfoot = Continua na pr\'{o}xima p\'{a}gina,
+		portionvalue = Por\c{c}\~{o}es,
+		calory = Valor Cal\'{o}rico
+	}
+}{}
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion = \portion{5},
+	calory = {\unit[153]{kJ}},
+	source={http://www.ctan.org/pkg/xcookybooky
+}]{Headline Test: Brazilian}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to verify the setting of the headlines of the recipe. This test case uses the Brazilian translation. Unfortunately the package \texttt{blindtext} does not support Brazilian.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[5] % blindtext does not support Brazilian
+	}
+	
+	\hint
+	{%
+	    \lipsum[5] % blindtext does not support Brazilian
+	}
+
+\end{recipe}
+
+
+
 \setHeadlines
 {% reset to default
     inghead,

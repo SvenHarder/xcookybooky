@@ -18,7 +18,7 @@
 % \iffalse
 %<package>\NeedsTeXFormat{LaTeX2e}
 %<package>\ProvidesPackage{xcookybooky}
-%<package> [2015/02/10 v1.5 Easy typesetting (potentially long) recipes with pictures]
+%<package> [2015/03/03 v1.5 Easy typesetting (potentially long) recipes with pictures]
 %<config>\ProvidesFile{xcookybooky.cfg}
 %<config> [2015/02/03 v1.1 'xcookybooky' configuration file]
 %
@@ -68,7 +68,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{814}
+% \CheckSum{829}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -92,7 +92,7 @@
 % \changes{v1.2}{2013/03/10}{Better way for displaying the ingredients (tabularx). Thanks to Bartosz Dziubaczyk for developing.}
 % \changes{v1.3}{2013/06/04}{Fixed a problem with the default recipe name font. Thanks to Václav Zeman for reporting. New environment for the ingredients. Thanks to Andreas Pöge for this suggestion.}
 % \changes{v1.4}{2015/02/03}{Added two commands for a introduction and recipe suggestions. Additional several hooks are implement in order to insert user-defined text blocks at different places in the recipe. Thanks to Heikki Lehvaslaiho for designing the graphical separator and sending suggestions. Added translations for German, English, French and Spanish.}
-% \changes{v1.5}{2015/02/10}{Adding translations for Portuguese and Brazilian. Thanks to Thiago de Melo for submitting.}
+% \changes{v1.5}{2015/03/03}{Adding translations for Portuguese and Brazilian. Thanks to Thiago de Melo for submitting. Adding optional argument for the ingredients part. Thanks to Benjamin Steinwender for submitting.}
 %
 % \GetFileInfo{xcookybooky.sty}
 %
@@ -181,6 +181,17 @@
 %
 % \begin{lstlisting}[caption={Ingredients Command}]
 % \ingredients{
+%     2 bar & Dark Chocolate (above \unit[70]{\%})\\
+%     3 & Eggs\\
+%     \unit[200]{ml} & Cream\\
+%     \unit[40]{g} & Sugar\\
+%     \unit[50]{g} & Butter
+% }
+% \end{lstlisting}
+%
+% Unfortunately the package \texttt{wrapfig} has a problem to detect the length of a table. In order to get a better floating of the ingredients you have to insert the number of table lines as shown in the example below. Please note that you have to take the headline and line breaks of overlong ingredients into account.
+% \begin{lstlisting}[caption={Ingredients Command with Optional Argument}]
+% \ingredients[7]{
 %     2 bar & Dark Chocolate (above \unit[70]{\%})\\
 %     3 & Eggs\\
 %     \unit[200]{ml} & Cream\\
@@ -984,17 +995,18 @@
 % \end{macro}
 %
 % \begin{macro}{\ingredients}
-% The command is used to insert the ingredients, which are displayed as a table.
+% The command is used to insert the ingredients, which are displayed as a table. The optional argument conatins the number of table lines. It can be used to adjust the floating of the ingredients table. The package \texttt{wrapfig} has a problem to detect the length of the table, which is shown at \url{http://tex.stackexchange.com/questions/83231/text-not-spanning-full-page-after-wraptable} for example.
 %    \begin{macrocode}
-\newcommand*{\ingredients}[1]
-{%
+\newcommand*{\ingredients}[2][\empty]
+{% The optional argument contains the number of lines
+    \def\xcb@ingredientslines{#1}
     \def\xcb@ingredients
     {%
         \xcb@name@inghead
         \\[1em]
         {\xcb@fontsize@ing\color{\xcb@color@ing}
         \begin{tabulary}{\xcb@ingredientswidth}{rL}
-            #1
+            #2
         \end{tabulary}}
     }
 }
@@ -1452,16 +1464,31 @@
     \xcb@introduction
 
 %% THIRD BLOCK
-    \begin{wraptable}{r}{\xcb@ingredientswidth}
-    {
-        \vspace{-1em}    % same height of ingredients and preparation
-        \xcb@hook@preingredients
-        
-        \xcb@ingredients
-        
-        \xcb@hook@postingredients
+    \ifthenelse{\equal{\xcb@ingredientslines}{\empty}}%
+    {%
+        \begin{wraptable}{r}{\xcb@ingredientswidth}
+        {% No line number given by the user
+            \vspace{-1em}    % same height of ingredients and preparation
+            \xcb@hook@preingredients
+
+            \xcb@ingredients
+
+            \xcb@hook@postingredients
+        }
+        \end{wraptable}
     }
-    \end{wraptable}
+    {%
+        \begin{wraptable}[\xcb@ingredientslines]{r}{\xcb@ingredientswidth}
+        {% Use the given line number by the user
+            \vspace{-1em}    % same height of ingredients and preparation
+            \xcb@hook@preingredients
+
+            \xcb@ingredients
+
+            \xcb@hook@postingredients
+        }
+        \end{wraptable}
+    }
     \xcb@hook@prepreparation
     
     \xcb@preparation

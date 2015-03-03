@@ -1,0 +1,82 @@
+\documentclass[%
+a4paper,
+%twoside,
+11pt
+]{article}
+
+% encoding, font, language
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[ngerman, english]{babel}
+
+\usepackage{nicefrac}
+
+\usepackage[
+    handwritten,
+    nowarnings,
+    %myconfig
+]
+{xcookybooky}
+
+\usepackage{blindtext}    % only needed for generating test text
+
+\DeclareRobustCommand{\textcelcius}{\ensuremath{^{\circ}\mathrm{C}}}
+
+
+\setcounter{secnumdepth}{1}
+\renewcommand*{\recipesection}[2][]
+{%
+    \subsection[#1]{#2}
+}
+\renewcommand{\subsectionmark}[1]
+{% no implementation to display the section name instead
+}
+
+
+\usepackage{hyperref}    % must be the last package
+\hypersetup{%
+    pdfauthor            = {Sven Harder},
+    pdftitle             = {Example Recipes for xcookybooky},
+    pdfsubject           = {Recipes},
+    pdfkeywords          = {example, recipes, cookbook, xcookybooky},
+    pdfstartview         = {FitV},
+    pdfview              = {FitH},
+    pdfpagemode          = {UseNone}, % Options; UseNone, UseOutlines
+    bookmarksopen        = {true},
+    pdfpagetransition    = {Glitter},
+    colorlinks           = {true},
+    linkcolor            = {black},
+    urlcolor             = {blue},
+    citecolor            = {black},
+    filecolor            = {black},
+}
+
+\hbadness=10000	% Ignore underfull boxes
+
+\begin{document}
+
+\title{Examples for using \textbf{xcookybooky}}
+\author{Sven Harder\\ \href{mailto:sven\_one1@gmx.de}{sven\_one1@gmx.de}}
+\maketitle
+
+\begin{abstract}
+    \noindent The examples in this document require at least version~1.4 of the \texttt{xcookybooky}\footnote{\url{http://www.ctan.org/pkg/xcookybooky}} package. For more examples and test recipes especially for using hook functions take a look at the source files located at \url{https://code.google.com/p/xcookybooky/}. If you are interested in modifying the layout of \texttt{xcookybooky} you will find examples in the documentation as well as in the configuration file \textbf{xcookybooky.cfg}.
+\end{abstract}
+
+\tableofcontents
+
+\vspace{5em}
+
+\section{Recipes}
+The following recipes are examples for the usage of the \texttt{xcookybooky} package. The copyright of the pictures is owned by Roman Gaus. If you are using MiKTeX~2.9 you should get no errors, no warnings and no overfull boxes. The underfull boxes are suppressed due to the settings.
+
+% background graphic
+\setBackgroundPicture[x, y=-2cm, width=\paperwidth-4cm, height, orientation = pagecenter]
+{pic/background}
+
+\include{tex/Mousse_au_Chocolat}
+
+\include{tex/Complete_Recipe}
+
+\end{document} 

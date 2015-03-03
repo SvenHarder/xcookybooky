@@ -1,0 +1,25 @@
+%% This is file 'Main.ist',
+%%
+
+
+preamble
+"\n \\begin{theindex} \n"
+postamble
+"\n\n \\end{theindex}\n"
+item_x1   "\\hfill \n \\subitem "
+item_x2   "\\hfill \n \\subsubitem "
+delim_0   "\\ \\dotfill "
+delim_1   "\\ \\dotfill "
+delim_2   "\\ \\dotfill "
+
+% The three following lines may be necessary, if another version of makeindex if used
+%lethead_prefix   "{\\bfseries\\hfil "
+%lethead_suffix   "\\hfil}\\nopagebreak\n"
+%lethead_flag       1
+
+heading_prefix   "\\textbf{\\hfill "
+heading_suffix   "\\hfill}\\nopagebreak\n"
+headings_flag       1
+%%
+%%
+%% End of file 'Main.ist'.

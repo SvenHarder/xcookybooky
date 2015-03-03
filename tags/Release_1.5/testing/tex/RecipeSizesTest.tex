@@ -1,0 +1,70 @@
+% Test of recipe sizes management
+
+\setRecipeSizes
+{% 
+    recipename = \small,
+    intro = \Large,
+    ing = \tiny,
+    inghead = \Large,
+    prep = \scriptsize,
+    prephead = \huge,
+    suggestion,
+    hint = \large,
+    hinthead = \small
+}
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion=\portion{4},
+	source={http://www.ctan.org/pkg/xcookybooky}
+]{Font Size Test}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is intended to check the setting of the font sizes.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \blindtext
+	    \step \lipsum[1]
+	    \step \blindtext
+	}
+	
+	\hint
+	{%
+	    \blindtext
+	}
+
+\end{recipe}
+
+
+
+\setRecipeSizes
+{% reset to default values
+    recipename,
+    intro,
+    ing,
+    inghead,
+    prep,
+    prephead,
+    suggestion,
+    hint,
+    hinthead
+}

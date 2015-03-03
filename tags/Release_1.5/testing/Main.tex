@@ -1,0 +1,205 @@
+\documentclass[%
+a4paper,
+%twoside,
+%12pt
+11pt
+]{article}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc} 
+\usepackage{pbsi} % font package
+\usepackage{emerald} % font package
+\usepackage{lmodern} % font package
+\usepackage{bookman} % font package
+\usepackage
+[% Language test
+	ngerman,
+	french,
+	spanish,
+	portuguese,
+	brazil,
+	english
+]{babel}
+\usepackage{nicefrac}
+\usepackage{booktabs} % commands for tabulars
+\usepackage
+[%
+%	dvipsnames,
+%	svgnames,
+	x11names,
+]{xcolor}
+\usepackage{blindtext}
+\usepackage{lipsum}
+\usepackage{makeidx}
+
+\usepackage[
+	%handwritten,
+	%myconfig,
+	nowarnings
+]{xcookybooky}
+
+%% DEFINE COLORS
+%\definecolor{DarkGray}{rgb}{0.23, 0.23, 0.23}
+
+\newcommand*{\rect}[2][0.8]
+{% Creates an rectangle filles with the specified color.
+\begin{tikzpicture}[scale=#1]
+	\draw[fill=#2] (0,0) -- ++(up:1em) -- ++(right:2em) -- ++(down:1em) -- cycle;
+	\draw[draw=black] (0,0) -- ++(up:1em) -- ++(right:2em) -- ++(down:1em) -- cycle;
+\end{tikzpicture}
+}
+
+
+\DeclareRobustCommand{\textcelcius}{\ensuremath{^{\circ}\mathrm{C}}}
+
+\setcounter{secnumdepth}{0} % No numeration of chapters
+\renewcommand{\recipesection}[2][]
+{% Recipes are subsections (instead of subsubsections)
+    \subsection[#1]{#2}
+}
+
+\renewcommand{\subsectionmark}[1]
+{% Not displayed in order to show the section name
+}
+
+\renewcommand{\sectionmark}[1]
+{% Uppercased section names
+	\markright{\MakeUppercase{#1}}
+}
+
+\title{Testing the package xcookybooky}
+\author{Sven Harder}
+
+
+\usepackage{hyperref}	% must be loaded at last!
+\hypersetup	{%
+	pdfauthor			= {Sven Harder},
+	pdftitle 			= {Testing the xcookybooky package},
+	pdfsubject			= {testing},
+	pdfkeywords			= {recipes},
+	pdfstartview		= {FitV}, 	
+	pdfview				= {FitH},
+	pdfpagemode			= {UseOutlines}, % Options; UseNone, UseOutlines
+	bookmarksopen		= {true},
+	pdfpagetransition	= {Glitter},
+	colorlinks			= {true},
+	linkcolor			= {black}, % internal links in the document, e.g. to a figure
+	urlcolor			= {black}, % Links to the internet
+	citecolor			= {black}, % Links to citings
+	filecolor			= {black}, % Links to local files
+}
+
+\hbadness=10000	% Ignore underfull boxes
+
+% Eliminate the page break
+\makeatletter
+\renewenvironment{theindex}
+{%
+	\section*{\indexname}%
+    \@mkboth{\MakeUppercase\indexname}{\MakeUppercase\indexname}%
+    \parskip\z@ \@plus .3\p@\relax
+    \columnseprule \z@
+    \columnsep 35\p@
+    \let\item\@idxitem}
+{}
+
+\newcommand{\SeparationGraph}[2][]
+{%
+	\makeatletter
+	\ifthenelse{\equal{#1}{}}
+	{% No optional argument given
+		\xcb@separationgraph{#2}
+	}{% 
+		\xcb@separationgraph[#1]{#2}
+	}
+	\makeatother
+}
+
+\makeatother
+
+\makeindex
+
+
+\begin{document}
+
+\include{tex/TitlePage}
+
+\setBackgroundPicture%[x=2.2cm, y=-0.8cm, width=\linewidth, height=\paperheight]
+[x, y, width=\paperwidth-3cm, height, orientation=pagecenter]
+{pic/background}
+
+
+\section{Results}
+The following index is used to find the detected errors in this test document. Using MiKTeX~2.9 no errors, no warnings and no overfull boxes should be reported.
+\printindex
+
+
+
+\section{Basic Tests}
+This section contains tests for the elementary layout commands. The example recipe is included as a reference.
+
+\include{tex/Example}
+
+\include{tex/GraphTest}
+
+\include{tex/RecipeTitleTest}
+
+\include{tex/RecipeOverviewTest}
+
+\include{tex/IntroductionTest}
+
+\include{tex/PreparationTest}
+
+\include{tex/IngredientsTest}
+
+\include{tex/SuggestionTest}
+
+\include{tex/HintTest}
+
+
+\setBackgroundPicture%[x=2.2cm, y=-1.0cm, width=\linewidth, height=\paperheight]
+[x, y, width=\paperwidth-3cm, height, orientation=pagecenter]
+{pic/background}
+
+
+\section{Advanced Tests}
+This test section contains special tests for commands, which are not needed by many people.
+
+\include{tex/HookTest}
+
+\include{tex/LongTextTest}
+
+
+
+\section{Supporting Command Tests}
+These commands are useful to insert optional information for the recipe.
+
+\include{tex/BakingTemperatureTest}
+
+\include{tex/PortionTest}
+
+\include{tex/SeparationGraphTest}
+
+
+\section{Layout Tests}
+The following pages contain tests to verify the possibilities of changing the layout of the recipes.
+
+\include{tex/RecipeColorsTest}
+
+\include{tex/RecipeFontsTest}
+
+\include{tex/RecipeSizesTest}
+
+\include{tex/RecipeLengthsTest}
+
+\include{tex/RecipeHeadlinesTest}
+
+
+\section{Configuration Tests}
+This section contains tests for configuration, e.g. the configuration file.
+
+\include{tex/ConfigurationFileTest}
+
+%
+\end{document} 

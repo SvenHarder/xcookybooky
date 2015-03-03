@@ -1,0 +1,104 @@
+% Test of suggestions
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion=\portion{4},
+	source={http://www.ctan.org/pkg/xcookybooky}
+]{Suggestion Test 1}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+		\introduction{This test is used to verify the setting of suggustions. This test case uses a single suggestion and the separator symbol should be at the top of the first page.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \blindtext
+	    \step \blindtext 
+	}
+	
+	\suggestion[Suggestion]
+	{%
+		\blindtext
+	}
+	
+	
+	\hint
+	{%
+	    \blindtext
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion=\portion{4},
+	source={http://www.ctan.org/pkg/xcookybooky}
+]{Suggestion Test 2}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+		\introduction{This test is used to verify the setting of suggustions. This test case uses two suggestions: One using the optional parameter and the other one not.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \blindtext
+	    \step \blindtext 
+	    \step \blindtext 
+	}
+	
+	\suggestion[Suggestion]
+	{%
+		\blindtext
+	}
+	
+	\suggestion[]
+	{%
+		\blindtext
+	}
+	
+	\hint
+	{%
+	    \blindtext
+	}
+
+\end{recipe}

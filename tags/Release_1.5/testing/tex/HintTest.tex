@@ -1,0 +1,160 @@
+% Test of hint
+
+\begin{recipe}[
+	bakingtime={\unit[1]{hour}},
+	portion = \portion{10},
+	source = \url{https://code.google.com/p/xcookybooky/}
+]{Hint Test 1}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test should test the position of the hint. It must be at the bottom at the first page.}
+
+	\ingredients
+	{%
+		1 & Unicorn \\
+		\unit[2]{l} & Milk
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	}
+	
+	\hint
+	{%
+	    \lipsum[4]
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\begin{recipe}[
+	bakingtime={\unit[1]{hour}},
+	portion = \portion{10},
+	source = \url{https://code.google.com/p/xcookybooky/}
+]{Hint Test 2}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test should test the position of the hint. It must be at the \textbf{top} at the second page.}
+
+	\ingredients
+	{%
+		1 & Unicorn \\
+		\unit[2]{l} & Milk
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	    \step \lipsum[4]
+	}
+	
+	\hint
+	{%
+	    \lipsum[1]
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\begin{recipe}[
+	bakingtime={\unit[1]{Stunde}},
+	portion = \portion{10},
+	source = \url{https://code.google.com/p/xcookybooky/}
+]{Hint Test 3}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test should test the position of the hint. It must be at the \textbf{bottom} of the second page.}
+
+	\ingredients
+	{%
+		1 & Unicorn \\
+		\unit[2]{l} & Milk
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	    \step \lipsum[4]
+	    \step \lipsum[7]
+	}
+	
+	\hint
+	{%
+	    \lipsum[3]
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\begin{recipe}[
+	bakingtime={\unit[1]{Stunde}},
+	portion = \portion{10},
+	source = \url{https://code.google.com/p/xcookybooky/}
+]{Hint Test 4}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test should test the behaviour of a long hint.}
+
+	\ingredients
+	{%
+		1 & Unicorn \\
+		\unit[2]{l} & Milk
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[2]
+	}
+	
+	\hint
+	{%
+	    \blindtext
+	    
+	    \blindtext
+	    
+	    \blindtext
+	    
+	    \blindtext
+	    
+	    \blindtext
+	    
+	    \blindtext
+	}
+
+\end{recipe}

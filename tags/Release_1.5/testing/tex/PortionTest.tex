@@ -1,0 +1,32 @@
+% Test for portions
+
+\begin{recipe}[
+	preparationtime={\unit[\nicefrac{1}{2}]{hour}},
+	bakingtime={\unit[1]{hour}},
+	bakingtemperature={\protect\bakingtemperature{fanoven=\unit[225]{\textcelcius}}},
+	portion = {\portion[master pieces for being satisfied]{10}},
+	source = Mister Nobody
+]{Portion Test}
+	\graph
+	{%
+		small=pic/SmallTestPicture,
+		big=pic/BigTestPicture
+	}
+	
+	\introduction{This test should verify the portion temperature command. In this test case the optional parameter is tested.}
+	
+	\ingredients
+	{%
+		\multicolumn{2}{c}{\textbf{Headline}}\\
+		\unit[2]{kg}   & Something \\
+		\unit[15]{g}   & Anything \\
+		\unit[\nicefrac{1}{2}]{l}   & Everything
+	}
+	
+	\preparation
+	{%
+		\step \blindtext
+	}
+	
+\end{recipe}
+

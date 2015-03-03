@@ -1,0 +1,313 @@
+% Test of recipe headlines management
+
+
+\selectlanguage{ngerman}
+
+\IfLanguagePatterns{ngerman}
+{
+    \setHeadlines
+    {% translation
+        inghead = Zutaten,
+        prephead = Zubereitung,
+        hinthead = Tipp,
+        continuationhead = Fortsetzung,
+        continuationfoot = Fortsetzung auf n\"achster Seite,
+        portionvalue = Personen,
+        calory = Brennwert
+    }
+}{}
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion = \portion{5},
+	calory = {\unit[153]{kJ}},
+	source={http://www.ctan.org/pkg/xcookybooky}
+]{Headline Test: German}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to verify the setting of the headlines of the recipe. This test case uses the German translation.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \blindtext
+	}
+	
+	\hint
+	{%
+	    \blindtext
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+
+
+\selectlanguage{french}
+
+\IfLanguagePatterns{french}
+{% French
+    \setHeadlines
+    {% translation
+        inghead = Ingrédients,
+        prephead = Préparation,
+        hinthead = Tuyau,
+        continuationhead = Suite,
+        continuationfoot = Suite page suivante,
+        portionvalue = Portions,
+        calory = Valeur calorifique
+    }
+}{}
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion = \portion{5},
+	calory = {\unit[153]{kJ}},
+	source={http://www.ctan.org/pkg/xcookybooky
+}]{Headline Test: French}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to verify the setting of the headlines of the recipe. This test case uses the French translation.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \blindtext
+	}
+	
+	\hint
+	{%
+	    \blindtext
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+\selectlanguage{spanish}
+
+\IfLanguagePatterns{spanish}
+{% Spanish
+    \setHeadlines
+    {% translation
+        inghead = Ingredientes,
+        prephead = Preparación,
+        hinthead = Soplo,
+        continuationhead = Continuación,
+        continuationfoot = Continúa en la página siguiente,
+        portionvalue = Porción,
+        calory = Poder calorífico
+    }
+}{}
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion = \portion{5},
+	calory = {\unit[153]{kJ}},
+	source={http://www.ctan.org/pkg/xcookybooky
+}]{Headline Test: Spanish}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to verify the setting of the headlines of the recipe. This test case uses the Spanish translation. Unfortunately the package \texttt{blindtext} does not support Spanish.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[5] % blindtext does not support spanish
+	}
+	
+	\hint
+	{%
+	    \lipsum[5] % blindtext does not support spanish
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+\selectlanguage{portuguese}
+
+\IfLanguagePatterns{portuguese}
+{% Portuguese
+	\setHeadlines
+	{% translation
+		inghead = Ingredientes,
+		prephead = Prepara\c{c}\~{a}o,
+		hinthead = Dica,
+		continuationhead = Continua\c{c}\~{a}o,
+		continuationfoot = Continua na pr\'{o}xima p\'{a}gina,
+		portionvalue = Por\c{c}\~{o}es,
+		calory = Valor Cal\'{o}rico
+	}
+}{}
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion = \portion{5},
+	calory = {\unit[153]{kJ}},
+	source={http://www.ctan.org/pkg/xcookybooky
+}]{Headline Test: Portuguese}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to verify the setting of the headlines of the recipe. This test case uses the Portuguese translation. Unfortunately the package \texttt{blindtext} does not support Portuguese.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[5] % blindtext does not support Portuguese
+	}
+	
+	\hint
+	{%
+	    \lipsum[5] % blindtext does not support Portuguese
+	}
+
+\end{recipe}
+
+
+
+\newpage
+
+\selectlanguage{brazil}
+
+\IfLanguagePatterns{brazil}
+{% Portuguese PT-BR
+	\setHeadlines
+	{% translation
+		inghead = Ingredientes,
+		prephead = Prepara\c{c}\~{a}o,
+		hinthead = Dica,
+		continuationhead = Continua\c{c}\~{a}o,
+		continuationfoot = Continua na pr\'{o}xima p\'{a}gina,
+		portionvalue = Por\c{c}\~{o}es,
+		calory = Valor Cal\'{o}rico
+	}
+}{}
+
+\begin{recipe}[
+	preparationtime={\unit[5]{min}},
+	portion = \portion{5},
+	calory = {\unit[153]{kJ}},
+	source={http://www.ctan.org/pkg/xcookybooky
+}]{Headline Test: Brazilian}
+
+	\graph
+	{%
+	    small=pic/SmallTestPicture,
+	    big=pic/BigTestPicture,
+	}
+	
+	\introduction{This test is used to verify the setting of the headlines of the recipe. This test case uses the Brazilian translation. Unfortunately the package \texttt{blindtext} does not support Brazilian.}
+
+	\ingredients
+	{%
+	    \nicefrac{1}{2} l & Water\\
+	    4 tsp & Rose hip tea\\
+	    2 tbs & Honey\\
+	    1    & Lemon\\
+	    \nicefrac{1}{2} l & Fruit juice\\
+	    \unit[100]{g}  & Strawberry\\
+	    \unit[50]{g}  & Raspberry\\
+	    1      & Orange\\
+	    \unit[100]{g}  & Grapes\\
+	}
+	
+	\preparation
+	{%
+	    \step \lipsum[5] % blindtext does not support Brazilian
+	}
+	
+	\hint
+	{%
+	    \lipsum[5] % blindtext does not support Brazilian
+	}
+
+\end{recipe}
+
+
+
+\setHeadlines
+{% reset to default
+    inghead,
+    prephead,
+    hinthead,
+    continuationhead,
+    continuationfoot,
+    portionvalue,
+    calory
+}

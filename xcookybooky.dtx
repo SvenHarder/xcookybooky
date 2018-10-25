@@ -828,7 +828,42 @@
 %
 % After the initialization the supported languages are used as default values.
 %    \begin{macrocode}
-\IfLanguagePatterns{german}
+
+\newcommand{\IfLangGerman}[2]{%
+  \IfLanguageName{ngerman}{#1}{%
+  \IfLanguageName{naustrian}{#1}{%
+  \IfLanguageName{german}{#1}{%
+  \IfLanguageName{austrian}{#1}{#2}}}}%
+}
+
+\newcommand{\IfLangEnglish}[2]{%
+  \IfLanguageName{american}{#1}{%
+  \IfLanguageName{australian}{#1}{%
+  \IfLanguageName{british}{#1}{%
+  \IfLanguageName{canadian}{#1}{%
+  \IfLanguageName{english}{#1}{%
+  \IfLanguageName{newzealand}{#1}{%
+  \IfLanguageName{UKenglish}{#1}{%
+  \IfLanguageName{USenglish}{#1}{#2}}}}}}}}%
+}
+
+\newcommand{\IfLangFrench}[2]{%
+  \IfLanguageName{french}{#1}{%
+  \IfLanguageName{frenchb}{#1}{%
+  \IfLanguageName{francais}{#1}{%
+  \IfLanguageName{acadian}{#1}{%
+  \IfLanguageName{canadien}{#1}{#2}}}}}%
+}
+
+\newcommand{\IfLangPortuges}[2]{%
+  \IfLanguageName{brazil}{#1}{%
+  \IfLanguageName{brazilian}{#1}{%
+  \IfLanguageName{portuges}{#1}{%
+  \IfLanguageName{portuguese}{#1}{#2}}}}%
+}
+
+
+\IfLangGerman
 {% German
     \setHeadlines
     {% translation
@@ -842,7 +877,7 @@
     }
 }{}
 
-\IfLanguagePatterns{english}
+\IfLangEnglish
 {% English
     \setHeadlines
     {% translation
@@ -856,7 +891,7 @@
     }
 }{}
 
-\IfLanguagePatterns{french}
+\IfLangFrench
 {% French
     \setHeadlines
     {% translation
@@ -884,8 +919,8 @@
     }
 }{}
 
-\IfLanguagePatterns{portuguese}
-{% Portuguese
+\IfLangPortuges{
+{% Portuguese and Brazil
     \setHeadlines
     {% translation
         inghead = Ingredientes,
@@ -898,19 +933,6 @@
     }
 }{}
 
-\IfLanguagePatterns{brazil}
-{% Portuguese PT-BR
-    \setHeadlines
-    {% translation
-        inghead = Ingredientes,
-        prephead = Prepara\c{c}\~{a}o,
-        hinthead = Dica,
-        continuationhead = Continua\c{c}\~{a}o,
-        continuationfoot = Continua na pr\'{o}xima p\'{a}gina,
-        portionvalue = Por\c{c}\~{o}es,
-        calory = Valor Cal\'{o}rico
-    }
-}{}
 
 %    \end{macrocode}
 %

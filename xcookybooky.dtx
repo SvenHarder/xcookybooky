@@ -90,7 +90,7 @@
 % \changes{v1.0}{2011/12/29}{Initial version}
 % \changes{v1.1}{2012/04/06}{Load the non-free package 'emerald' per option. Possibility to change the picture width independently from the text columns}
 % \changes{v1.2}{2013/03/10}{Better way for displaying the ingredients (tabularx). Thanks to Bartosz Dziubaczyk for developing.}
-% \changes{v1.3}{2013/06/04}{Fixed a problem with the default recipe name font. Thanks to Václav Zeman for reporting. New environment for the ingredients. Thanks to Andreas Pöge for this suggestion.}
+% \changes{v1.3}{2013/06/04}{Fixed a problem with the default recipe name font. Thanks to VÃ¡clav Zeman for reporting. New environment for the ingredients. Thanks to Andreas PÃ¶ge for this suggestion.}
 % \changes{v1.4}{2015/02/03}{Added two commands for a introduction and recipe suggestions. Additional several hooks are implement in order to insert user-defined text blocks at different places in the recipe. Thanks to Heikki Lehvaslaiho for designing the graphical separator and sending suggestions. Added translations for German, English, French and Spanish.}
 % \changes{v1.5}{2015/03/03}{Adding translations for Portuguese and Brazilian. Thanks to Thiago de Melo for submitting. Adding optional argument for the ingredients part. Thanks to Benjamin Steinwender for submitting.}
 %
@@ -125,7 +125,7 @@
 %
 % \section{Introduction}
 %
-% It all begin in 2011 when I wanted to make a cookbook with \LaTeX. Thus I was looking for recipe templates and found the \texttt{cookybooky} package by Jürgen Gilg (\url{http://www.ctan.org/pkg/cookybooky}). It looks very good, but I was unable to compile it (e.g. I haven't got the Lucida fonts). Also there are some packages which have to be downloaded by hand, because there are not available at CTAN. Other handicaps are the missing possibility to create a PDF-file directly and a recipe cannot be longer than a single page. So decided to take a look at the code. Step by step I replaced all critical parts. Finally the code is nearly complete different from the original and now it is possible to create beautiful designed recipes much easier (at least in my opinion).
+% It all begin in 2011 when I wanted to make a cookbook with \LaTeX. Thus I was looking for recipe templates and found the \texttt{cookybooky} package by JÃ¼rgen Gilg (\url{http://www.ctan.org/pkg/cookybooky}). It looks very good, but I was unable to compile it (e.g. I haven't got the Lucida fonts). Also there are some packages which have to be downloaded by hand, because there are not available at CTAN. Other handicaps are the missing possibility to create a PDF-file directly and a recipe cannot be longer than a single page. So decided to take a look at the code. Step by step I replaced all critical parts. Finally the code is nearly complete different from the original and now it is possible to create beautiful designed recipes much easier (at least in my opinion).
 % 
 % Please note that there is no compatibility between xcookybooky and cookybooky, even the name is associating it. I chose the name, because I was was inspired by the layout.
 %
@@ -144,7 +144,7 @@
 % [% 
 %     preparationtime = {\unit[1]{h}},
 %     bakingtime={\unit[1]{h}},
-%     bakingtemperature={\protect\bakingtemperature{fanoven=\unit[230]{°C}}},
+%     bakingtemperature={\protect\bakingtemperature{fanoven=\unit[230]{Â°C}}},
 %     portion = {\portion{5-6}},
 %     calory={\unit[3]{kJ}},
 %     source = {Somebody you used know}
@@ -269,9 +269,9 @@
 % \begin{recipe}
 % [
 %     bakingtemperature={\protect\bakingtemperature{
-%         fanoven=\unit[230]{°C},
-%         topbottomheat=\unit[195]{°C},
-%         topheat=\unit[195]{°C},
+%         fanoven=\unit[230]{Â°C},
+%         topbottomheat=\unit[195]{Â°C},
+%         topheat=\unit[195]{Â°C},
 %         bottomheat, gasstove=Level 2}
 %     }
 % ]{Test Recipe}
@@ -860,8 +860,8 @@
 {% French
     \setHeadlines
     {% translation
-        inghead = Ingrédients,
-        prephead = Préparation,
+        inghead = IngrÃ©dients,
+        prephead = PrÃ©paration,
         hinthead = Tuyau,
         continuationhead = Suite,
         continuationfoot = Suite page suivante,
@@ -875,12 +875,12 @@
     \setHeadlines
     {% translation
         inghead = Ingredientes,
-        prephead = Preparación,
+        prephead = PreparaciÃ³n,
         hinthead = Soplo,
-        continuationhead = Continuación,
-        continuationfoot = Continúa en la página siguiente,
-        portionvalue = Porción,
-        calory = Poder calorífico
+        continuationhead = ContinuaciÃ³n,
+        continuationfoot = ContinÃºa en la pÃ¡gina siguiente,
+        portionvalue = PorciÃ³n,
+        calory = Poder calorÃ­fico
     }
 }{}
 
@@ -1093,6 +1093,7 @@
 %% SUPPORTING COMMANDS
 \newcommand{\step}
 {%
+    \stepcounter{step}%
     \lettrine
     [%
         lines=2,
@@ -1101,7 +1102,7 @@
         slope=0em,
         findent=1em,      % gap between capital and intended text
         nindent=0em       % shifts all intended lines, begining with the second line
-    ]{\stepcounter{step}\thestep}{}%
+    ]{\thestep}{}%
 }
 
 %    \end{macrocode}

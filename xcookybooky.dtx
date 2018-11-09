@@ -68,7 +68,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{829}
+% \CheckSum{856}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -90,7 +90,7 @@
 % \changes{v1.0}{2011/12/29}{Initial version}
 % \changes{v1.1}{2012/04/06}{Load the non-free package 'emerald' per option. Possibility to change the picture width independently from the text columns}
 % \changes{v1.2}{2013/03/10}{Better way for displaying the ingredients (tabularx). Thanks to Bartosz Dziubaczyk for developing.}
-% \changes{v1.3}{2013/06/04}{Fixed a problem with the default recipe name font. Thanks to Václav Zeman for reporting. New environment for the ingredients. Thanks to Andreas Pöge for this suggestion.}
+% \changes{v1.3}{2013/06/04}{Fixed a problem with the default recipe name font. Thanks to V\'aclav Zeman for reporting. New environment for the ingredients. Thanks to Andreas P\"oge for this suggestion.}
 % \changes{v1.4}{2015/02/03}{Added two commands for a introduction and recipe suggestions. Additional several hooks are implement in order to insert user-defined text blocks at different places in the recipe. Thanks to Heikki Lehvaslaiho for designing the graphical separator and sending suggestions. Added translations for German, English, French and Spanish.}
 % \changes{v1.5}{2015/03/03}{Adding translations for Portuguese and Brazilian. Thanks to Thiago de Melo for submitting. Adding optional argument for the ingredients part. Thanks to Benjamin Steinwender for submitting.}
 %
@@ -125,7 +125,7 @@
 %
 % \section{Introduction}
 %
-% It all begin in 2011 when I wanted to make a cookbook with \LaTeX. Thus I was looking for recipe templates and found the \texttt{cookybooky} package by Jürgen Gilg (\url{http://www.ctan.org/pkg/cookybooky}). It looks very good, but I was unable to compile it (e.g. I haven't got the Lucida fonts). Also there are some packages which have to be downloaded by hand, because there are not available at CTAN. Other handicaps are the missing possibility to create a PDF-file directly and a recipe cannot be longer than a single page. So decided to take a look at the code. Step by step I replaced all critical parts. Finally the code is nearly complete different from the original and now it is possible to create beautiful designed recipes much easier (at least in my opinion).
+% It all begin in 2011 when I wanted to make a cookbook with \LaTeX. Thus I was looking for recipe templates and found the \texttt{cookybooky} package by J\"urgen Gilg (\url{http://www.ctan.org/pkg/cookybooky}). It looks very good, but I was unable to compile it (e.g. I haven't got the Lucida fonts). Also there are some packages which have to be downloaded by hand, because there are not available at CTAN. Other handicaps are the missing possibility to create a PDF-file directly and a recipe cannot be longer than a single page. So decided to take a look at the code. Step by step I replaced all critical parts. Finally the code is nearly complete different from the original and now it is possible to create beautiful designed recipes much easier (at least in my opinion).
 % 
 % Please note that there is no compatibility between xcookybooky and cookybooky, even the name is associating it. I chose the name, because I was was inspired by the layout.
 %
@@ -895,8 +895,8 @@
 {% French
     \setHeadlines
     {% translation
-        inghead = Ingrédients,
-        prephead = Préparation,
+        inghead = Ingr\'edients,
+        prephead = Pr\'eparation,
         hinthead = Tuyau,
         continuationhead = Suite,
         continuationfoot = Suite page suivante,
@@ -910,12 +910,12 @@
     \setHeadlines
     {% translation
         inghead = Ingredientes,
-        prephead = Preparación,
+        prephead = Preparaci\'on,
         hinthead = Soplo,
-        continuationhead = Continuación,
-        continuationfoot = Continúa en la página siguiente,
-        portionvalue = Porción,
-        calory = Poder calorífico
+        continuationhead = Continuaci\'on,
+        continuationfoot = Contin\'ua en la p\'agina siguiente,
+        portionvalue = Porci\'on,
+        calory = Poder calor\'{\i}fico
     }
 }{}
 

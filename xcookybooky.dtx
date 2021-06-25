@@ -726,7 +726,7 @@
 \newcommand*{\setRecipenameFont}[4]
 {% sets the font for the recipename
     \def\xcb@font@recipename
-    {
+    {%
         \fontfamily{#1}
         \fontencoding{#2}
         \fontseries{#3} %x1
@@ -763,13 +763,13 @@
 % \subsection{Headlines and Translations}
 % The following section defines the default English headlines of the recipe. They are only used if no supported language is detected.
 %    \begin{macrocode}
-\define@key{headlines}{inghead}[Ingredients]{
+\define@key{headlines}{inghead}[Ingredients]{%
     \def\xcb@name@inghead{\textcolor{\xcb@color@inghead}{\textbf{\xcb@fontsize@inghead{#1}}\ }}
 }
-\define@key{headlines}{prephead}[Preparation]{
+\define@key{headlines}{prephead}[Preparation]{%
     \def\xcb@name@prephead{\textcolor{\xcb@color@prephead}{\textbf{\xcb@fontsize@prephead{#1}}\ }}
 }
-\define@key{headlines}{hinthead}[Hint]{
+\define@key{headlines}{hinthead}[Hint]{%
     \def\xcb@name@hinthead{\textcolor{\xcb@color@hinthead}{\xcb@fontsize@hinthead{#1}}}
 }
 \define@key{headlines}{continuationhead}[Continuation]{\def\xcb@name@continuationhead{#1}}
@@ -782,7 +782,7 @@
 \define@key{headlines}{calory}[Calorific value]{\def\xcb@name@calory{#1}}
 \define@key{headlines}{source}[\PaperPortrait]{\def\xcb@name@source{#1}}
 \savekeys{headlines}
-{
+{%
     inghead,
     prephead,
     hinthead,
@@ -949,7 +949,7 @@
 \define@key{recipelengths}{preparationwidth}[0.60\textwidth]{\def\xcb@preparationwidth{#1}}
 \define@key{recipelengths}{ingredientswidth}[0.35\textwidth]{\def\xcb@ingredientswidth{#1}}
 \savekeys{recipelengths}
-{
+{%
     pictureheight,      % height of both pictures
     bigpicturewidth,    % width of the bigger picture
     smallpicturewidth,  % width of the smaller picture
@@ -1198,20 +1198,20 @@
 %    \begin{macrocode}
 %% INTERNAL COMMANDS
 \newcommand{\xcb@cmd@recipeoverview}
-{
+{%
     \begin{tabular}{rl}
         \ifthenelse{\equal{\xcb@preparationtime}{}}
         {% not set => not shown
         }
-        {
+        {%
             \xcb@name@preparationtime & \xcb@preparationtime\\
         }
         \ifthenelse{\equal{\xcb@bakingtime}{}}
         {% not set => not shown
         }
-        {
+        {%
             \xcb@name@bakingtime & \xcb@bakingtime\ifthenelse{\equal{\xcb@bakingtemperature}{}}
-            {
+            {%
                 \\
             }
             {,\hspace{1em} \xcb@name@bakingtemperature \hspace{1ex} \xcb@bakingtemperature\\
@@ -1220,19 +1220,19 @@
         \ifthenelse{\equal{\xcb@portion}{}}
         {% not set => not shown
         }
-        {
+        {%
             \xcb@name@portion & \xcb@portion\\
         }
         \ifthenelse{\equal{\xcb@calory}{}}
         {% not set => not shown
         }
-        {
+        {%
             \xcb@name@calory & \xcb@calory\\
         }
         \ifthenelse{\equal{\xcb@source}{}}
         {% not set => not shown
         }
-        {
+        {%
             \xcb@name@source & \xcb@source
         }
     \end{tabular}
@@ -1266,7 +1266,7 @@
         \ifthenelse{\equal{#1}{}}
         {% not set => not shown
         }
-        {
+        {%
             \vspace{-0.6cm}
             \includegraphics[width=\linewidth, height = \xcb@pictureheight, keepaspectratio]{#1}
         }
@@ -1279,7 +1279,7 @@
         \ifthenelse{\equal{#1}{}}
         {% not set => not shown
         }
-        {
+        {%
             \vspace{-0.6cm}
             \includegraphics[width=\linewidth, height = \xcb@pictureheight, keepaspectratio]{#1}
         }
@@ -1565,18 +1565,18 @@
 % This macro is used to create a hint in the head or foot of the page, that the recipe is longer than one page.
 %    \begin{macrocode}
 \newcommand*{\@newpagehint}[1]
-{
+{%
     \ifthenelse{\equal{#1}{head}}
-    {
+    {%
         \ifnum \value{xcb@newpagehead} < \value{page}
             \ifnum \value{xcb@newpagehead} > 0
                 \xcb@name@continuationhead
             \fi
         \fi
     }
-    {
+    {%
         \ifthenelse{\value{xcb@newpagefoot} > 0}
-        {
+        {%
             \xcb@name@continuationfoot
         }
         {% if no message at the bottom is set, there is no need for a message on the next page

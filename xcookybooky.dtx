@@ -545,6 +545,7 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{units}
 \RequirePackage{eso-pic}                     % for background pictures
+\RequirePackage{transparent}                 % for transparent background pictures
 \RequirePackage{picture}                     % for modfifying the position of the bg pictures
 \RequirePackage{tabulary}                    % line breaks in tabular
 \RequirePackage{framed}                      % frame for the introduction
@@ -1594,13 +1595,15 @@
 \define@key{background}{x}[0cm]{\def\xcb@background@x{#1}}
 \define@key{background}{y}[0cm]{\def\xcb@background@y{#1}}
 \define@key{background}{orientation}[default]{\def\xcb@background@orientation{#1}}
+\define@key{background}{opacity}[1]{\def\xcb@background@opacity{#1}}
 \savekeys{background}
 {%
     width,
     height,
     x,
     y,
-    orientation
+    orientation,
+    opacity
 }
 
 %    \end{macrocode}
@@ -1610,7 +1613,7 @@
 \newcommand*{\setBackgroundPicture}[2][]
 {%
     \ClearShipoutPictureBG
-    \setkeys{background}{width, height, x, y, orientation} % initialisation
+    \setkeys{background}{width, height, x, y, orientation, opacity} % initialisation
     \setkeys{background}{#1}
     \AddToShipoutPicture*
     {%
@@ -1621,7 +1624,7 @@
                 \parbox[b][\xcb@background@height]{\xcb@background@width}
                 {%
                     \vfill
-                    \includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}%
+                    \transparent{\xcb@background@opacity}\includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}%
                     \vfill
                 }
             }
@@ -1632,7 +1635,7 @@
                 \AtPageCenter{%
                     \makebox(\xcb@background@x, \xcb@background@y)[c]
                     {%
-                        \includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
+                        \transparent{\xcb@background@opacity}\includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
                     }
                 }
             }
@@ -1642,7 +1645,7 @@
                     \AtTextCenter{%
                         \makebox(\xcb@background@x, \xcb@background@y)[c]
                         {%
-                            \includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
+                            \transparent{\xcb@background@opacity}\includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
                         }
                     }
                 }
@@ -1652,7 +1655,7 @@
                         \AtStockCenter{%
                             \makebox(\xcb@background@x, \xcb@background@y)[c]
                             {%
-                                \includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
+                                \transparent{\xcb@background@opacity}\includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
                             }
                         }
                     }

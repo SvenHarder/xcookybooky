@@ -560,19 +560,22 @@
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{2ex plus 0.5ex}
 
-\setlength{\textwidth}{15.5cm}
-\setlength{\textheight}{24.0cm}
-\setlength{\topmargin}{-0.8cm}
-\setlength{\headheight}{14pt} %0cm
-\setlength{\headsep}{1cm}
-\setlength{\topskip}{0cm}
-\setlength{\footskip}{1.4cm}
-\setlength{\evensidemargin}{-0.5cm}
-\setlength{\oddsidemargin}{0.5cm}
-\setlength{\voffset}{0cm}
-\setlength{\hoffset}{0cm}
-\setcounter{secnumdepth}{2} % subsubsections not numbered
-\setcounter{tocdepth}{3}    % subsubsections in the .toc file
+
+\@ifpackageloaded{geometry}{}{%
+    \setlength{\textwidth}{15.5cm}
+    \setlength{\textheight}{24.0cm}
+    \setlength{\topmargin}{-0.8cm}
+    \setlength{\headheight}{14pt} %0cm
+    \setlength{\headsep}{1cm}
+    \setlength{\topskip}{0cm}
+    \setlength{\footskip}{1.4cm}
+    \setlength{\evensidemargin}{-0.5cm}
+    \setlength{\oddsidemargin}{0.5cm}
+    \setlength{\voffset}{0cm}
+    \setlength{\hoffset}{0cm}
+    \setcounter{secnumdepth}{2} % subsubsections not numbered
+    \setcounter{tocdepth}{3}    % subsubsections in the .toc file
+}
 
 %    \end{macrocode}
 %

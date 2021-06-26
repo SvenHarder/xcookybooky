@@ -545,6 +545,7 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{units}
 \RequirePackage{eso-pic}                     % for background pictures
+\RequirePackage{transparent}                 % for transparent background pictures
 \RequirePackage{picture}                     % for modfifying the position of the bg pictures
 \RequirePackage{tabulary}                    % line breaks in tabular
 \RequirePackage{framed}                      % frame for the introduction
@@ -559,19 +560,22 @@
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{2ex plus 0.5ex}
 
-\setlength{\textwidth}{15.5cm}
-\setlength{\textheight}{24.0cm}
-\setlength{\topmargin}{-0.8cm}
-\setlength{\headheight}{14pt} %0cm
-\setlength{\headsep}{1cm}
-\setlength{\topskip}{0cm}
-\setlength{\footskip}{1.4cm}
-\setlength{\evensidemargin}{-0.5cm}
-\setlength{\oddsidemargin}{0.5cm}
-\setlength{\voffset}{0cm}
-\setlength{\hoffset}{0cm}
-\setcounter{secnumdepth}{2} % subsubsections not numbered
-\setcounter{tocdepth}{3}    % subsubsections in the .toc file
+
+\@ifpackageloaded{geometry}{}{%
+    \setlength{\textwidth}{15.5cm}
+    \setlength{\textheight}{24.0cm}
+    \setlength{\topmargin}{-0.8cm}
+    \setlength{\headheight}{14pt} %0cm
+    \setlength{\headsep}{1cm}
+    \setlength{\topskip}{0cm}
+    \setlength{\footskip}{1.4cm}
+    \setlength{\evensidemargin}{-0.5cm}
+    \setlength{\oddsidemargin}{0.5cm}
+    \setlength{\voffset}{0cm}
+    \setlength{\hoffset}{0cm}
+}
+    \setcounter{secnumdepth}{2} % subsubsections not numbered
+    \setcounter{tocdepth}{3}    % subsubsections in the .toc file
 
 %    \end{macrocode}
 %
@@ -725,7 +729,7 @@
 \newcommand*{\setRecipenameFont}[4]
 {% sets the font for the recipename
     \def\xcb@font@recipename
-    {
+    {%
         \fontfamily{#1}
         \fontencoding{#2}
         \fontseries{#3} %x1
@@ -762,13 +766,13 @@
 % \subsection{Headlines and Translations}
 % The following section defines the default English headlines of the recipe. They are only used if no supported language is detected.
 %    \begin{macrocode}
-\define@key{headlines}{inghead}[Ingredients]{
+\define@key{headlines}{inghead}[Ingredients]{%
     \def\xcb@name@inghead{\textcolor{\xcb@color@inghead}{\textbf{\xcb@fontsize@inghead{#1}}\ }}
 }
-\define@key{headlines}{prephead}[Preparation]{
+\define@key{headlines}{prephead}[Preparation]{%
     \def\xcb@name@prephead{\textcolor{\xcb@color@prephead}{\textbf{\xcb@fontsize@prephead{#1}}\ }}
 }
-\define@key{headlines}{hinthead}[Hint]{
+\define@key{headlines}{hinthead}[Hint]{%
     \def\xcb@name@hinthead{\textcolor{\xcb@color@hinthead}{\xcb@fontsize@hinthead{#1}}}
 }
 \define@key{headlines}{continuationhead}[Continuation]{\def\xcb@name@continuationhead{#1}}
@@ -781,7 +785,7 @@
 \define@key{headlines}{calory}[Calorific value]{\def\xcb@name@calory{#1}}
 \define@key{headlines}{source}[\PaperPortrait]{\def\xcb@name@source{#1}}
 \savekeys{headlines}
-{
+{%
     inghead,
     prephead,
     hinthead,
@@ -872,7 +876,7 @@
         hinthead = Tipp,
         continuationhead = Fortsetzung,
         continuationfoot = Fortsetzung auf n\"achster Seite,
-        portionvalue = Personen,
+        portionvalue = Portionen,
         calory = Brennwert
     }
 }{}
@@ -948,7 +952,7 @@
 \define@key{recipelengths}{preparationwidth}[0.60\textwidth]{\def\xcb@preparationwidth{#1}}
 \define@key{recipelengths}{ingredientswidth}[0.35\textwidth]{\def\xcb@ingredientswidth{#1}}
 \savekeys{recipelengths}
-{
+{%
     pictureheight,      % height of both pictures
     bigpicturewidth,    % width of the bigger picture
     smallpicturewidth,  % width of the smaller picture
@@ -1197,20 +1201,20 @@
 %    \begin{macrocode}
 %% INTERNAL COMMANDS
 \newcommand{\xcb@cmd@recipeoverview}
-{
+{%
     \begin{tabular}{rl}
         \ifthenelse{\equal{\xcb@preparationtime}{}}
         {% not set => not shown
         }
-        {
+        {%
             \xcb@name@preparationtime & \xcb@preparationtime\\
         }
         \ifthenelse{\equal{\xcb@bakingtime}{}}
         {% not set => not shown
         }
-        {
+        {%
             \xcb@name@bakingtime & \xcb@bakingtime\ifthenelse{\equal{\xcb@bakingtemperature}{}}
-            {
+            {%
                 \\
             }
             {,\hspace{1em} \xcb@name@bakingtemperature \hspace{1ex} \xcb@bakingtemperature\\
@@ -1219,19 +1223,19 @@
         \ifthenelse{\equal{\xcb@portion}{}}
         {% not set => not shown
         }
-        {
+        {%
             \xcb@name@portion & \xcb@portion\\
         }
         \ifthenelse{\equal{\xcb@calory}{}}
         {% not set => not shown
         }
-        {
+        {%
             \xcb@name@calory & \xcb@calory\\
         }
         \ifthenelse{\equal{\xcb@source}{}}
         {% not set => not shown
         }
-        {
+        {%
             \xcb@name@source & \xcb@source
         }
     \end{tabular}
@@ -1265,7 +1269,7 @@
         \ifthenelse{\equal{#1}{}}
         {% not set => not shown
         }
-        {
+        {%
             \vspace{-0.6cm}
             \includegraphics[width=\linewidth, height = \xcb@pictureheight, keepaspectratio]{#1}
         }
@@ -1278,7 +1282,7 @@
         \ifthenelse{\equal{#1}{}}
         {% not set => not shown
         }
-        {
+        {%
             \vspace{-0.6cm}
             \includegraphics[width=\linewidth, height = \xcb@pictureheight, keepaspectratio]{#1}
         }
@@ -1564,18 +1568,18 @@
 % This macro is used to create a hint in the head or foot of the page, that the recipe is longer than one page.
 %    \begin{macrocode}
 \newcommand*{\@newpagehint}[1]
-{
+{%
     \ifthenelse{\equal{#1}{head}}
-    {
+    {%
         \ifnum \value{xcb@newpagehead} < \value{page}
             \ifnum \value{xcb@newpagehead} > 0
                 \xcb@name@continuationhead
             \fi
         \fi
     }
-    {
+    {%
         \ifthenelse{\value{xcb@newpagefoot} > 0}
-        {
+        {%
             \xcb@name@continuationfoot
         }
         {% if no message at the bottom is set, there is no need for a message on the next page
@@ -1594,13 +1598,15 @@
 \define@key{background}{x}[0cm]{\def\xcb@background@x{#1}}
 \define@key{background}{y}[0cm]{\def\xcb@background@y{#1}}
 \define@key{background}{orientation}[default]{\def\xcb@background@orientation{#1}}
+\define@key{background}{opacity}[1]{\def\xcb@background@opacity{#1}}
 \savekeys{background}
 {%
     width,
     height,
     x,
     y,
-    orientation
+    orientation,
+    opacity
 }
 
 %    \end{macrocode}
@@ -1610,7 +1616,7 @@
 \newcommand*{\setBackgroundPicture}[2][]
 {%
     \ClearShipoutPictureBG
-    \setkeys{background}{width, height, x, y, orientation} % initialisation
+    \setkeys{background}{width, height, x, y, orientation, opacity} % initialisation
     \setkeys{background}{#1}
     \AddToShipoutPicture
     {%
@@ -1621,7 +1627,7 @@
                 \parbox[b][\xcb@background@height]{\xcb@background@width}
                 {%
                     \vfill
-                    \includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}%
+                    \transparent{\xcb@background@opacity}\includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}%
                     \vfill
                 }
             }
@@ -1632,7 +1638,7 @@
                 \AtPageCenter{%
                     \makebox(\xcb@background@x, \xcb@background@y)[c]
                     {%
-                        \includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
+                        \transparent{\xcb@background@opacity}\includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
                     }
                 }
             }
@@ -1642,7 +1648,7 @@
                     \AtTextCenter{%
                         \makebox(\xcb@background@x, \xcb@background@y)[c]
                         {%
-                            \includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
+                            \transparent{\xcb@background@opacity}\includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
                         }
                     }
                 }
@@ -1652,7 +1658,7 @@
                         \AtStockCenter{%
                             \makebox(\xcb@background@x, \xcb@background@y)[c]
                             {%
-                                \includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
+                                \transparent{\xcb@background@opacity}\includegraphics[width=\xcb@background@width, height=\xcb@background@height, keepaspectratio]{#2}
                             }
                         }
                     }
